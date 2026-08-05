@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trámites — Gobernación de Baja Verapaz</title>
+<meta name="description" content="Formularios y requisitos para trámites en la Gobernación Departamental de Baja Verapaz.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link href="assets/css/styles.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- El navbar se inyecta aquí vía fetch, ver assets/js/main.js. -->
+<!-- Como el <header> usa position:sticky, se queda visible al hacer scroll. -->
+<div id="navbar-container"></div>
+
+<!-- ===================== CONTENIDO ===================== -->
+<section style="padding-top:60px;padding-bottom:90px;">
+  <div class="contenedor">
+    <div class="encabezado-seccion" style="margin-bottom:36px;">
+      <span class="ojo">Servicios</span>
+      <h2>Trámites</h2>
+      <p>Selecciona un trámite del listado para ver las instrucciones, los requisitos y descargar el formulario en PDF.</p>
+    </div>
+
+    <div class="grid-tramites">
+
+      <!-- Columna izquierda: listado de trámites (generado por tramites.js) -->
+      <aside class="lista-tramites">
+        <h3>Listado de trámites</h3>
+        <ul id="listaTramites">
+          <!-- Se llena automáticamente desde assets/js/tramites.js -->
+        </ul>
+      </aside>
+
+      <!-- Columna derecha: instrucciones + requisitos + descarga (generado por tramites.js) -->
+      <div class="detalle-tramite" id="detalleTramite">
+        <div class="detalle-vacio">Selecciona un trámite del listado izquierdo.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- El footer se inyecta aquí vía fetch, ver assets/js/main.js -->
+<div id="footer-container"></div>
+
+<script src="assets/js/main.js"></script>
+<script src="assets/js/modals.js"></script>
+<script src="assets/js/tramites.js"></script>
+</body>
+</html>
