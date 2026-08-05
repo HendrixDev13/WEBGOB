@@ -447,8 +447,7 @@
   .grid-municipios{
     display:grid;
     grid-template-columns:repeat(6,1fr);
-    gap:28px;
-    
+    gap:18px;
   }
 
   .chip-municipio{
@@ -692,3 +691,387 @@
     .hero-botones{flex-direction:column;}
     .btn{justify-content:center;}
   }
+
+/* =====================================================
+   PÁGINA DE TRÁMITES: listado + detalle
+===================================================== */
+.grid-tramites{
+  display:grid;
+  grid-template-columns:340px 1fr;
+  gap:28px;
+  align-items:start;
+}
+
+/* ---- Columna izquierda: listado ---- */
+.lista-tramites{
+  background:var(--blanco);
+  border:1px solid #e6ebf5;
+  border-radius:16px;
+  overflow:hidden;
+  position:sticky;
+  top:100px; /* deja espacio bajo el navbar sticky */
+  max-height:calc(100vh - 130px);
+  display:flex;
+  flex-direction:column;
+}
+
+.lista-tramites h3{
+  padding:20px 22px;
+  font-size:1rem;
+  color:var(--texto-oscuro);
+  border-bottom:1px solid #e6ebf5;
+  background:#f6f8fc;
+}
+
+.lista-tramites ul{
+  overflow-y:auto;
+}
+
+.lista-tramites li{
+  border-bottom:1px solid #eef1f8;
+}
+
+.item-tramite{
+  width:100%;
+  text-align:left;
+  background:none;
+  border:none;
+  padding:16px 22px;
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  cursor:pointer;
+  font-family:inherit;
+  font-size:.88rem;
+  color:var(--texto-gris);
+  transition:.2s ease;
+}
+
+.item-tramite:hover{
+  background:#f6f8fc;
+  color:var(--azul-oscuro);
+}
+
+.item-tramite.activo{
+  background:linear-gradient(150deg,var(--azul-medio),var(--azul-oscuro));
+  color:var(--blanco);
+}
+
+.item-tramite .numero{
+  flex-shrink:0;
+  width:26px;height:26px;
+  border-radius:50%;
+  border:1.5px solid currentColor;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.72rem;
+  font-weight:700;
+}
+
+/* ---- Columna derecha: detalle ---- */
+.detalle-tramite{
+  background:var(--blanco);
+  border:1px solid #e6ebf5;
+  border-radius:16px;
+  padding:36px 40px;
+  min-height:420px;
+}
+
+.detalle-tramite .ojo{
+  color:var(--azul-brillante);
+  font-weight:700;
+  font-size:.78rem;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  display:block;
+  margin-bottom:10px;
+}
+
+.detalle-tramite h2{
+  font-size:1.5rem;
+  color:var(--texto-oscuro);
+  margin-bottom:18px;
+}
+
+.detalle-tramite h4{
+  font-size:.95rem;
+  color:var(--texto-oscuro);
+  margin:24px 0 10px;
+}
+
+.detalle-tramite ol,
+.detalle-tramite ul.lista-requisitos{
+  padding-left:20px;
+  color:var(--texto-gris);
+  font-size:.92rem;
+}
+
+.detalle-tramite ol li,
+.detalle-tramite ul.lista-requisitos li{
+  margin-bottom:8px;
+  line-height:1.6;
+}
+
+.btn-descarga{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  margin-top:26px;
+  padding:13px 26px;
+  border-radius:30px;
+  font-weight:600;
+  font-size:.9rem;
+  background:var(--dorado);
+  color:var(--azul-oscuro);
+  transition:.2s ease;
+}
+.btn-descarga:hover{background:var(--azul-oscuro);color:var(--blanco);}
+
+.detalle-vacio{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height:100%;
+  min-height:380px;
+  color:var(--texto-gris);
+  font-size:.95rem;
+  text-align:center;
+}
+
+/* ---- Responsive ---- */
+@media (max-width:900px){
+  .grid-tramites,
+  .grid-transparencia{grid-template-columns:1fr;}
+  .lista-tramites{position:static;max-height:none;}
+  .detalle-tramite{padding:28px 24px;}
+}
+
+/* =====================================================
+   PÁGINA DE TRANSPARENCIA: informe CODEDE
+===================================================== */
+.grid-transparencia{
+  display:grid;
+  grid-template-columns:320px 1fr;
+  gap:28px;
+  align-items:start;
+}
+
+/* ---- Panel lateral: historial por año (acordeón) ---- */
+.panel-historial{
+  padding-bottom:12px;
+}
+
+.panel-historial h3{
+  padding:20px 22px;
+  font-size:1rem;
+  color:var(--texto-oscuro);
+  border-bottom:1px solid #e6ebf5;
+  background:#f6f8fc;
+}
+
+.anio-historial{
+  border-bottom:1px solid #eef1f8;
+}
+
+.anio-toggle{
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:#f6f8fc;
+  border:none;
+  padding:14px 22px;
+  font-family:inherit;
+  font-weight:700;
+  font-size:.92rem;
+  color:var(--texto-oscuro);
+  cursor:pointer;
+}
+
+.anio-toggle .flecha{
+  transition:transform .2s ease;
+  color:var(--azul-brillante);
+}
+
+.anio-historial.abierto .anio-toggle .flecha{
+  transform:rotate(180deg);
+}
+
+.lista-meses{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .25s ease;
+}
+
+.anio-historial.abierto .lista-meses{
+  max-height:600px;
+}
+
+.lista-meses li{
+  border-bottom:1px solid #f3f5fa;
+}
+
+.item-informe{
+  width:100%;
+  text-align:left;
+  background:none;
+  border:none;
+  padding:13px 22px 13px 30px;
+  font-family:inherit;
+  font-size:.86rem;
+  color:var(--texto-gris);
+  cursor:pointer;
+  transition:.2s ease;
+}
+
+.item-informe:hover{
+  background:#f6f8fc;
+  color:var(--azul-oscuro);
+}
+
+.item-informe.activo{
+  background:linear-gradient(150deg,var(--azul-medio),var(--azul-oscuro));
+  color:var(--blanco);
+  font-weight:600;
+}
+
+.sin-informes{
+  padding:13px 22px 13px 30px;
+  font-size:.82rem;
+  color:#a3acc2;
+  font-style:italic;
+}
+
+.tarjeta-oficio{
+  background:var(--blanco);
+  border:1px solid #e6ebf5;
+  border-left:5px solid var(--azul-brillante);
+  border-radius:14px;
+  padding:26px 30px;
+  margin-bottom:32px;
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:20px;
+  align-items:center;
+}
+.tarjeta-oficio dl{
+  display:grid;
+  grid-template-columns:140px 1fr;
+  row-gap:6px;
+  font-size:.9rem;
+}
+.tarjeta-oficio dt{color:var(--texto-gris);}
+.tarjeta-oficio dd{color:var(--texto-oscuro);font-weight:600;}
+.tarjeta-oficio .acciones-oficio{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.btn-pdf{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:12px 22px;
+  border-radius:30px;
+  font-weight:600;
+  font-size:.86rem;
+  white-space:nowrap;
+}
+.btn-pdf.ver{
+  background:var(--azul-medio);
+  color:var(--blanco);
+}
+.btn-pdf.ver:hover{background:var(--azul-oscuro);}
+.btn-pdf.descargar{
+  background:var(--dorado);
+  color:var(--azul-oscuro);
+}
+.btn-pdf.descargar:hover{background:var(--azul-oscuro);color:var(--blanco);}
+
+/* Visor de PDF: alto relativo a la ventana, para que se vea grande
+   sin desbordar en pantallas chicas */
+.visor-pdf{
+  width:100%;
+  height:88vh;
+  min-height:620px;
+  max-height:1000px;
+  border:1px solid #e6ebf5;
+  border-radius:14px;
+  margin-bottom:40px;
+  box-shadow:var(--sombra);
+}
+
+.bloque-titulo-resumen{
+  margin-bottom:18px;
+}
+.bloque-titulo-resumen h3{
+  font-size:1.15rem;
+  color:var(--texto-oscuro);
+}
+.bloque-titulo-resumen p{
+  color:var(--texto-gris);
+  font-size:.9rem;
+}
+
+.tabla-resumen-wrap{
+  overflow-x:auto;
+  border:1px solid #e6ebf5;
+  border-radius:14px;
+  margin-bottom:44px;
+}
+table.tabla-resumen{
+  width:100%;
+  border-collapse:collapse;
+  font-size:.85rem;
+  min-width:680px;
+}
+table.tabla-resumen th,
+table.tabla-resumen td{
+  padding:13px 16px;
+  text-align:right;
+  border-bottom:1px solid #eef1f8;
+  white-space:nowrap;
+}
+table.tabla-resumen th:first-child,
+table.tabla-resumen td:first-child{text-align:left;}
+table.tabla-resumen thead th{
+  background:#f6f8fc;
+  color:var(--texto-oscuro);
+  font-size:.76rem;
+  text-transform:uppercase;
+  letter-spacing:.5px;
+}
+table.tabla-resumen tbody tr:hover{background:#fafbfe;}
+table.tabla-resumen tfoot td{
+  font-weight:700;
+  background:#f6f8fc;
+  color:var(--azul-oscuro);
+  border-top:2px solid #d7deec;
+}
+
+.grafica-wrap{
+  background:var(--blanco);
+  border:1px solid #e6ebf5;
+  border-radius:14px;
+  padding:30px 34px 20px;
+}
+.grafica-wrap h3{
+  font-size:1.15rem;
+  color:var(--texto-oscuro);
+  margin-bottom:4px;
+}
+.grafica-wrap p{
+  color:var(--texto-gris);
+  font-size:.88rem;
+  margin-bottom:18px;
+}
+#graficaAporte{
+  width:100%;
+  height:auto;
+}
+
+@media (max-width:720px){
+  .tarjeta-oficio{grid-template-columns:1fr;}
+  .tarjeta-oficio dl{grid-template-columns:120px 1fr;}
+  .visor-pdf{height:70vh;min-height:420px;}
+}
