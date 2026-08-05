@@ -11,7 +11,7 @@ const tramites = [
   {
     id: 1,
     nombre: "Formulario de autorización de actividades en la vía pública",
-    pdf: "assets/pdf/01TableroRendicionDeCuentas.pdf",
+    pdf: "/assets/pdf/01TableroRendicionDeCuentas.pdf",
     instrucciones: [
       "Descargue e imprima el formulario.",
       "Complételo con letra clara y sin tachones.",
@@ -27,7 +27,7 @@ const tramites = [
   {
     id: 2,
     nombre: "Formulario de recolección de rifas y sorteos",
-    pdf: "assets/pdf/01TableroRendicionDeCuentas.pdf",
+    pdf: "/assets/pdf/01TableroRendicionDeCuentas.pdf",
     instrucciones: [
       "Descargue e imprima el formulario.",
       "Reúna las firmas de aval de los organizadores de la rifa.",

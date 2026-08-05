@@ -51,8 +51,8 @@ function marcarLinkActivo() {
 document.addEventListener('DOMContentLoaded', async () => {
   // 1) Cargar navbar y footer en paralelo
   await Promise.all([
-    cargarComponente('#navbar-container', 'components/navbar.html'),
-    cargarComponente('#footer-container', 'components/footer.html')
+    cargarComponente('#navbar-container', '/components/navbar.html'),
+    cargarComponente('#footer-container', '/components/footer.html')
   ]);
  
   // 2) Una vez inyectado el navbar, activar su comportamiento

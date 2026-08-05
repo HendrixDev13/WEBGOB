@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
  
-<link href="assets/css/styles.css" rel="stylesheet">
+<link href="/assets/css/styles.css" rel="stylesheet">
 </head>
 <body>
  
@@ -25,7 +25,7 @@
  
       <div class="hero-imagen">
         <!-- Reemplaza esta ruta por la imagen que subas en el Administrador de Archivos de cPanel -->
-        <img src="images/rabinal.jpg" alt="Vista aérea de Rabinal, Baja Verapaz" onerror="this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTs_WPr6uTMZIfsHBcjTGuZBzZWeTkgZ8lJIA&s'">
+        <img src="/images/rabinal.jpg" alt="Vista aérea de Rabinal, Baja Verapaz" onerror="this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTs_WPr6uTMZIfsHBcjTGuZBzZWeTkgZ8lJIA&s'">
       </div>
  
       <div class="hero-texto">
@@ -105,7 +105,7 @@
       <h2>Últimos informes y noticias</h2>
       <p>Mantente al tanto de la gestión, los proyectos y los comunicados oficiales de la Gobernación.</p>
     </div>
- <article class="tarjeta-noticia">
+    <article class="tarjeta-noticia">
         <div class="miniatura">Comunicado Importante</div>
         <div class="contenido-noticia">
           <span class="fecha-noticia">Julio 2026</span>
@@ -114,10 +114,19 @@
           <a href="noticias.html" class="leer-mas">Leer más →</a>
         </div>
       </article>
+      <article class="tarjeta-noticia">
+        <div class="miniatura">Transparencia CODEDEBV</div>
+        <div class="contenido-noticia">
+          <span class="fecha-noticia">Informes</span>
+          <h3>Entra a la página de Transparencia del CODEDEBV</h3>
+          <a href="/pages/trans-codede.html" class="leer-mas">Leer más →</a>
+        </div>
+      </article>
+      
     </div>
     
     <div style="text-align:center;margin-top:36px;">
-      <a href="noticias.html" class="btn btn-secundario">Ver todas las noticias</a>
+      <a href="/pages/municipios.html" class="btn btn-secundario">Ver todas las noticias</a>
     </div>
   </div>
 </section>
@@ -132,7 +141,7 @@
     </div>
  
     <div style="text-align:center;margin-top:36px;">
-      <a href="municipios.html" class="btn btn-secundario" style="border-color:#fff;color:#fff;">Ver los 8 municipios</a>
+      <a href="/pages/municipios.html" class="btn btn-secundario" style="border-color:#fff;color:#fff;">Ver los 8 municipios</a>
     </div>
   </div>
 </section>
@@ -186,7 +195,7 @@
  
     <div class="modal-imagen">
       <!-- Reemplaza esta ruta por la foto del gobernador que subas al Administrador de Archivos -->
-      <img src="images/gobernador.jpg" alt="Fotografía del Gobernador de Baja Verapaz" onerror="this.src='https://via.placeholder.com/640x400/0f2c66/ffffff?text=Foto+del+Gobernador'">
+      <img src="images/gobernador.jpg" alt="Fotografía del Gobernador de Baja Verapaz">
     </div>
  
     <div class="modal-contenido">
@@ -204,7 +213,9 @@
 <div id="footer-container"></div>
  
  
-<script src="assets/js/main.js"></script>
-<script src="assets/js/modals.js"></script>
+<script src="/assets/js/main.js"></script>
+<script src="/assets/js/modals.js"></script>
+<script src="/assets/js/tramites.js"></script>
+<script src="/assets/js/transparencia.js"></script>
 </body>
 </html>

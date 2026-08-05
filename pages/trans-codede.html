@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Transparencia — Gobernación de Baja Verapaz</title>
+<meta name="description" content="Informes mensuales de transparencia y ejecución de proyectos del CODEDE Baja Verapaz.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link href="/assets/css/styles.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- El navbar se inyecta aquí vía fetch, ver assets/js/main.js -->
+<div id="navbar-container"></div>
+
+<!-- ===================== CONTENIDO ===================== -->
+<section style="padding-top:60px;padding-bottom:90px;">
+  <div class="contenedor">
+
+    <div class="encabezado-seccion" style="margin-bottom:36px;">
+      <span class="ojo">Transparencia</span>
+      <h2>Transparencia CODEDE</h2>
+      <p>Informe mensual de aportes, ejecución física y financiera de los proyectos del Consejo Departamental de Desarrollo de Baja Verapaz.</p>
+    </div>
+
+    <div class="grid-transparencia">
+
+      <!-- Columna izquierda: historial por año -->
+      <aside class="lista-tramites panel-historial">
+        <h3>Historial de informes</h3>
+        <div id="historialInformes"></div>
+      </aside>
+
+      <!-- Columna derecha: informe seleccionado -->
+      <div class="detalle-tramite" id="panelInforme">
+
+        <!-- Tarjeta con los datos del oficio + acciones sobre el PDF -->
+        <div class="tarjeta-oficio">
+          <dl>
+            <dt>Oficio No.</dt>
+            <dd><span id="oficioNo"></span> Ref. <span id="oficioReferencia"></span></dd>
+            <dt>Fecha</dt>
+            <dd id="oficioFecha"></dd>
+            <dt>Dirigido a</dt>
+            <dd id="oficioDirigidoA"></dd>
+            <dt>Asunto</dt>
+            <dd id="oficioAsunto" style="font-weight:400;"></dd>
+          </dl>
+          <div class="acciones-oficio">
+            <a id="btnVerPdf" class="btn-pdf ver" href="#" target="_blank" rel="noopener">👁 Ver oficio completo</a>
+            <a id="btnDescargarPdf" class="btn-pdf descargar" href="#" download>⬇ Descargar PDF</a>
+          </div>
+        </div>
+
+        <!-- Visor embebido del PDF (navegador nativo) -->
+        <iframe id="visorPdf" class="visor-pdf" title="Visor del informe en PDF"></iframe>
+
+        <!-- Tabla resumen por municipio -->
+        <div class="bloque-titulo-resumen">
+          <h4 style="margin:0 0 4px;">Resumen por municipio</h4>
+          <p style="margin:0;color:var(--texto-gris);font-size:.88rem;">Aporte CODEDE, montos recibidos/entregados y saldos pendientes.</p>
+        </div>
+
+        <div class="tabla-resumen-wrap">
+          <table class="tabla-resumen">
+            <thead>
+              <tr>
+                <th>Municipio</th>
+                <th>Obras</th>
+                <th>Aporte CODEDE</th>
+                <th>Monto recibido</th>
+                <th>Saldo por recibir</th>
+                <th>Monto entregado</th>
+                <th>Saldo por entregar</th>
+              </tr>
+            </thead>
+            <tbody id="cuerpoTablaResumen"></tbody>
+            <tfoot id="pieTablaResumen"></tfoot>
+          </table>
+        </div>
+
+        <!-- Gráfica de barras: Aporte CODEDE por municipio -->
+        <div class="grafica-wrap">
+          <h4 style="margin:0 0 4px;">Aporte CODEDE por municipio</h4>
+          <p style="margin:0 0 18px;color:var(--texto-gris);font-size:.88rem;">Comparativo del monto total aportado a cada municipio.</p>
+          <canvas id="graficaAporte"></canvas>
+        </div>
+
+      </div>
+
+      <!-- Se muestra si el año seleccionado todavía no tiene informes -->
+      <div class="detalle-tramite" id="panelVacio" style="display:none;">
+        <div class="detalle-vacio">Aún no hay informes cargados para este período.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- El footer se inyecta aquí vía fetch, ver assets/js/main.js -->
+<div id="footer-container"></div>
+
+<script src="/assets/js/main.js"></script>
+<script src="/assets/js/modals.js"></script>
+<script src="/assets/js/transparencia.js"></script>
+</body>
+</html>
