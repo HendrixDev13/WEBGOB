@@ -1,0 +1,694 @@
+/* =====================================================
+   STYLES.CSS
+   Estilos generales del sitio - Gobernación de Baja Verapaz
+   Variables, header, hero, secciones, footer y modal.
+===================================================== */
+
+:root{
+    --azul-oscuro:#071a3d;
+    --azul-medio:#0f2c66;
+    --azul-brillante:#2f5fd6;
+    --azul-cielo:#6f9bf2;
+    --crema:#faf1e2;
+    --dorado:#c99a3f;
+    --texto-oscuro:#2a2116;
+    --texto-gris:#4b5568;
+    --blanco:#ffffff;
+    --radio:18px;
+    --sombra:0 18px 40px rgba(7,26,61,.18);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    font-family:'Inter',sans-serif;
+    color:var(--texto-oscuro);
+    background:var(--blanco);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3,h4{font-family:'Poppins',sans-serif;}
+
+  a{text-decoration:none;color:inherit;}
+  ul{list-style:none;}
+  img{max-width:100%;display:block;}
+
+  .contenedor{
+    max-width:1200px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  /* ===== HEADER ===== */
+  header{
+    background:linear-gradient(120deg,var(--azul-oscuro) 0%,var(--azul-medio) 55%,var(--azul-brillante) 100%);
+    position:sticky;
+    top:0;
+    z-index:100;
+    box-shadow:0 4px 20px rgba(0,0,0,.15);
+  }
+
+  .barra-nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:18px 32px;
+    max-width:1200px;
+    margin:0 auto;
+    gap:24px;
+  }
+
+  .marca{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    color:var(--blanco);
+    font-weight:700;
+    letter-spacing:.5px;
+    font-size:.95rem;
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+
+  .marca .escudo{
+    width:40px;height:40px;
+    border-radius:50%;
+    background:var(--dorado);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Poppins',sans-serif;
+    font-weight:800;
+    color:var(--azul-oscuro);
+    flex-shrink:0;
+  }
+
+  nav.menu-principal{
+    display:flex;
+    align-items:center;
+    gap:6px;
+  }
+
+  nav.menu-principal a{
+    color:rgba(255,255,255,.88);
+    font-size:.9rem;
+    font-weight:600;
+    padding:10px 16px;
+    border-radius:30px;
+    transition:.2s ease;
+    white-space:nowrap;
+  }
+
+  nav.menu-principal a:hover,
+  nav.menu-principal a:focus-visible{
+    background:rgba(255,255,255,.12);
+    color:var(--blanco);
+  }
+
+  nav.menu-principal a.activo{
+    background:var(--blanco);
+    color:var(--azul-oscuro);
+  }
+
+  .buscador{
+    display:flex;
+    align-items:center;
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.25);
+    border-radius:30px;
+    padding:8px 8px 8px 16px;
+    gap:8px;
+  }
+
+  .buscador input{
+    background:transparent;
+    border:none;
+    outline:none;
+    color:var(--blanco);
+    font-size:.85rem;
+    width:110px;
+  }
+  .buscador input::placeholder{color:rgba(255,255,255,.7);}
+
+  .buscador button{
+    background:var(--blanco);
+    border:none;
+    width:32px;height:32px;
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;
+    color:var(--azul-oscuro);
+    flex-shrink:0;
+  }
+
+  .btn-menu-movil{
+    display:none;
+    background:none;
+    border:none;
+    cursor:pointer;
+    padding:6px;
+  }
+  .btn-menu-movil span{
+    display:block;
+    width:26px;height:3px;
+    background:var(--blanco);
+    margin:5px 0;
+    border-radius:3px;
+  }
+
+  /* ===== HERO ===== */
+  .hero-seccion{
+    background:linear-gradient(180deg,var(--azul-oscuro) 0%,var(--azul-brillante) 55%,var(--azul-cielo) 100%);
+    padding:36px 0 90px;
+  }
+
+  .hero-tarjeta{
+    max-width:1200px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.05fr 1.4fr;
+    background:var(--crema);
+    border-radius:var(--radio);
+    overflow:hidden;
+    box-shadow:var(--sombra);
+  }
+
+  .hero-imagen{
+    position:relative;
+    min-height:400px;
+  }
+
+  .hero-imagen img{
+    width:100%;height:100%;
+    object-fit:cover;
+    min-height:400px;
+  }
+
+  .hero-etiqueta{
+    position:absolute;
+    top:20px;left:20px;
+    background:rgba(7,26,61,.85);
+    color:var(--blanco);
+    padding:8px 16px;
+    border-radius:8px;
+    font-size:.7rem;
+    font-weight:700;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    border-left:3px solid var(--dorado);
+  }
+
+  .hero-etiqueta span{display:block;font-size:.95rem;letter-spacing:0;margin-top:2px;}
+
+  .hero-texto{
+    padding:56px 56px 56px 48px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:20px;
+  }
+
+  .hero-texto .ojo{
+    color:var(--dorado);
+    font-weight:700;
+    font-size:.8rem;
+    letter-spacing:2px;
+    text-transform:uppercase;
+  }
+
+  .hero-texto h1{
+    font-size:clamp(2rem,3.6vw,2.8rem);
+    font-weight:800;
+    line-height:1.12;
+    color:var(--texto-oscuro);
+  }
+
+  .hero-texto p{
+    color:var(--texto-gris);
+    font-size:1.02rem;
+    max-width:52ch;
+  }
+
+  .hero-botones{
+    display:flex;
+    gap:14px;
+    margin-top:8px;
+    flex-wrap:wrap;
+  }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:13px 26px;
+    border-radius:30px;
+    font-weight:600;
+    font-size:.9rem;
+    transition:.2s ease;
+    border:2px solid transparent;
+    cursor:pointer;
+  }
+
+  .btn-primario{
+    background:var(--azul-oscuro);
+    color:var(--blanco);
+  }
+  .btn-primario:hover{background:var(--azul-brillante);}
+
+  .btn-secundario{
+    border-color:var(--azul-oscuro);
+    color:var(--azul-oscuro);
+    background:transparent;
+  }
+  .btn-secundario:hover{background:var(--azul-oscuro);color:var(--blanco);}
+
+  /* ===== TARJETAS DE ACCESO RAPIDO ===== */
+  .accesos-rapidos{
+    max-width:1200px;
+    margin:-58px auto 0;
+    padding:0 32px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:26px;
+    position:relative;
+    z-index:2;
+  }
+
+  .tarjeta-acceso{
+    background:linear-gradient(150deg,var(--azul-medio),var(--azul-oscuro));
+    border-radius:16px;
+    padding:28px;
+    color:var(--blanco);
+    box-shadow:var(--sombra);
+    transition:transform .25s ease,box-shadow .25s ease;
+  }
+
+  .tarjeta-acceso:hover{
+    transform:translateY(-6px);
+    box-shadow:0 24px 46px rgba(7,26,61,.28);
+  }
+
+  .numero-tarjeta{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:38px;height:38px;
+    border:1.5px solid rgba(255,255,255,.5);
+    border-radius:50%;
+    font-size:.8rem;
+    font-weight:700;
+    margin-bottom:22px;
+  }
+
+  .tarjeta-acceso h3{
+    font-size:1.2rem;
+    margin-bottom:8px;
+    font-weight:700;
+  }
+
+  .tarjeta-acceso p{
+    font-size:.88rem;
+    color:rgba(255,255,255,.78);
+    margin-bottom:16px;
+  }
+
+  .tarjeta-acceso .enlace-tarjeta{
+    font-size:.82rem;
+    font-weight:700;
+    color:var(--dorado);
+  }
+
+  /* ===== SECCIONES GENERALES ===== */
+  section{
+    padding:90px 0;
+  }
+
+  .encabezado-seccion{
+    max-width:640px;
+    margin:0 auto 56px;
+    text-align:center;
+  }
+
+  .encabezado-seccion .ojo{
+    color:var(--azul-brillante);
+    font-weight:700;
+    font-size:.78rem;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    display:block;
+    margin-bottom:10px;
+  }
+
+  .encabezado-seccion h2{
+    font-size:clamp(1.7rem,3vw,2.3rem);
+    font-weight:800;
+    color:var(--texto-oscuro);
+    margin-bottom:14px;
+  }
+
+  .encabezado-seccion p{
+    color:var(--texto-gris);
+  }
+
+  /* Quienes somos */
+  .quienes-somos{background:#f6f8fc;}
+
+  .grid-valores{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:28px;
+  }
+
+  .tarjeta-valor{
+    background:var(--blanco);
+    border-radius:16px;
+    padding:34px 30px;
+    border:1px solid #e6ebf5;
+    transition:.25s ease;
+  }
+  .tarjeta-valor:hover{border-color:var(--azul-brillante);box-shadow:0 14px 30px rgba(15,44,102,.08);}
+
+  .tarjeta-valor .icono{
+    width:52px;height:52px;
+    border-radius:14px;
+    background:linear-gradient(135deg,var(--azul-brillante),var(--azul-oscuro));
+    display:flex;align-items:center;justify-content:center;
+    color:var(--blanco);
+    font-size:1.3rem;
+    margin-bottom:20px;
+  }
+
+  .tarjeta-valor h3{font-size:1.15rem;margin-bottom:10px;color:var(--texto-oscuro);}
+  .tarjeta-valor p{color:var(--texto-gris);font-size:.92rem;}
+
+  /* Informes / noticias */
+  .grid-noticias{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:28px;
+  }
+
+  .tarjeta-noticia{
+    border-radius:16px;
+    overflow:hidden;
+    border:1px solid #e6ebf5;
+    background:var(--blanco);
+    transition:.25s ease;
+  }
+  .tarjeta-noticia:hover{transform:translateY(-6px);box-shadow:0 20px 36px rgba(15,44,102,.12);}
+
+  .tarjeta-noticia .miniatura{
+    height:170px;
+    background:linear-gradient(135deg,var(--azul-cielo),var(--azul-brillante));
+    display:flex;align-items:center;justify-content:center;
+    color:rgba(255,255,255,.85);
+    font-family:'Poppins',sans-serif;
+    font-weight:700;
+    font-size:.8rem;
+    letter-spacing:1px;
+    text-transform:uppercase;
+  }
+
+  .tarjeta-noticia .contenido-noticia{padding:22px 24px 26px;}
+
+  .fecha-noticia{
+    font-size:.75rem;
+    color:var(--azul-brillante);
+    font-weight:700;
+    letter-spacing:.5px;
+    text-transform:uppercase;
+  }
+
+  .tarjeta-noticia h3{
+    font-size:1.05rem;
+    margin:10px 0 10px;
+    color:var(--texto-oscuro);
+    line-height:1.4;
+  }
+
+  .tarjeta-noticia p{font-size:.88rem;color:var(--texto-gris);margin-bottom:14px;}
+
+  .leer-mas{font-size:.82rem;font-weight:700;color:var(--azul-oscuro);}
+
+  /* Municipios */
+  .municipios{
+    background:linear-gradient(160deg,var(--azul-oscuro),var(--azul-medio));
+    color:var(--blanco);
+  }
+  .municipios .encabezado-seccion .ojo{color:var(--dorado);}
+  .municipios .encabezado-seccion h2{color:var(--blanco);}
+  .municipios .encabezado-seccion p{color:rgba(255,255,255,.75);}
+
+  .grid-municipios{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:28px;
+    
+  }
+
+  .chip-municipio{
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:14px;
+    padding:22px 16px;
+    text-align:center;
+    transition:.2s ease;
+  }
+  .chip-municipio:hover{background:rgba(255,255,255,.12);border-color:var(--dorado);}
+  .chip-municipio strong{display:block;font-size:.92rem;font-weight:700;}
+  .chip-municipio span{display:block;font-size:.75rem;color:rgba(255,255,255,.6);margin-top:4px;}
+
+  /* Contacto */
+  .contacto-cta{
+    background:var(--crema);
+  }
+  .caja-contacto{
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:0;
+    background:var(--blanco);
+    border-radius:var(--radio);
+    overflow:hidden;
+    box-shadow:var(--sombra);
+  }
+  .caja-contacto .lado-texto{
+    padding:52px;
+  }
+  .caja-contacto .lado-texto span.ojo{
+    color:var(--azul-brillante);
+    font-weight:700;
+    font-size:.78rem;
+    letter-spacing:2px;
+    text-transform:uppercase;
+  }
+  .caja-contacto h2{font-size:1.8rem;margin:12px 0 14px;color:var(--texto-oscuro);}
+  .caja-contacto p{color:var(--texto-gris);margin-bottom:22px;}
+
+  .lista-contacto{margin-top:18px;}
+  .lista-contacto li{
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+    margin-bottom:14px;
+    font-size:.92rem;
+    color:var(--texto-oscuro);
+  }
+  .lista-contacto strong{display:block;font-size:.78rem;color:var(--texto-gris);font-weight:600;text-transform:uppercase;letter-spacing:.5px;}
+
+  .lado-mapa{
+    background:linear-gradient(135deg,var(--azul-brillante),var(--azul-oscuro));
+    min-height:340px;
+    position:relative;
+  }
+
+  .lado-mapa iframe{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    border:0;
+    display:block;
+  }
+
+  /* ===== FOOTER ===== */
+  footer{
+    background:var(--azul-oscuro);
+    color:rgba(255,255,255,.75);
+    padding:70px 0 0;
+  }
+
+  .grid-footer{
+    display:grid;
+    grid-template-columns:1.4fr 1fr 1fr 1fr;
+    gap:40px;
+    padding-bottom:50px;
+    border-bottom:1px solid rgba(255,255,255,.1);
+  }
+
+  .footer-marca .marca{color:var(--blanco);margin-bottom:16px;}
+  .footer-marca p{font-size:.88rem;line-height:1.7;max-width:34ch;color:rgba(255,255,255,.6);}
+
+  .redes{display:flex;gap:10px;margin-top:20px;}
+  .redes a{
+    width:38px;height:38px;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,.2);
+    display:flex;align-items:center;justify-content:center;
+    font-size:.8rem;
+    transition:.2s ease;
+  }
+  .redes a:hover{background:var(--dorado);border-color:var(--dorado);color:var(--azul-oscuro);}
+
+  .columna-footer h4{
+    color:var(--blanco);
+    font-size:.85rem;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    margin-bottom:20px;
+  }
+  .columna-footer li{margin-bottom:12px;font-size:.88rem;}
+  .columna-footer a:hover{color:var(--dorado);}
+
+  .footer-inferior{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:24px 0;
+    font-size:.8rem;
+    color:rgba(255,255,255,.5);
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  .footer-inferior a{color:rgba(255,255,255,.7);}
+  .footer-inferior a:hover{color:var(--dorado);}
+
+  /* ===== MODAL GOBERNADOR ===== */
+  .modal-fondo{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(7,26,61,.65);
+    backdrop-filter:blur(3px);
+    z-index:1000;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+  }
+
+  .modal-fondo.abierto{
+    display:flex;
+  }
+
+  .modal-caja{
+    background:var(--blanco);
+    border-radius:var(--radio);
+    max-width:640px;
+    width:100%;
+    max-height:88vh;
+    overflow-y:auto;
+    box-shadow:0 30px 60px rgba(0,0,0,.35);
+    position:relative;
+    animation:modalAparece .25s ease;
+  }
+
+  @keyframes modalAparece{
+    from{opacity:0;transform:translateY(16px);}
+    to{opacity:1;transform:translateY(0);}
+  }
+
+  .modal-cerrar{
+    position:absolute;
+    top:16px;right:16px;
+    width:36px;height:36px;
+    border-radius:50%;
+    border:none;
+    background:rgba(7,26,61,.08);
+    color:var(--texto-oscuro);
+    font-size:1.1rem;
+    cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    transition:.2s ease;
+    z-index:1;
+  }
+  .modal-cerrar:hover{background:var(--azul-oscuro);color:var(--blanco);}
+
+  .modal-imagen{
+    width:100%;
+    height:280px;
+    overflow:hidden;
+    border-radius:var(--radio) var(--radio) 0 0;
+  }
+  .modal-imagen img{
+    width:100%;height:100%;
+    object-fit:cover;
+  }
+
+  .modal-contenido{
+    padding:32px 36px 36px;
+  }
+
+  .modal-contenido .ojo{
+    color:var(--dorado);
+    font-weight:700;
+    font-size:.78rem;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    display:block;
+    margin-bottom:8px;
+  }
+
+  .modal-contenido h2{
+    font-size:1.6rem;
+    color:var(--texto-oscuro);
+    margin-bottom:4px;
+  }
+
+  .modal-contenido .cargo{
+    color:var(--azul-brillante);
+    font-weight:600;
+    font-size:.9rem;
+    margin-bottom:18px;
+    display:block;
+  }
+
+  .modal-contenido p{
+    color:var(--texto-gris);
+    font-size:.95rem;
+    margin-bottom:14px;
+  }
+
+  @media (max-width:560px){
+    .modal-imagen{height:200px;}
+    .modal-contenido{padding:24px 22px 28px;}
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width:960px){
+    nav.menu-principal, .buscador{display:none;}
+    .btn-menu-movil{display:block;}
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-imagen{min-height:260px;}
+    .hero-texto{padding:40px 32px;}
+    .accesos-rapidos{grid-template-columns:1fr;margin-top:-40px;}
+    .grid-valores,.grid-noticias{grid-template-columns:1fr;}
+    .grid-municipios{grid-template-columns:repeat(3,1fr);}
+    .caja-contacto{grid-template-columns:1fr;}
+    .lado-mapa{min-height:220px;}
+    .grid-footer{grid-template-columns:1fr 1fr;}
+  }
+
+  @media (max-width:560px){
+    .contenedor,.hero-tarjeta{padding:0 20px;}
+    .barra-nav{padding:16px 20px;}
+    .grid-municipios{grid-template-columns:repeat(2,1fr);}
+    .grid-footer{grid-template-columns:1fr;}
+    .footer-inferior{flex-direction:column;align-items:flex-start;}
+    .hero-botones{flex-direction:column;}
+    .btn{justify-content:center;}
+  }

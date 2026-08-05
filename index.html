@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gobernación de Baja Verapaz</title>
+<meta name="description" content="Gobernación Departamental de Baja Verapaz, Guatemala.">
+ 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+ 
+<link href="assets/css/styles.css" rel="stylesheet">
+</head>
+<body>
+ 
+<!-- ===================== HEADER ===================== -->
+<!-- El navbar se inyecta aquí vía fetch, ver assets/js/main.js -->
+<div id="navbar-container"></div>
+ 
+<!-- ===================== HERO ===================== -->
+<section class="hero-seccion" id="inicio">
+  <div class="hero-tarjeta">
+    <div class="hero-grid">
+ 
+      <div class="hero-imagen">
+        <!-- Reemplaza esta ruta por la imagen que subas en el Administrador de Archivos de cPanel -->
+        <img src="images/rabinal.jpg" alt="Vista aérea de Rabinal, Baja Verapaz" onerror="this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTs_WPr6uTMZIfsHBcjTGuZBzZWeTkgZ8lJIA&s'">
+      </div>
+ 
+      <div class="hero-texto">
+        <span class="ojo">Gobierno departamental</span>
+        <h1>Gobernación de Baja Verapaz</h1>
+        <p>Ser el ente líder del sector público, capaz de organizar la administración pública en su jurisdicción, racionalizando los sistemas y procedimientos de trabajo y otorgando prioridad a los proyectos que viabilicen el desarrollo económico y social en el departamento.</p>
+        <div class="hero-botones">
+          <button type="button" class="btn btn-primario" onclick="abrirModalGobernador()">Gobernador Actual</button>
+          <a href="https://www.gobernacionbajaverapaz.laip.gt" class="btn btn-secundario">Acceso a la información</a>
+        </div>
+      </div>
+ 
+    </div>
+  </div>
+</section>
+ 
+<!-- ===================== ACCESOS RÁPIDOS ===================== -->
+<div class="accesos-rapidos">
+ 
+  <a href="https://drive.google.com/drive/folders/1N9BpIyD189uTBsJoRZIrCvTJHrA5qDxS?usp=sharing" class="tarjeta-acceso">
+    <span class="numero-tarjeta">01</span>
+    <h3>Tu Gobierno en Números</h3>
+    <p>Accede al reporte mensual de gestión y ejecución presupuestaria del departamento.</p>
+    <span class="enlace-tarjeta">Ver reporte →</span>
+  </a>
+ 
+  <a href="https://www.gobernacionbajaverapaz.laip.gt" class="tarjeta-acceso">
+    <span class="numero-tarjeta">02</span>
+    <h3>Acceso a la Información Pública</h3>
+    <p>Información pública de oficio entra a nuestro portal.</p>
+    <span class="enlace-tarjeta">Ver formularios →</span>
+  </a>
+ 
+  <a href="https://drive.google.com/drive/folders/19OQeYDBb1sj-sDQp2xRCdGKzDVLGIt5a?usp=sharing" class="tarjeta-acceso">
+    <span class="numero-tarjeta">03</span>
+    <h3>Red de integridad</h3>
+    <p>Resoluciones de los sistemas de integridad, llena el formulario de manera confidencial y da seguimiento a tu denuncia.</p>
+    <span class="enlace-tarjeta">Denunciar →</span>
+  </a>
+ 
+</div>
+ 
+<!-- ===================== QUIÉNES SOMOS ===================== -->
+<section class="quienes-somos" id="quienes-somos">
+  <div class="contenedor">
+    <div class="encabezado-seccion">
+      <span class="ojo">Institución</span>
+      <h2>Quiénes somos</h2>
+      <p>Conoce la misión, visión y los valores que guían el trabajo de la Gobernación Departamental de Baja Verapaz.</p>
+    </div>
+ 
+    <div class="grid-valores">
+      <div class="tarjeta-valor">
+        <div class="icono">🎯</div>
+        <h3>Misión</h3>
+        <p>La Gobernación Departamental de Baja Verapaz, es la Institución de la Presidencia de la República y del Ministerio de Gobernación responsable de coordinar la acción de las instituciones del Sector Público que operan dentro de su jurisdicción, velando porque los servicios públicos sean entregados a la población con calidad y oportunidad; promotora del desarrollo del departamento; así como, armonizadora de la relación entre el gobierno central (Organismo Ejecutivo) y el municipal, sin perjuicio de la autonomía de este último.</p>
+      </div>
+      <div class="tarjeta-valor">
+        <div class="icono">🔭</div>
+        <h3>Visión</h3>
+        <p>ganizar la administración pública en su jurisdicción, racionalizando los sistemas y procedimientos de trabajo y otorgando las prioridades a los proyectos que viabilicen el desarrollo económico y social, para el efecto contará con una estructura organizacional técnicamente eficiente y eficaz, con liderazgo para promover el desarrollo del Departamento a través de la coordinación efectiva de las diferentes instituciones gubernamentales desconcentradas o descentralizadas en dicho espacio territorial; con un sistema de planificación y de desarrollo institucional que le permitirá formular políticas y estrategias que permitan agilizar los procesos y orientar la asignación de los recursos de la manera mas adecuada en función de las demandas estructuradas y no estructuradas de la población.</p>
+      </div>
+      <div class="tarjeta-valor">
+        <div class="icono">🤝</div>
+        <h3>Valores</h3>
+        <p>Justicia, Tolerancia, Lealtad, Igualdad, Honestidad, Solidaridad, Responsabilidad, Transparencia, servicio, honestidad e inclusión guían cada decisión y cada trámite que se realiza en esta institución.</p>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- ===================== INFORMES / NOTICIAS (resumen) ===================== -->
+<section id="informes">
+  <div class="contenedor">
+    <div class="encabezado-seccion">
+      <span class="ojo">Actualidad</span>
+      <h2>Últimos informes y noticias</h2>
+      <p>Mantente al tanto de la gestión, los proyectos y los comunicados oficiales de la Gobernación.</p>
+    </div>
+ <article class="tarjeta-noticia">
+        <div class="miniatura">Comunicado Importante</div>
+        <div class="contenido-noticia">
+          <span class="fecha-noticia">Julio 2026</span>
+          <h3>Página en Mantenimiento</h3>
+          <p>Como parte de las mejores prácticas en gestión digital, estamos realizando mantenimiento en nuestra página web.</p>
+          <a href="noticias.html" class="leer-mas">Leer más →</a>
+        </div>
+      </article>
+    </div>
+    
+    <div style="text-align:center;margin-top:36px;">
+      <a href="noticias.html" class="btn btn-secundario">Ver todas las noticias</a>
+    </div>
+  </div>
+</section>
+ 
+<!-- ===================== MUNICIPIOS (resumen) ===================== -->
+<section class="municipios">
+  <div class="contenedor">
+    <div class="encabezado-seccion">
+      <span class="ojo">Territorio</span>
+      <h2>Municipios de Baja Verapaz</h2>
+      <p>El departamento está conformado por ocho municipios, cada uno con su propia riqueza cultural e histórica.</p>
+    </div>
+ 
+    <div style="text-align:center;margin-top:36px;">
+      <a href="municipios.html" class="btn btn-secundario" style="border-color:#fff;color:#fff;">Ver los 8 municipios</a>
+    </div>
+  </div>
+</section>
+ 
+<!-- ===================== CONTACTO ===================== -->
+<section class="contacto-cta" id="contacto">
+  <div class="contenedor">
+    <div class="caja-contacto">
+      <div class="lado-texto">
+        <span class="ojo">Acceso a la Información</span>
+        <h2>Hablemos</h2>
+        <p>Comunícate con nosotros para trámites, consultas o solicitudes de información pública.</p>
+ 
+        <ul class="lista-contacto">
+          <li>
+            📍
+            <div><strong>Dirección</strong>2a calle5-35 zona 1 ( a un costado de Estadio "Las Rosas") Salamá, Baja Verapaz</div>
+          </li>
+          <li>
+            ☎️
+            <div><strong>Teléfono/PXB</strong>(+502) 7940 0060</div>
+          </li>
+          <li>
+            ✉️
+            <div><strong>Correo</strong>gobbajaverapaz@mingob.gob.gt</div>
+          </li>
+          <li>
+            🕘
+            <div><strong>Horario</strong>Lunes a viernes, 8:00 a 16:00 horas</div>
+          </li>
+        </ul>
+      </div>
+ 
+      <div class="lado-mapa">
+        <iframe
+           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3852.0249950667467!2d-90.3213993708954!3d15.101951074042264!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x858a21be1e06762d%3A0x292f2413d0d768c3!2sGobernaci%C3%B3n%20Departamental%20de%20Baja%20Verapaz!5e0!3m2!1ses!2sgt!4v1785519926400!5m2!1ses!2sgt"
+           allowfullscreen=""
+           loading="lazy"
+           referrerpolicy="no-referrer-when-downgrade"
+           title="Ubicación de la Gobernación de Baja Verapaz">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- ===================== MODAL GOBERNADOR ===================== -->
+<div class="modal-fondo" id="modalGobernador" onclick="if(event.target===this) cerrarModalGobernador()">
+  <div class="modal-caja">
+    <button class="modal-cerrar" aria-label="Cerrar" onclick="cerrarModalGobernador()">✕</button>
+ 
+    <div class="modal-imagen">
+      <!-- Reemplaza esta ruta por la foto del gobernador que subas al Administrador de Archivos -->
+      <img src="images/gobernador.jpg" alt="Fotografía del Gobernador de Baja Verapaz" onerror="this.src='https://via.placeholder.com/640x400/0f2c66/ffffff?text=Foto+del+Gobernador'">
+    </div>
+ 
+    <div class="modal-contenido">
+      <span class="ojo">Autoridad departamental</span>
+      <h2>Msc. Ing. Agr. Mynor Alexande Chén Cúja</h2>
+      <span class="cargo">Gobernador Departamental de Baja Verapaz</span>
+      <p>Fue designado en el cargo por el presidente Dr. Bernardo Arévalo y asumió oficialmente sus funciones el 13 de febrero de 2025. Su gestión se enfoca en el desarrollo rural, la seguridad ciudadana.</p>
+      <p>Desde el inicio de su mandato en la Gobernación Departamental de Baja Verapaz, ha impulsado una agenda de trabajo basada en la transparencia, la inclusión y el fortalecimiento de la infraestructura local</p>
+    </div>
+  </div>
+</div>
+ 
+<!-- ===================== FOOTER ===================== -->
+<!-- El footer se inyecta aquí vía fetch, ver assets/js/main.js -->
+<div id="footer-container"></div>
+ 
+ 
+<script src="assets/js/main.js"></script>
+<script src="assets/js/modals.js"></script>
+</body>
+</html>
