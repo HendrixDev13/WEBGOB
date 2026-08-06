@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="../">
-    <title>Tablero Electrónico - Gobernación Departamentalde Baja Verapaz</title>
+    <title>Tablero Electrónico - Gobernación Departamental de Baja Verapaz</title>
     <meta name="description" content="Tablero electrónico de la Gobernación Departamental de Baja Verapaz.">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,20 +12,207 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
     <link href="assets/css/styles.css" rel="stylesheet">
+    <link href="assets/css/tableroelectronico.css" rel="stylesheet">
 </head>
 <body>
     <!-- Componente navbar -->
     <div id="navbar-container"></div>
 
-    <main id="contenido-principal">
-        <section>
-            <h2>Tablero Electrónico</h2>
-        </section>
+    <main id="contenido-principal" class="tablero-pagina">
+        <div class="contenedor tablero-contenedor">
+            <header class="tablero-encabezado">
+                <div class="tablero-presentacion">
+                    <p class="tablero-etiqueta">Transparencia presupuestaria</p>
+                    <h1>Tablero Electrónico</h1>
+                    <p>Consulta la ejecución presupuestaria y los principales resultados institucionales por período.</p>
+                </div>
+
+                <div class="tablero-selector">
+                    <label for="selector-periodo">Período del reporte</label>
+                    <select id="selector-periodo" disabled>
+                        <option>Cargando períodos...</option>
+                    </select>
+                    <p id="fecha-corte">Fecha de corte pendiente</p>
+                </div>
+            </header>
+
+            <div id="tablero-estado" class="tablero-estado" role="status" aria-live="polite">
+                Cargando información presupuestaria...
+            </div>
+
+            <div id="tablero-contenido" class="tablero-contenido" hidden>
+                <section class="tablero-seccion" aria-labelledby="titulo-resumen">
+                    <div class="tablero-titulo-seccion">
+                        <div>
+                            <p class="tablero-etiqueta">Panorama general</p>
+                            <h2 id="titulo-resumen">Resumen presupuestario</h2>
+                        </div>
+                        <p id="periodo-visible" class="tablero-periodo-visible"></p>
+                    </div>
+
+                    <div class="tablero-kpis">
+                        <article class="tablero-kpi tablero-kpi-vigente">
+                            <span>Presupuesto vigente</span>
+                            <strong id="presupuesto-vigente">Q0.00</strong>
+                            <small>Asignación disponible para el período</small>
+                        </article>
+                        <article class="tablero-kpi tablero-kpi-ejecutado">
+                            <span>Presupuesto ejecutado</span>
+                            <strong id="presupuesto-ejecutado">Q0.00</strong>
+                            <small>Monto acumulado ejecutado</small>
+                        </article>
+                        <article class="tablero-kpi tablero-kpi-saldo">
+                            <span>Saldo por ejecutar</span>
+                            <strong id="presupuesto-saldo">Q0.00</strong>
+                            <small>Presupuesto aún disponible</small>
+                        </article>
+                        <article class="tablero-kpi tablero-kpi-porcentaje">
+                            <span>Ejecución presupuestaria</span>
+                            <strong id="presupuesto-porcentaje">0.00%</strong>
+                            <small>Avance respecto al presupuesto vigente</small>
+                        </article>
+                    </div>
+                </section>
+
+                <section class="tablero-seccion tablero-grid-ejecucion" aria-labelledby="titulo-ejecucion">
+                    <article class="tablero-panel tablero-panel-progreso">
+                        <div class="tablero-panel-encabezado">
+                            <div>
+                                <p class="tablero-etiqueta">Avance financiero</p>
+                                <h2 id="titulo-ejecucion">Ejecución general</h2>
+                            </div>
+                        </div>
+                        <div class="tablero-progreso-contenido">
+                            <div id="grafica-ejecucion" class="tablero-anillo" role="img" aria-label="Ejecución presupuestaria de 0 por ciento">
+                                <div>
+                                    <strong id="anillo-porcentaje">0.00%</strong>
+                                    <span>ejecutado</span>
+                                </div>
+                            </div>
+                            <dl class="tablero-balance">
+                                <div>
+                                    <dt>Ejecutado</dt>
+                                    <dd id="balance-ejecutado">Q0.00</dd>
+                                </div>
+                                <div>
+                                    <dt>Disponible</dt>
+                                    <dd id="balance-disponible">Q0.00</dd>
+                                </div>
+                            </dl>
+                        </div>
+                    </article>
+
+                    <article class="tablero-panel">
+                        <div class="tablero-panel-encabezado">
+                            <div>
+                                <p class="tablero-etiqueta">Distribución</p>
+                                <h2>Ejecución por grupo de gasto</h2>
+                            </div>
+                            <p>Participación sobre el total ejecutado</p>
+                        </div>
+                        <div id="lista-grupos-gasto" class="tablero-barras"></div>
+                    </article>
+                </section>
+
+                <section class="tablero-seccion" aria-labelledby="titulo-finalidades">
+                    <div class="tablero-titulo-seccion">
+                        <div>
+                            <p class="tablero-etiqueta">Destino del presupuesto</p>
+                            <h2 id="titulo-finalidades">Ejecución por finalidad</h2>
+                        </div>
+                    </div>
+                    <div id="lista-finalidades" class="tablero-finalidades"></div>
+                </section>
+
+                <section class="tablero-seccion tablero-grid-personal" aria-labelledby="titulo-personal">
+                    <article class="tablero-panel tablero-panel-personal">
+                        <div class="tablero-panel-encabezado">
+                            <div>
+                                <p class="tablero-etiqueta">Capital humano</p>
+                                <h2 id="titulo-personal">Servicios personales</h2>
+                            </div>
+                        </div>
+                        <dl class="tablero-resumen-personal">
+                            <div>
+                                <dt>Presupuesto</dt>
+                                <dd id="personal-presupuesto">Q0.00</dd>
+                            </div>
+                            <div>
+                                <dt>Ejecutado</dt>
+                                <dd id="personal-ejecutado">Q0.00</dd>
+                            </div>
+                            <div>
+                                <dt>Porcentaje</dt>
+                                <dd id="personal-porcentaje">0.00%</dd>
+                            </div>
+                        </dl>
+                        <div class="tablero-progreso-lineal" aria-hidden="true">
+                            <span id="personal-barra"></span>
+                        </div>
+                    </article>
+
+                    <article class="tablero-panel">
+                        <div class="tablero-panel-encabezado">
+                            <div>
+                                <p class="tablero-etiqueta">Personal registrado</p>
+                                <h2>Personas por renglón</h2>
+                            </div>
+                        </div>
+                        <div id="lista-personas" class="tablero-personas"></div>
+                    </article>
+                </section>
+
+                <section class="tablero-seccion" aria-labelledby="titulo-programas">
+                    <div class="tablero-titulo-seccion">
+                        <div>
+                            <p class="tablero-etiqueta">Resultados institucionales</p>
+                            <h2 id="titulo-programas">Programas presupuestarios</h2>
+                        </div>
+                    </div>
+                    <div class="tablero-tabla-contenedor">
+                        <table class="tablero-tabla">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Programa</th>
+                                    <th scope="col">Vigente</th>
+                                    <th scope="col">Ejecutado</th>
+                                    <th scope="col">Ejecución</th>
+                                    <th scope="col">Meta ejecutada</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabla-programas"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section class="tablero-seccion" aria-labelledby="titulo-avances">
+                    <div class="tablero-titulo-seccion">
+                        <div>
+                            <p class="tablero-etiqueta">Rendición de cuentas</p>
+                            <h2 id="titulo-avances">Avances y logros</h2>
+                        </div>
+                    </div>
+                    <div id="lista-avances" class="tablero-avances"></div>
+                </section>
+
+                <aside class="tablero-fuente" aria-label="Información de la fuente">
+                    <div>
+                        <span>Fuente de información</span>
+                        <strong id="fuente-tipo">Reporte de ejecución presupuestaria</strong>
+                    </div>
+                    <div>
+                        <span>Documento de referencia</span>
+                        <strong id="fuente-archivo">Sin archivo indicado</strong>
+                    </div>
+                </aside>
+            </div>
+        </div>
     </main>
 
     <!-- componente footer -->
     <div id="footer-container"></div>
 
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/tableroelectronico.js"></script>
 </body>
 </html>

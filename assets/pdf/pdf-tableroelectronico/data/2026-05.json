@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "periodo": {
+    "id": "2026-05",
+    "mes": "MAYO",
+    "mesNumero": 5,
+    "anio": 2026,
+    "etiqueta": "Mayo 2026",
+    "fechaCorte": "2026-05-31"
+  },
+  "fuente": {
+    "tipo": "Reporte de ejecución presupuestaria",
+    "archivo": "05 - Reporte Mayo 2026.pdf"
+  },
+  "presupuesto": {
+    "vigente": 3643586.0,
+    "ejecutado": 228006.01,
+    "saldo": 3415579.99,
+    "porcentajeEjecucion": 0.0625773647170672
+  },
+  "gruposGasto": [
+    {
+      "codigo": "000",
+      "nombre": "Servicios Personales",
+      "ejecutado": 161003.0
+    },
+    {
+      "codigo": "100",
+      "nombre": "Servicios no Personales",
+      "ejecutado": 52598.86
+    },
+    {
+      "codigo": "200",
+      "nombre": "Materiales y Suministros",
+      "ejecutado": 14404.15
+    },
+    {
+      "codigo": "300",
+      "nombre": "Propiedad, planta, equipo e intangibles",
+      "ejecutado": 0.0
+    },
+    {
+      "codigo": "400",
+      "nombre": "Transferencias Corrientes",
+      "ejecutado": 0.0
+    }
+  ],
+  "finalidades": [
+    {
+      "codigo": "001",
+      "nombre": "Dirección y Coordinación",
+      "vigente": 3640976.0,
+      "ejecutado": 227086.01,
+      "porcentajeEjecucion": 0.062369543221378006
+    },
+    {
+      "codigo": "002",
+      "nombre": "Personas con resoluciones, autorizaciones y certificaciones emitidas",
+      "vigente": 2610.0,
+      "ejecutado": 920.0,
+      "porcentajeEjecucion": 0.3524904214559387
+    }
+  ],
+  "serviciosPersonales": {
+    "presupuesto": 2944734.0,
+    "ejecutado": 198003.0,
+    "porcentajeEjecucion": 0.06723968956109448,
+    "personas": {
+      "011": 18,
+      "029": 7,
+      "018": 6
+    }
+  },
+  "programas": [
+    {
+      "codigo": "001",
+      "nombre": "Dirección y Coordinación",
+      "vigente": 3640976.0,
+      "ejecutado": 227086.01,
+      "porcentajeEjecucion": 0.062369543221378006,
+      "metaEjecutada": 1425
+    },
+    {
+      "codigo": "002",
+      "nombre": "Personas con resoluciones, autorizaciones y certificaciones emitidas",
+      "vigente": 2610.0,
+      "ejecutado": 920.0,
+      "porcentajeEjecucion": 0.3524904214559387,
+      "metaEjecutada": 67
+    }
+  ],
+  "avances": [
+    {
+      "codigo": "001",
+      "texto": "1: Dirección y Coordinación, en el mes de mayo de 2026, se ejecutaron 1425 actividades en prestación de servicios y funcionamiento de Gobernación Departamental de Baja Verapaz"
+    },
+    {
+      "codigo": "002",
+      "texto": "2: Personas con resoluciones, autorizaciones y certificaciones emitidas, en el mes de mayo de 2026, se ejecutaron 67 certificaciones de superviviencia"
+    }
+  ]
+}

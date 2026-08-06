@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "total": 7,
+  "ultimoPeriodo": "2026-07",
+  "periodos": [
+    {
+      "id": "2026-07",
+      "mes": "JULIO",
+      "mesNumero": 7,
+      "anio": 2026,
+      "etiqueta": "Julio 2026",
+      "fechaCorte": "2026-07-31",
+      "archivo": "2026-07.json"
+    },
+    {
+      "id": "2026-06",
+      "mes": "JUNIO",
+      "mesNumero": 6,
+      "anio": 2026,
+      "etiqueta": "Junio 2026",
+      "fechaCorte": "2026-06-30",
+      "archivo": "2026-06.json"
+    },
+    {
+      "id": "2026-05",
+      "mes": "MAYO",
+      "mesNumero": 5,
+      "anio": 2026,
+      "etiqueta": "Mayo 2026",
+      "fechaCorte": "2026-05-31",
+      "archivo": "2026-05.json"
+    },
+    {
+      "id": "2026-04",
+      "mes": "ABRIL",
+      "mesNumero": 4,
+      "anio": 2026,
+      "etiqueta": "Abril 2026",
+      "fechaCorte": "2026-04-30",
+      "archivo": "2026-04.json"
+    },
+    {
+      "id": "2026-03",
+      "mes": "MARZO",
+      "mesNumero": 3,
+      "anio": 2026,
+      "etiqueta": "Marzo 2026",
+      "fechaCorte": "2026-03-31",
+      "archivo": "2026-03.json"
+    },
+    {
+      "id": "2026-02",
+      "mes": "FEBRERO",
+      "mesNumero": 2,
+      "anio": 2026,
+      "etiqueta": "Febrero 2026",
+      "fechaCorte": "2026-02-28",
+      "archivo": "2026-02.json"
+    },
+    {
+      "id": "2026-01",
+      "mes": "ENERO",
+      "mesNumero": 1,
+      "anio": 2026,
+      "etiqueta": "Enero 2026",
+      "fechaCorte": "2026-01-31",
+      "archivo": "2026-01.json"
+    }
+  ]
+}
