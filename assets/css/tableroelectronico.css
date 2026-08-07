@@ -49,14 +49,26 @@
 }
 
 .tablero-selector {
-  width: min(100%, 280px);
+  width: min(100%, 380px);
   flex: 0 0 auto;
+}
+
+.tablero-selector-titulo {
+  margin-bottom: 10px;
+  font-size: .82rem;
+  font-weight: 700;
+}
+
+.tablero-filtros-periodo {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 12px;
 }
 
 .tablero-selector label {
   display: block;
-  margin-bottom: 8px;
-  font-size: .82rem;
+  margin-bottom: 6px;
+  font-size: .76rem;
   font-weight: 700;
 }
 
@@ -82,7 +94,7 @@
   opacity: .72;
 }
 
-.tablero-selector p {
+.tablero-selector #fecha-corte {
   margin-top: 8px;
   color: rgba(255, 255, 255, .72);
   font-size: .78rem;
@@ -111,11 +123,12 @@
 .tablero-contenido,
 .tablero-seccion {
   display: grid;
-  gap: 20px;
+  gap: 5px;
+  padding: 0px
 }
 
 .tablero-contenido {
-  gap: 32px;
+  gap: 10px;
 }
 
 .tablero-titulo-seccion,
@@ -214,7 +227,21 @@
 
 .tablero-panel {
   min-width: 0;
-  padding: 24px;
+  padding: 20px;
+}
+
+.tablero-panel-encabezado {
+  gap: 12px;
+}
+
+.tablero-panel-encabezado h2 {
+  font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+}
+
+.tablero-panel-encabezado > p {
+  max-width: 220px;
+  font-size: .76rem;
+  line-height: 1.35;
 }
 
 .tablero-panel-progreso {
@@ -223,20 +250,23 @@
 }
 
 .tablero-progreso-contenido {
-  display: flex;
+  display: grid;
   flex: 1;
-  align-items: center;
-  justify-content: center;
-  gap: 28px;
-  padding-top: 22px;
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  justify-items: center;
+  gap: 16px;
+  padding-top: 16px;
 }
 
 .tablero-anillo {
   --progreso: 0;
   display: grid;
-  width: 164px;
+  width: auto;
+  max-width: 100%;
+  height: min(100%, 300px);
   aspect-ratio: 1;
-  flex: 0 0 auto;
+  align-self: center;
   place-items: center;
   background: conic-gradient(var(--dorado) calc(var(--progreso) * 1%), #e7ecf4 0);
   border-radius: 50%;
@@ -244,7 +274,7 @@
 
 .tablero-anillo > div {
   display: grid;
-  width: 120px;
+  width: calc(100% - 42px);
   aspect-ratio: 1;
   place-content: center;
   background: var(--blanco);
@@ -254,38 +284,51 @@
 
 .tablero-anillo strong {
   color: var(--azul-oscuro);
-  font: 700 1.35rem 'Poppins', sans-serif;
+  font: 700 clamp(1.45rem, 3vw, 2rem) 'Poppins', sans-serif;
 }
 
 .tablero-anillo span {
   color: var(--texto-gris);
-  font-size: .74rem;
+  font-size: .76rem;
 }
 
 .tablero-balance {
   display: grid;
-  gap: 14px;
+  width: 100%;
+  height: 100%;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  overflow: hidden;
+  background: #f6f8fc;
+  border-left: 3px solid var(--azul-cielo);
+  border-radius: 10px;
 }
 
 .tablero-balance div {
-  padding-left: 12px;
-  border-left: 3px solid var(--azul-cielo);
+  display: grid;
+  align-content: center;
+  padding: 10px 14px;
+}
+
+.tablero-balance div + div {
+  border-top: 1px solid #e0e6f0;
 }
 
 .tablero-balance dt {
   color: var(--texto-gris);
-  font-size: .75rem;
+  font-size: .7rem;
 }
 
 .tablero-balance dd {
   color: var(--azul-oscuro);
+  font-size: clamp(.88rem, 1.5vw, 1rem);
   font-weight: 700;
 }
 
 .tablero-barras {
   display: grid;
-  gap: 16px;
-  margin-top: 24px;
+  gap: 12px;
+  margin-top: 16px;
 }
 
 .tablero-barra-cabecera,
@@ -404,12 +447,12 @@
 .tablero-resumen-personal {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin: 24px 0 18px;
+  gap: 12px;
+  margin: 16px 0 14px;
 }
 
 .tablero-resumen-personal div {
-  padding: 14px;
+  padding: 11px;
   background: #f6f8fc;
   border-radius: 10px;
 }
@@ -420,25 +463,25 @@
 
 .tablero-personas {
   display: grid;
-  gap: 12px;
-  margin-top: 22px;
+  gap: 9px;
+  margin-top: 16px;
 }
 
 .tablero-persona {
   align-items: center;
-  padding: 12px 14px;
+  padding: 9px 12px;
   background: #f6f8fc;
   border-radius: 10px;
 }
 
 .tablero-persona span {
   color: var(--texto-gris);
-  font-size: .86rem;
+  font-size: .8rem;
 }
 
 .tablero-persona strong {
   display: grid;
-  width: 38px;
+  width: 34px;
   aspect-ratio: 1;
   place-items: center;
   color: var(--blanco);
@@ -606,21 +649,13 @@
     grid-template-columns: 1fr;
   }
 
-  .tablero-progreso-contenido {
-    align-items: stretch;
-    flex-direction: column;
-  }
-
-  .tablero-anillo {
-    align-self: center;
-  }
-
-  .tablero-balance {
-    grid-template-columns: repeat(2, 1fr);
-  }
 }
 
 @media (max-width: 520px) {
+  .tablero-filtros-periodo {
+    grid-template-columns: 1fr;
+  }
+
   .tablero-kpis,
   .tablero-resumen-personal,
   .tablero-finalidad dl,

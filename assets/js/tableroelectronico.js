@@ -14,7 +14,8 @@
   const formatoNumero = new Intl.NumberFormat('es-GT');
 
   const elementos = {
-    selector: document.querySelector('#selector-periodo'),
+    selectorAnio: document.querySelector('#selector-anio'),
+    selectorMes: document.querySelector('#selector-mes'),
     estado: document.querySelector('#tablero-estado'),
     contenido: document.querySelector('#tablero-contenido'),
     fechaCorte: document.querySelector('#fecha-corte'),
@@ -108,7 +109,13 @@
     return datos
       && Array.isArray(datos.periodos)
       && datos.periodos.length > 0
-      && datos.periodos.every((periodo) => periodo.id && periodo.archivo && periodo.etiqueta);
+      && datos.periodos.every((periodo) => periodo.id
+        && periodo.archivo
+        && periodo.etiqueta
+        && Number.isInteger(periodo.anio)
+        && Number.isInteger(periodo.mesNumero)
+        && periodo.mesNumero >= 1
+        && periodo.mesNumero <= 12);
   }
 
   function validarPeriodo(datos) {
@@ -295,7 +302,8 @@
     solicitudActual = new AbortController();
     const solicitud = solicitudActual;
 
-    elementos.selector.disabled = true;
+    elementos.selectorAnio.disabled = true;
+    elementos.selectorMes.disabled = true;
     elementos.contenido.hidden = true;
     mostrarEstado(`Cargando información de ${periodo.etiqueta}...`);
 
@@ -318,7 +326,8 @@
       );
     } finally {
       if (solicitud === solicitudActual) {
-        elementos.selector.disabled = false;
+        elementos.selectorAnio.disabled = false;
+        elementos.selectorMes.disabled = false;
       }
     }
   }
@@ -329,30 +338,57 @@
     window.history.replaceState({}, '', url);
   }
 
-  function prepararSelector(indice) {
-    const fragmento = document.createDocumentFragment();
+  function prepararSelectores(indice) {
+    const periodosOrdenados = [...indice.periodos].sort(
+      (a, b) => b.anio - a.anio || b.mesNumero - a.mesNumero
+    );
+    const periodoUrl = new URLSearchParams(window.location.search).get('periodo');
+    const periodoInicial = periodosOrdenados.find((periodo) => periodo.id === periodoUrl)
+      || periodosOrdenados[0];
+    const anios = [...new Set(periodosOrdenados.map((periodo) => periodo.anio))];
 
-    indice.periodos.forEach((periodo) => {
+    const opcionesAnio = anios.map((anio) => {
       const opcion = document.createElement('option');
-      opcion.value = periodo.id;
-      opcion.textContent = periodo.etiqueta;
-      opcion.dataset.archivo = periodo.archivo;
-      fragmento.append(opcion);
+      opcion.value = String(anio);
+      opcion.textContent = String(anio);
+      return opcion;
     });
 
-    elementos.selector.replaceChildren(fragmento);
+    function llenarMeses(anio, periodoPreferido) {
+      const periodosDelAnio = periodosOrdenados.filter(
+        (periodo) => periodo.anio === Number(anio)
+      );
+      const opcionesMes = periodosDelAnio.map((periodo) => {
+        const opcion = document.createElement('option');
+        opcion.value = periodo.id;
+        opcion.textContent = periodo.mes || periodo.etiqueta;
+        return opcion;
+      });
+      const periodoSeleccionado = periodosDelAnio.find(
+        (periodo) => periodo.id === periodoPreferido
+      ) || periodosDelAnio[0];
 
-    const periodoUrl = new URLSearchParams(window.location.search).get('periodo');
-    const periodoInicial = indice.periodos.find((periodo) => periodo.id === periodoUrl)
-      || indice.periodos.find((periodo) => periodo.id === indice.ultimoPeriodo)
-      || indice.periodos[0];
+      elementos.selectorMes.replaceChildren(...opcionesMes);
+      elementos.selectorMes.value = periodoSeleccionado.id;
+      return periodoSeleccionado;
+    }
 
-    elementos.selector.value = periodoInicial.id;
-    elementos.selector.disabled = false;
+    elementos.selectorAnio.replaceChildren(...opcionesAnio);
+    elementos.selectorAnio.value = String(periodoInicial.anio);
+    llenarMeses(periodoInicial.anio, periodoInicial.id);
+    elementos.selectorAnio.disabled = false;
+    elementos.selectorMes.disabled = false;
 
-    elementos.selector.addEventListener('change', () => {
-      const seleccionado = indice.periodos.find(
-        (periodo) => periodo.id === elementos.selector.value
+    elementos.selectorAnio.addEventListener('change', () => {
+      const seleccionado = llenarMeses(elementos.selectorAnio.value);
+
+      actualizarUrl(seleccionado.id);
+      cargarPeriodo(seleccionado);
+    });
+
+    elementos.selectorMes.addEventListener('change', () => {
+      const seleccionado = periodosOrdenados.find(
+        (periodo) => periodo.id === elementos.selectorMes.value
       );
       if (!seleccionado) return;
 
@@ -364,7 +400,10 @@
   }
 
   async function iniciarDashboard() {
-    if (!elementos.selector || !elementos.estado || !elementos.contenido) return;
+    if (!elementos.selectorAnio
+      || !elementos.selectorMes
+      || !elementos.estado
+      || !elementos.contenido) return;
 
     try {
       const indice = await obtenerJson('periodos.json');
@@ -372,11 +411,12 @@
         throw new Error('periodos.json no contiene períodos válidos.');
       }
 
-      const periodoInicial = prepararSelector(indice);
+      const periodoInicial = prepararSelectores(indice);
       await cargarPeriodo(periodoInicial);
     } catch (error) {
       console.error('Error iniciando el tablero:', error);
-      elementos.selector.disabled = true;
+      elementos.selectorAnio.disabled = true;
+      elementos.selectorMes.disabled = true;
       elementos.contenido.hidden = true;
       mostrarEstado(
         'No fue posible consultar los períodos disponibles. Verifica el archivo periodos.json y ejecuta el sitio mediante un servidor HTTP.',
