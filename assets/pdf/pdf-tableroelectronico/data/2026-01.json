@@ -16,33 +16,39 @@
     "vigente": 3643586.0,
     "ejecutado": 217882.77,
     "saldo": 3425703.23,
-    "porcentajeEjecucion": 0.0597989919820748
+    "porcentajeEjecucion": 0.0597989919820748,
+    "ejecutadoMes": 217882.77
   },
   "gruposGasto": [
     {
       "codigo": "000",
       "nombre": "Servicios Personales",
-      "ejecutado": 180882.77
+      "ejecutado": 180882.77,
+      "ejecutadoMes": 180882.77
     },
     {
       "codigo": "100",
       "nombre": "Servicios no Personales",
-      "ejecutado": 37000.0
+      "ejecutado": 37000.0,
+      "ejecutadoMes": 37000.0
     },
     {
       "codigo": "200",
       "nombre": "Materiales y Suministros",
-      "ejecutado": 0.0
+      "ejecutado": 0.0,
+      "ejecutadoMes": 0.0
     },
     {
       "codigo": "300",
       "nombre": "Propiedad, planta, equipo e intangibles",
-      "ejecutado": 0.0
+      "ejecutado": 0.0,
+      "ejecutadoMes": 0.0
     },
     {
       "codigo": "400",
       "nombre": "Transferencias Corrientes",
-      "ejecutado": 0.0
+      "ejecutado": 0.0,
+      "ejecutadoMes": 0.0
     }
   ],
   "finalidades": [
@@ -51,14 +57,16 @@
       "nombre": "Dirección y Coordinación",
       "vigente": 3640976.0,
       "ejecutado": 217882.77,
-      "porcentajeEjecucion": 0.05984185833688549
+      "porcentajeEjecucion": 0.05984185833688549,
+      "ejecutadoMes": 217882.77
     },
     {
       "codigo": "002",
       "nombre": "Personas con resoluciones, autorizaciones y certificaciones emitidas",
       "vigente": 2610.0,
       "ejecutado": 0.0,
-      "porcentajeEjecucion": 0.0
+      "porcentajeEjecucion": 0.0,
+      "ejecutadoMes": 0.0
     }
   ],
   "serviciosPersonales": {
@@ -69,7 +77,8 @@
       "011": 18,
       "029": 6,
       "018": 6
-    }
+    },
+    "ejecutadoMes": 217882.77
   },
   "programas": [
     {
@@ -78,7 +87,8 @@
       "vigente": 3640976.0,
       "ejecutado": 217882.77,
       "porcentajeEjecucion": 0.05984185833688549,
-      "metaEjecutada": 800
+      "metaEjecutada": 800,
+      "ejecutadoMes": 217882.77
     },
     {
       "codigo": "002",
@@ -86,7 +96,8 @@
       "vigente": 2610.0,
       "ejecutado": 0.0,
       "porcentajeEjecucion": 0.0,
-      "metaEjecutada": 2
+      "metaEjecutada": 2,
+      "ejecutadoMes": 0.0
     }
   ],
   "avances": [

@@ -2,6 +2,8 @@
   'use strict';
 
   const RUTA_DATOS = 'assets/pdf/pdf-tableroelectronico/data/';
+  const RUTA_PDF = 'assets/pdf/pdf-tableroelectronico/pdf/';
+  const ARCHIVO_PERIODOS = 'periodos.json';
 
   const formatoMoneda = new Intl.NumberFormat('es-GT', {
     style: 'currency',
@@ -22,12 +24,9 @@
     periodoVisible: document.querySelector('#periodo-visible'),
     presupuestoVigente: document.querySelector('#presupuesto-vigente'),
     presupuestoEjecutado: document.querySelector('#presupuesto-ejecutado'),
-    presupuestoSaldo: document.querySelector('#presupuesto-saldo'),
     presupuestoPorcentaje: document.querySelector('#presupuesto-porcentaje'),
     graficaEjecucion: document.querySelector('#grafica-ejecucion'),
     anilloPorcentaje: document.querySelector('#anillo-porcentaje'),
-    balanceEjecutado: document.querySelector('#balance-ejecutado'),
-    balanceDisponible: document.querySelector('#balance-disponible'),
     gruposGasto: document.querySelector('#lista-grupos-gasto'),
     finalidades: document.querySelector('#lista-finalidades'),
     personalPresupuesto: document.querySelector('#personal-presupuesto'),
@@ -45,6 +44,14 @@
 
   function esNumero(valor) {
     return typeof valor === 'number' && Number.isFinite(valor);
+  }
+
+  function esNombrePdfSeguro(nombre) {
+    return typeof nombre === 'string'
+      && nombre.length > 4
+      && !nombre.includes('/')
+      && !nombre.includes('\\')
+      && nombre.toLowerCase().endsWith('.pdf');
   }
 
   function limitarPorcentaje(valor) {
@@ -111,6 +118,7 @@
       && datos.periodos.length > 0
       && datos.periodos.every((periodo) => periodo.id
         && periodo.archivo
+        && esNombrePdfSeguro(periodo.pdf)
         && periodo.etiqueta
         && Number.isInteger(periodo.anio)
         && Number.isInteger(periodo.mesNumero)
@@ -169,36 +177,21 @@
 
   function renderizarFinalidades(finalidades) {
     const fragmento = document.createDocumentFragment();
+    const finalidadesVisibles = [...finalidades];
 
-    finalidades.forEach((finalidad) => {
-      const tarjeta = crearElemento('article', 'tablero-finalidad');
-      const cabecera = crearElemento('div', 'tablero-finalidad-cabecera');
-      const titulo = crearElemento(
-        'h3',
-        '',
-        `${finalidad.codigo || '—'} · ${finalidad.nombre || 'Finalidad sin nombre'}`
-      );
-      const ejecucion = crearElemento(
-        'span',
-        'tablero-finalidad-porcentaje',
-        porcentaje(finalidad.porcentajeEjecucion)
-      );
-      const detalle = document.createElement('dl');
-      const vigente = document.createElement('div');
-      const ejecutado = document.createElement('div');
+    if (!finalidadesVisibles.some(
+      (finalidad) => String(finalidad.nombre || '').trim().toLocaleLowerCase('es') === 'finalidad c'
+    )) {
+      finalidadesVisibles.push({ nombre: 'Finalidad C', ejecutado: 0 });
+    }
 
-      vigente.append(
-        crearElemento('dt', '', 'Presupuesto vigente'),
-        crearElemento('dd', '', moneda(finalidad.vigente))
-      );
-      ejecutado.append(
-        crearElemento('dt', '', 'Presupuesto ejecutado'),
+    finalidadesVisibles.forEach((finalidad) => {
+      const item = crearElemento('div', 'tablero-balance-item');
+      item.append(
+        crearElemento('dt', '', finalidad.nombre || 'Finalidad sin nombre'),
         crearElemento('dd', '', moneda(finalidad.ejecutado))
       );
-      detalle.append(vigente, ejecutado);
-      cabecera.append(titulo, ejecucion);
-      tarjeta.append(cabecera, detalle);
-      fragmento.append(tarjeta);
+      fragmento.append(item);
     });
 
     elementos.finalidades.replaceChildren(fragmento);
@@ -260,7 +253,7 @@
     elementos.avances.replaceChildren(fragmento);
   }
 
-  function renderizarDashboard(datos) {
+  function renderizarDashboard(datos, periodoIndice) {
     const { periodo, presupuesto, serviciosPersonales, fuente = {} } = datos;
     const progresoGeneral = limitarPorcentaje(presupuesto.porcentajeEjecucion);
     const progresoPersonal = limitarPorcentaje(serviciosPersonales.porcentajeEjecucion);
@@ -269,7 +262,6 @@
     elementos.periodoVisible.textContent = periodo.etiqueta || periodo.id;
     elementos.presupuestoVigente.textContent = moneda(presupuesto.vigente);
     elementos.presupuestoEjecutado.textContent = moneda(presupuesto.ejecutado);
-    elementos.presupuestoSaldo.textContent = moneda(presupuesto.saldo);
     elementos.presupuestoPorcentaje.textContent = porcentaje(presupuesto.porcentajeEjecucion);
     elementos.anilloPorcentaje.textContent = porcentaje(presupuesto.porcentajeEjecucion);
     elementos.graficaEjecucion.style.setProperty('--progreso', progresoGeneral);
@@ -277,9 +269,6 @@
       'aria-label',
       `Ejecución presupuestaria de ${porcentaje(presupuesto.porcentajeEjecucion)}`
     );
-    elementos.balanceEjecutado.textContent = moneda(presupuesto.ejecutado);
-    elementos.balanceDisponible.textContent = moneda(presupuesto.saldo);
-
     renderizarGrupos(datos.gruposGasto, presupuesto.ejecutado);
     renderizarFinalidades(datos.finalidades);
 
@@ -292,7 +281,8 @@
     renderizarAvances(datos.avances);
 
     elementos.fuenteTipo.textContent = fuente.tipo || 'Fuente no indicada';
-    elementos.fuenteArchivo.textContent = fuente.archivo || 'Sin archivo indicado';
+    elementos.fuenteArchivo.textContent = periodoIndice.pdf;
+    elementos.fuenteArchivo.href = `${RUTA_PDF}${encodeURIComponent(periodoIndice.pdf)}`;
   }
 
   async function cargarPeriodo(periodo) {
@@ -313,7 +303,7 @@
         throw new Error('El archivo mensual no contiene la estructura esperada.');
       }
 
-      renderizarDashboard(datos);
+      renderizarDashboard(datos, periodo);
       elementos.contenido.hidden = false;
       ocultarEstado();
     } catch (error) {
@@ -321,8 +311,7 @@
       console.error('Error cargando el período:', error);
       elementos.contenido.hidden = true;
       mostrarEstado(
-        'No fue posible cargar la información de este período. Verifica que el archivo JSON exista y tenga el formato correcto.',
-        'error'
+        'No fue posible cargar la información de este período.'
       );
     } finally {
       if (solicitud === solicitudActual) {
@@ -344,6 +333,7 @@
     );
     const periodoUrl = new URLSearchParams(window.location.search).get('periodo');
     const periodoInicial = periodosOrdenados.find((periodo) => periodo.id === periodoUrl)
+      || periodosOrdenados.find((periodo) => periodo.id === indice.ultimoPeriodo)
       || periodosOrdenados[0];
     const anios = [...new Set(periodosOrdenados.map((periodo) => periodo.anio))];
 
@@ -406,9 +396,9 @@
       || !elementos.contenido) return;
 
     try {
-      const indice = await obtenerJson('periodos.json');
+      const indice = await obtenerJson(ARCHIVO_PERIODOS);
       if (!validarIndice(indice)) {
-        throw new Error('periodos.json no contiene períodos válidos.');
+        throw new Error(`${ARCHIVO_PERIODOS} no contiene períodos válidos.`);
       }
 
       const periodoInicial = prepararSelectores(indice);
@@ -419,7 +409,7 @@
       elementos.selectorMes.disabled = true;
       elementos.contenido.hidden = true;
       mostrarEstado(
-        'No fue posible consultar los períodos disponibles. Verifica el archivo periodos.json y ejecuta el sitio mediante un servidor HTTP.',
+        `No fue posible consultar los períodos disponibles. Verifica el archivo ${ARCHIVO_PERIODOS} y ejecuta el sitio mediante un servidor HTTP.`,
         'error'
       );
     }

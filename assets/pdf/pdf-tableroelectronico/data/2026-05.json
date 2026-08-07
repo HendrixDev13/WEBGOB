@@ -14,35 +14,41 @@
   },
   "presupuesto": {
     "vigente": 3643586.0,
-    "ejecutado": 228006.01,
-    "saldo": 3415579.99,
-    "porcentajeEjecucion": 0.0625773647170672
+    "ejecutado": 1186309.6600000001,
+    "saldo": 2457276.34,
+    "porcentajeEjecucion": 0.3255884889227262,
+    "ejecutadoMes": 228006.01
   },
   "gruposGasto": [
     {
       "codigo": "000",
       "nombre": "Servicios Personales",
-      "ejecutado": 161003.0
+      "ejecutado": 842797.99,
+      "ejecutadoMes": 161003.0
     },
     {
       "codigo": "100",
       "nombre": "Servicios no Personales",
-      "ejecutado": 52598.86
+      "ejecutado": 268681.69,
+      "ejecutadoMes": 52598.86
     },
     {
       "codigo": "200",
       "nombre": "Materiales y Suministros",
-      "ejecutado": 14404.15
+      "ejecutado": 74829.98,
+      "ejecutadoMes": 14404.15
     },
     {
       "codigo": "300",
       "nombre": "Propiedad, planta, equipo e intangibles",
-      "ejecutado": 0.0
+      "ejecutado": 0.0,
+      "ejecutadoMes": 0.0
     },
     {
       "codigo": "400",
       "nombre": "Transferencias Corrientes",
-      "ejecutado": 0.0
+      "ejecutado": 0.0,
+      "ejecutadoMes": 0.0
     }
   ],
   "finalidades": [
@@ -50,35 +56,9 @@
       "codigo": "001",
       "nombre": "Dirección y Coordinación",
       "vigente": 3640976.0,
-      "ejecutado": 227086.01,
-      "porcentajeEjecucion": 0.062369543221378006
-    },
-    {
-      "codigo": "002",
-      "nombre": "Personas con resoluciones, autorizaciones y certificaciones emitidas",
-      "vigente": 2610.0,
-      "ejecutado": 920.0,
-      "porcentajeEjecucion": 0.3524904214559387
-    }
-  ],
-  "serviciosPersonales": {
-    "presupuesto": 2944734.0,
-    "ejecutado": 198003.0,
-    "porcentajeEjecucion": 0.06723968956109448,
-    "personas": {
-      "011": 18,
-      "029": 7,
-      "018": 6
-    }
-  },
-  "programas": [
-    {
-      "codigo": "001",
-      "nombre": "Dirección y Coordinación",
-      "vigente": 3640976.0,
-      "ejecutado": 227086.01,
-      "porcentajeEjecucion": 0.062369543221378006,
-      "metaEjecutada": 1425
+      "ejecutado": 1185389.6600000001,
+      "porcentajeEjecucion": 0.32556920452098564,
+      "ejecutadoMes": 227086.01
     },
     {
       "codigo": "002",
@@ -86,7 +66,38 @@
       "vigente": 2610.0,
       "ejecutado": 920.0,
       "porcentajeEjecucion": 0.3524904214559387,
-      "metaEjecutada": 67
+      "ejecutadoMes": 920.0
+    }
+  ],
+  "serviciosPersonales": {
+    "presupuesto": 2944734.0,
+    "ejecutado": 1027797.99,
+    "porcentajeEjecucion": 0.3490291449074857,
+    "personas": {
+      "011": 18,
+      "029": 7,
+      "018": 6
+    },
+    "ejecutadoMes": 198003.0
+  },
+  "programas": [
+    {
+      "codigo": "001",
+      "nombre": "Dirección y Coordinación",
+      "vigente": 3640976.0,
+      "ejecutado": 1185389.6600000001,
+      "porcentajeEjecucion": 0.32556920452098564,
+      "metaEjecutada": 1425,
+      "ejecutadoMes": 227086.01
+    },
+    {
+      "codigo": "002",
+      "nombre": "Personas con resoluciones, autorizaciones y certificaciones emitidas",
+      "vigente": 2610.0,
+      "ejecutado": 920.0,
+      "porcentajeEjecucion": 0.3524904214559387,
+      "metaEjecutada": 67,
+      "ejecutadoMes": 920.0
     }
   ],
   "avances": [

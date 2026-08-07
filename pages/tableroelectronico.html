@@ -22,9 +22,9 @@
         <div class="contenedor tablero-contenedor">
             <header class="tablero-encabezado">
                 <div class="tablero-presentacion">
-                    <p class="tablero-etiqueta">Transparencia presupuestaria</p>
+                    <p class="tablero-etiqueta">Tu Gobierno en Números</p>
                     <h1>Tablero Electrónico</h1>
-                    <p>Consulta la ejecución presupuestaria y los principales resultados institucionales por período.</p>
+                    <p>Consulta la ejecución presupuestaria y los principales resultados de la Gobernación Departamental de Baja Verapaz por período.</p>
                 </div>
 
                 <div class="tablero-selector">
@@ -61,78 +61,59 @@
                         <p id="periodo-visible" class="tablero-periodo-visible"></p>
                     </div>
 
-                    <div class="tablero-kpis">
-                        <article class="tablero-kpi tablero-kpi-vigente">
-                            <span>Presupuesto vigente</span>
-                            <strong id="presupuesto-vigente">Q0.00</strong>
-                            <small>Asignación disponible para el período</small>
+                    <div class="tablero-grid-ejecucion">
+                        <article class="tablero-panel tablero-panel-progreso">
+                            <div class="tablero-panel-encabezado">
+                                <div>
+                                    <p class="tablero-etiqueta">Avance financiero</p>
+                                    <h3>Ejecución general</h3>
+                                </div>
+                            </div>
+                            <div class="tablero-progreso-contenido">
+                                <dl class="tablero-balance">
+                                    <div class="tablero-balance-item">
+                                        <dt>Presupuesto vigente</dt>
+                                        <dd id="presupuesto-vigente">Q0.00</dd>
+                                    </div>
+                                    <div class="tablero-balance-item">
+                                        <dt>Presupuesto ejecutado</dt>
+                                        <dd id="presupuesto-ejecutado">Q0.00</dd>
+                                    </div>
+                                    <div class="tablero-balance-item">
+                                        <dt>Ejecución presupuestaria</dt>
+                                        <dd id="presupuesto-porcentaje">0.00%</dd>
+                                    </div>
+                                </dl>
+                                <div id="grafica-ejecucion" class="tablero-anillo" role="img" aria-label="Ejecución presupuestaria de 0 por ciento">
+                                    <div>
+                                        <strong id="anillo-porcentaje">0.00%</strong>
+                                        <span>ejecutado</span>
+                                    </div>
+                                </div>
+                            </div>
                         </article>
-                        <article class="tablero-kpi tablero-kpi-ejecutado">
-                            <span>Presupuesto ejecutado</span>
-                            <strong id="presupuesto-ejecutado">Q0.00</strong>
-                            <small>Monto acumulado ejecutado</small>
+
+                        <article class="tablero-panel">
+                            <div class="tablero-panel-encabezado">
+                                <div>
+                                    <p class="tablero-etiqueta">Distribución</p>
+                                    <h3>Ejecución por grupo de gasto</h3>
+                                </div>
+                                <p>Participación sobre el total ejecutado</p>
+                            </div>
+                            <div id="lista-grupos-gasto" class="tablero-barras"></div>
                         </article>
-                        <article class="tablero-kpi tablero-kpi-saldo">
-                            <span>Saldo por ejecutar</span>
-                            <strong id="presupuesto-saldo">Q0.00</strong>
-                            <small>Presupuesto aún disponible</small>
-                        </article>
-                        <article class="tablero-kpi tablero-kpi-porcentaje">
-                            <span>Ejecución presupuestaria</span>
-                            <strong id="presupuesto-porcentaje">0.00%</strong>
-                            <small>Avance respecto al presupuesto vigente</small>
+
+                        <article class="tablero-panel tablero-panel-finalidades">
+                            <div class="tablero-panel-encabezado">
+                                <div>
+                                    <p class="tablero-etiqueta">Destino del presupuesto</p>
+                                    <h3>Ejecución por finalidad</h3>
+                                </div>
+                            </div>
+                            <dl id="lista-finalidades" class="tablero-balance tablero-finalidades-resumen"></dl>
                         </article>
                     </div>
-                </section>
-
-                <section class="tablero-seccion tablero-grid-ejecucion" aria-labelledby="titulo-ejecucion">
-                    <article class="tablero-panel tablero-panel-progreso">
-                        <div class="tablero-panel-encabezado">
-                            <div>
-                                <p class="tablero-etiqueta">Avance financiero</p>
-                                <h2 id="titulo-ejecucion">Ejecución general</h2>
-                            </div>
-                        </div>
-                        <div class="tablero-progreso-contenido">
-                            <dl class="tablero-balance">
-                                <div>
-                                    <dt>Ejecutado</dt>
-                                    <dd id="balance-ejecutado">Q0.00</dd>
-                                </div>
-                                <div>
-                                    <dt>Disponible</dt>
-                                    <dd id="balance-disponible">Q0.00</dd>
-                                </div>
-                            </dl>
-                            <div id="grafica-ejecucion" class="tablero-anillo" role="img" aria-label="Ejecución presupuestaria de 0 por ciento">
-                                <div>
-                                    <strong id="anillo-porcentaje">0.00%</strong>
-                                    <span>ejecutado</span>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="tablero-panel">
-                        <div class="tablero-panel-encabezado">
-                            <div>
-                                <p class="tablero-etiqueta">Distribución</p>
-                                <h2>Ejecución por grupo de gasto</h2>
-                            </div>
-                            <p>Participación sobre el total ejecutado</p>
-                        </div>
-                        <div id="lista-grupos-gasto" class="tablero-barras"></div>
-                    </article>
-                </section>
-
-                <section class="tablero-seccion" aria-labelledby="titulo-finalidades">
-                    <div class="tablero-titulo-seccion">
-                        <div>
-                            <p class="tablero-etiqueta">Destino del presupuesto</p>
-                            <h2 id="titulo-finalidades">Ejecución por finalidad</h2>
-                        </div>
-                    </div>
-                    <div id="lista-finalidades" class="tablero-finalidades"></div>
                 </section>
 
                 <section class="tablero-seccion tablero-grid-personal" aria-labelledby="titulo-personal">
@@ -213,7 +194,7 @@
                     </div>
                     <div>
                         <span>Documento de referencia</span>
-                        <strong id="fuente-archivo">Sin archivo indicado</strong>
+                        <a id="fuente-archivo" target="_blank" rel="noopener noreferrer">Sin archivo indicado</a>
                     </div>
                 </aside>
             </div>

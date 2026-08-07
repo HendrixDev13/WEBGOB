@@ -1,0 +1,113 @@
+{
+  "version": 1,
+  "periodo": {
+    "id": "2025-10",
+    "mes": "OCTUBRE",
+    "mesNumero": 10,
+    "anio": 2025,
+    "etiqueta": "Octubre 2025",
+    "fechaCorte": "2025-10-31"
+  },
+  "fuente": {
+    "tipo": "Reporte de ejecución presupuestaria",
+    "archivo": "10. Reporte Octubre a Octubre-25.pdf"
+  },
+  "presupuesto": {
+    "vigente": 3674853.0,
+    "ejecutado": 2755007.8600000003,
+    "saldo": 919845.1399999997,
+    "porcentajeEjecucion": 0.7496919904007046,
+    "ejecutadoMes": 299246.80000000005
+  },
+  "gruposGasto": [
+    {
+      "codigo": "000",
+      "nombre": "Servicios Personales",
+      "ejecutado": 1889395.4399999997,
+      "ejecutadoMes": 172186.99
+    },
+    {
+      "codigo": "100",
+      "nombre": "Servicios no Personales",
+      "ejecutado": 464512.94,
+      "ejecutadoMes": 59689.33
+    },
+    {
+      "codigo": "200",
+      "nombre": "Materiales y Suministros",
+      "ejecutado": 325745.53,
+      "ejecutadoMes": 38796.53
+    },
+    {
+      "codigo": "300",
+      "nombre": "Propiedad, planta, equipo e intangibles",
+      "ejecutado": 63867.0,
+      "ejecutadoMes": 17087.0
+    },
+    {
+      "codigo": "400",
+      "nombre": "Transferencias Corrientes",
+      "ejecutado": 11486.95,
+      "ejecutadoMes": 11486.95
+    }
+  ],
+  "finalidades": [
+    {
+      "codigo": "001",
+      "nombre": "Dirección y Coordinación",
+      "vigente": 3672243.0,
+      "ejecutado": 2753322.9600000004,
+      "porcentajeEjecucion": 0.7497660040471179,
+      "ejecutadoMes": 298264.4
+    },
+    {
+      "codigo": "002",
+      "nombre": "Personas con resoluciones, autorizaciones y certificaciones emitidas",
+      "vigente": 2610.0,
+      "ejecutado": 1684.9,
+      "porcentajeEjecucion": 0.6455555555555555,
+      "ejecutadoMes": 982.4
+    }
+  ],
+  "serviciosPersonales": {
+    "presupuesto": 2904126.0,
+    "ejecutado": 2189395.4399999995,
+    "porcentajeEjecucion": 0.7538913394253554,
+    "personas": {
+      "011": 18,
+      "029": 8,
+      "018": 8
+    },
+    "ejecutadoMes": 213686.99
+  },
+  "programas": [
+    {
+      "codigo": "001",
+      "nombre": "Dirección y Coordinación",
+      "vigente": 3672243.0,
+      "ejecutado": 2753322.9600000004,
+      "porcentajeEjecucion": 0.7497660040471179,
+      "metaEjecutada": 1300,
+      "ejecutadoMes": 298264.4
+    },
+    {
+      "codigo": "002",
+      "nombre": "Personas con resoluciones, autorizaciones y certificaciones emitidas",
+      "vigente": 2610.0,
+      "ejecutado": 1684.9,
+      "porcentajeEjecucion": 0.6455555555555555,
+      "metaEjecutada": 0,
+      "ejecutadoMes": 982.4
+    }
+  ],
+  "avances": [
+    {
+      "codigo": "001",
+      "texto": "1: Dirección y Coordinación, en el mes de octubre de 2025, se ejecutaron 1300 actividades en prestación de servicios y funcionamiento de Gobernación Departamental de Baja Verapaz"
+    },
+    {
+      "codigo": "002",
+      "texto": "2: Personas con resoluciones, autorizaciones y certificaciones emitidas, en el mes de octubre de 2025, se ejecutaron 0 certificaciones de superviviencia"
+    }
+  ]
+}
