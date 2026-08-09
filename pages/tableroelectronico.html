@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link href="assets/css/styles.css" rel="stylesheet">
     <link href="assets/css/tableroelectronico.css" rel="stylesheet">
 </head>
@@ -62,7 +63,7 @@
                     </div>
 
                     <div class="tablero-grid-ejecucion">
-                        <article class="tablero-panel tablero-panel-progreso">
+                        <article class="card tablero-card tablero-panel tablero-panel-progreso">
                             <div class="tablero-panel-encabezado">
                                 <div>
                                     <p class="tablero-etiqueta">Avance financiero</p>
@@ -71,15 +72,15 @@
                             </div>
                             <div class="tablero-progreso-contenido">
                                 <dl class="tablero-balance">
-                                    <div class="tablero-balance-item">
+                                    <div class="tablero-persona tablero-balance-item">
                                         <dt>Presupuesto vigente</dt>
                                         <dd id="presupuesto-vigente">Q0.00</dd>
                                     </div>
-                                    <div class="tablero-balance-item">
+                                    <div class="tablero-persona tablero-balance-item">
                                         <dt>Presupuesto ejecutado</dt>
                                         <dd id="presupuesto-ejecutado">Q0.00</dd>
                                     </div>
-                                    <div class="tablero-balance-item">
+                                    <div class="tablero-persona tablero-balance-item">
                                         <dt>Ejecución presupuestaria</dt>
                                         <dd id="presupuesto-porcentaje">0.00%</dd>
                                     </div>
@@ -93,65 +94,39 @@
                             </div>
                         </article>
 
-                        <article class="tablero-panel">
+                        <article class="card tablero-card tablero-panel">
                             <div class="tablero-panel-encabezado">
                                 <div>
                                     <p class="tablero-etiqueta">Distribución</p>
                                     <h3>Ejecución por grupo de gasto</h3>
                                 </div>
-                                <p>Participación sobre el total ejecutado</p>
                             </div>
                             <div id="lista-grupos-gasto" class="tablero-barras"></div>
                         </article>
 
-                        <article class="tablero-panel tablero-panel-finalidades">
+                        <article class="card tablero-card tablero-panel tablero-panel-servicios">
                             <div class="tablero-panel-encabezado">
                                 <div>
-                                    <p class="tablero-etiqueta">Destino del presupuesto</p>
-                                    <h3>Ejecución por finalidad</h3>
+                                    <p class="tablero-etiqueta">Servicios</p>
+                                    <h3>Personales, técnicos y profesionales</h3>
                                 </div>
                             </div>
-                            <dl id="lista-finalidades" class="tablero-balance tablero-finalidades-resumen"></dl>
+                            <dl id="lista-personas" class="tablero-personas">
+                                <div class="tablero-persona">
+                                    <dt>Presupuesto para pago de salarios y honorarios</dt>
+                                    <dd id="personal-presupuesto">Q0.00</dd>
+                                </div>
+                                <div class="tablero-persona">
+                                    <dt>Presupuesto ejecutado en pago de salarios y honorarios</dt>
+                                    <dd id="personal-ejecutado">Q0.00</dd>
+                                </div>
+                                <div class="tablero-persona">
+                                    <dt>Porcentaje de ejecución en el pago de salarios y honorarios</dt>
+                                    <dd id="personal-porcentaje">0.00%</dd>
+                                </div>
+                            </dl>
                         </article>
                     </div>
-                </section>
-
-                <section class="tablero-seccion tablero-grid-personal" aria-labelledby="titulo-personal">
-                    <article class="tablero-panel tablero-panel-personal">
-                        <div class="tablero-panel-encabezado">
-                            <div>
-                                <p class="tablero-etiqueta">Capital humano</p>
-                                <h2 id="titulo-personal">Servicios personales</h2>
-                            </div>
-                        </div>
-                        <dl class="tablero-resumen-personal">
-                            <div>
-                                <dt>Presupuesto</dt>
-                                <dd id="personal-presupuesto">Q0.00</dd>
-                            </div>
-                            <div>
-                                <dt>Ejecutado</dt>
-                                <dd id="personal-ejecutado">Q0.00</dd>
-                            </div>
-                            <div>
-                                <dt>Porcentaje</dt>
-                                <dd id="personal-porcentaje">0.00%</dd>
-                            </div>
-                        </dl>
-                        <div class="tablero-progreso-lineal" aria-hidden="true">
-                            <span id="personal-barra"></span>
-                        </div>
-                    </article>
-
-                    <article class="tablero-panel">
-                        <div class="tablero-panel-encabezado">
-                            <div>
-                                <p class="tablero-etiqueta">Personal registrado</p>
-                                <h2>Personas por renglón</h2>
-                            </div>
-                        </div>
-                        <div id="lista-personas" class="tablero-personas"></div>
-                    </article>
                 </section>
 
                 <section class="tablero-seccion" aria-labelledby="titulo-programas">
@@ -161,11 +136,12 @@
                             <h2 id="titulo-programas">Programas presupuestarios</h2>
                         </div>
                     </div>
-                    <div class="tablero-tabla-contenedor">
+                    <div class="card tablero-card tablero-tabla-contenedor">
                         <table class="tablero-tabla">
                             <thead>
                                 <tr>
                                     <th scope="col">Programa</th>
+                                    <th scope="col">Descripción del programa</th>
                                     <th scope="col">Vigente</th>
                                     <th scope="col">Ejecutado</th>
                                     <th scope="col">Ejecución</th>
@@ -187,7 +163,7 @@
                     <div id="lista-avances" class="tablero-avances"></div>
                 </section>
 
-                <aside class="tablero-fuente" aria-label="Información de la fuente">
+                <aside class="card tablero-card tablero-fuente" aria-label="Información de la fuente">
                     <div>
                         <span>Fuente de información</span>
                         <strong id="fuente-tipo">Reporte de ejecución presupuestaria</strong>
@@ -204,6 +180,7 @@
     <!-- componente footer -->
     <div id="footer-container"></div>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <script src="assets/js/main.js"></script>
     <script src="assets/js/tableroelectronico.js"></script>
 </body>

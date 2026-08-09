@@ -4,6 +4,19 @@
   const RUTA_DATOS = 'assets/pdf/pdf-tableroelectronico/data/';
   const RUTA_PDF = 'assets/pdf/pdf-tableroelectronico/pdf/';
   const ARCHIVO_PERIODOS = 'periodos.json';
+  const DESCRIPCIONES_PROGRAMAS = Object.freeze({
+    '001': 'Gestiones administrativas y servicios realizados en la Gobernación Departamental de Baja Verapaz, para el desarrollo de sus funciones operativas.',
+    '002': 'Emisión de declaraciones juradas de sobrevivencia del FOPINDE e IPM, y constancias sobre trámites de las diferentes pensiones de Clases Pasivas del Estado.'
+  });
+  const RENGLONES_SERVICIOS = Object.freeze([
+    { codigos: ['011'], etiqueta: 'Personal permanente 011' },
+    {
+      codigos: ['021', '022', '031'],
+      etiqueta: 'Personal Temporal 021, Personal Temporal 022 y Jornales 031'
+    },
+    { codigos: ['029'], etiqueta: 'Servicios Técnicos o Profesionales 029' },
+    { codigos: ['018'], etiqueta: 'Servicios Técnicos o Profesionales Subgrupo 18' }
+  ]);
 
   const formatoMoneda = new Intl.NumberFormat('es-GT', {
     style: 'currency',
@@ -28,11 +41,9 @@
     graficaEjecucion: document.querySelector('#grafica-ejecucion'),
     anilloPorcentaje: document.querySelector('#anillo-porcentaje'),
     gruposGasto: document.querySelector('#lista-grupos-gasto'),
-    finalidades: document.querySelector('#lista-finalidades'),
     personalPresupuesto: document.querySelector('#personal-presupuesto'),
     personalEjecutado: document.querySelector('#personal-ejecutado'),
     personalPorcentaje: document.querySelector('#personal-porcentaje'),
-    personalBarra: document.querySelector('#personal-barra'),
     personas: document.querySelector('#lista-personas'),
     programas: document.querySelector('#tabla-programas'),
     avances: document.querySelector('#lista-avances'),
@@ -131,7 +142,6 @@
       && datos.periodo
       && datos.presupuesto
       && Array.isArray(datos.gruposGasto)
-      && Array.isArray(datos.finalidades)
       && datos.serviciosPersonales
       && Array.isArray(datos.programas)
       && Array.isArray(datos.avances);
@@ -175,41 +185,30 @@
     elementos.gruposGasto.replaceChildren(fragmento);
   }
 
-  function renderizarFinalidades(finalidades) {
-    const fragmento = document.createDocumentFragment();
-    const finalidadesVisibles = [...finalidades];
-
-    if (!finalidadesVisibles.some(
-      (finalidad) => String(finalidad.nombre || '').trim().toLocaleLowerCase('es') === 'finalidad c'
-    )) {
-      finalidadesVisibles.push({ nombre: 'Finalidad C', ejecutado: 0 });
-    }
-
-    finalidadesVisibles.forEach((finalidad) => {
-      const item = crearElemento('div', 'tablero-balance-item');
-      item.append(
-        crearElemento('dt', '', finalidad.nombre || 'Finalidad sin nombre'),
-        crearElemento('dd', '', moneda(finalidad.ejecutado))
-      );
-      fragmento.append(item);
-    });
-
-    elementos.finalidades.replaceChildren(fragmento);
-  }
-
   function renderizarPersonas(personas) {
     const fragmento = document.createDocumentFragment();
+    elementos.personas.querySelectorAll('[data-renglon-servicio]').forEach((item) => item.remove());
 
-    Object.entries(personas || {}).forEach(([renglon, cantidad]) => {
+    RENGLONES_SERVICIOS.forEach(({ codigos, etiqueta }) => {
+      const cantidades = codigos
+        .map((codigo) => personas && personas[codigo])
+        .filter(esNumero);
+      const cantidad = cantidades.length > 0
+        ? cantidades.reduce((total, valorActual) => total + valorActual, 0)
+        : null;
+      const valor = cantidad === null
+        ? 'N/A'
+        : `${numero(cantidad)} ${cantidad === 1 ? 'persona' : 'personas'}`;
       const item = crearElemento('div', 'tablero-persona');
+      item.dataset.renglonServicio = '';
       item.append(
-        crearElemento('span', '', `Renglón ${renglon}`),
-        crearElemento('strong', '', numero(cantidad))
+        crearElemento('dt', '', etiqueta),
+        crearElemento('dd', '', valor)
       );
       fragmento.append(item);
     });
 
-    elementos.personas.replaceChildren(fragmento);
+    elementos.personas.append(fragmento);
   }
 
   function renderizarProgramas(programas) {
@@ -227,6 +226,7 @@
       );
       fila.append(
         celdaNombre,
+        crearElemento('td', '', DESCRIPCIONES_PROGRAMAS[programa.codigo] || '—'),
         crearElemento('td', '', moneda(programa.vigente)),
         crearElemento('td', '', moneda(programa.ejecutado)),
         celdaPorcentaje,
@@ -242,7 +242,7 @@
     const fragmento = document.createDocumentFragment();
 
     avances.forEach((avance) => {
-      const tarjeta = crearElemento('article', 'tablero-avance');
+      const tarjeta = crearElemento('article', 'card tablero-card tablero-avance');
       tarjeta.append(
         crearElemento('span', 'tablero-avance-codigo', avance.codigo || '—'),
         crearElemento('p', '', avance.texto || 'Sin descripción disponible.')
@@ -256,7 +256,6 @@
   function renderizarDashboard(datos, periodoIndice) {
     const { periodo, presupuesto, serviciosPersonales, fuente = {} } = datos;
     const progresoGeneral = limitarPorcentaje(presupuesto.porcentajeEjecucion);
-    const progresoPersonal = limitarPorcentaje(serviciosPersonales.porcentajeEjecucion);
 
     elementos.fechaCorte.textContent = fechaLegible(periodo.fechaCorte);
     elementos.periodoVisible.textContent = periodo.etiqueta || periodo.id;
@@ -270,12 +269,10 @@
       `Ejecución presupuestaria de ${porcentaje(presupuesto.porcentajeEjecucion)}`
     );
     renderizarGrupos(datos.gruposGasto, presupuesto.ejecutado);
-    renderizarFinalidades(datos.finalidades);
 
     elementos.personalPresupuesto.textContent = moneda(serviciosPersonales.presupuesto);
     elementos.personalEjecutado.textContent = moneda(serviciosPersonales.ejecutado);
     elementos.personalPorcentaje.textContent = porcentaje(serviciosPersonales.porcentajeEjecucion);
-    elementos.personalBarra.style.setProperty('--ancho', `${progresoPersonal}%`);
     renderizarPersonas(serviciosPersonales.personas);
     renderizarProgramas(datos.programas);
     renderizarAvances(datos.avances);
