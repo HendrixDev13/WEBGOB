@@ -1,0 +1,113 @@
+{
+  "version": 1,
+  "periodo": {
+    "id": "2025-04",
+    "mes": "ABRIL",
+    "mesNumero": 4,
+    "anio": 2025,
+    "etiqueta": "Abril 2025",
+    "fechaCorte": "2025-04-30"
+  },
+  "fuente": {
+    "tipo": "Reporte de ejecución presupuestaria",
+    "archivo": "04. ABRIL-25.pdf"
+  },
+  "presupuesto": {
+    "vigente": 3643586.0,
+    "ejecutado": 1038274.49,
+    "saldo": 2605311.51,
+    "porcentajeEjecucion": 0.2849595124144181,
+    "ejecutadoMes": 365741.26
+  },
+  "gruposGasto": [
+    {
+      "codigo": "000",
+      "nombre": "Servicios Personales",
+      "ejecutado": 722468.78,
+      "ejecutadoMes": 207115.19
+    },
+    {
+      "codigo": "100",
+      "nombre": "Servicios no Personales",
+      "ejecutado": 165625.09999999998,
+      "ejecutadoMes": 33365.2
+    },
+    {
+      "codigo": "200",
+      "nombre": "Materiales y Suministros",
+      "ejecutado": 150180.61,
+      "ejecutadoMes": 125260.87
+    },
+    {
+      "codigo": "300",
+      "nombre": "Propiedad, planta, equipo e intangibles",
+      "ejecutado": 0.0,
+      "ejecutadoMes": 0.0
+    },
+    {
+      "codigo": "400",
+      "nombre": "Transferencias Corrientes",
+      "ejecutado": 0.0,
+      "ejecutadoMes": 0.0
+    }
+  ],
+  "finalidades": [
+    {
+      "codigo": "001",
+      "nombre": "Dirección y Coordinación",
+      "vigente": 3640976.0,
+      "ejecutado": 1038274.49,
+      "porcentajeEjecucion": 0.2851637830076331,
+      "ejecutadoMes": 365741.26
+    },
+    {
+      "codigo": "002",
+      "nombre": "Personas con resoluciones, autorizaciones y certificaciones emitidas",
+      "vigente": 2610.0,
+      "ejecutado": 0.0,
+      "porcentajeEjecucion": 0.0,
+      "ejecutadoMes": 0.0
+    }
+  ],
+  "serviciosPersonales": {
+    "presupuesto": 2944734.0,
+    "ejecutado": 822468.78,
+    "porcentajeEjecucion": 0.27930155321329536,
+    "personas": {
+      "011": 21,
+      "029": 8,
+      "018": 4
+    },
+    "ejecutadoMes": 232115.19
+  },
+  "programas": [
+    {
+      "codigo": "001",
+      "nombre": "Dirección y Coordinación",
+      "vigente": 3640976.0,
+      "ejecutado": 1038274.49,
+      "porcentajeEjecucion": 0.2851637830076331,
+      "metaEjecutada": 1300,
+      "ejecutadoMes": 365741.26
+    },
+    {
+      "codigo": "002",
+      "nombre": "Personas con resoluciones, autorizaciones y certificaciones emitidas",
+      "vigente": 2610.0,
+      "ejecutado": 0.0,
+      "porcentajeEjecucion": 0.0,
+      "metaEjecutada": 0,
+      "ejecutadoMes": 0.0
+    }
+  ],
+  "avances": [
+    {
+      "codigo": "001",
+      "texto": "1: Dirección y Coordinación, en el mes de abril de 2025, se ejecutaron 1300 actividades en prestación de servicios y funcionamiento de Gobernación Departamental de Baja Verapaz"
+    },
+    {
+      "codigo": "002",
+      "texto": "2: Personas con resoluciones, autorizaciones y certificaciones emitidas, en el mes de abril de 2025, se ejecutaron 0 certificaciones de superviviencia"
+    }
+  ]
+}

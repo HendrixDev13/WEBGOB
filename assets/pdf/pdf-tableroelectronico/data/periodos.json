@@ -1,0 +1,197 @@
+{
+  "version": 1,
+  "total": 19,
+  "ultimoPeriodo": "2026-07",
+  "periodos": [
+    {
+      "id": "2026-07",
+      "mes": "JULIO",
+      "mesNumero": 7,
+      "anio": 2026,
+      "etiqueta": "Julio 2026",
+      "fechaCorte": "2026-07-31",
+      "archivo": "2026-07.json",
+      "pdf": "2026-07 Tablero Electrónico Julio 2026.pdf"
+    },
+    {
+      "id": "2026-06",
+      "mes": "JUNIO",
+      "mesNumero": 6,
+      "anio": 2026,
+      "etiqueta": "Junio 2026",
+      "fechaCorte": "2026-06-30",
+      "archivo": "2026-06.json",
+      "pdf": "2026-06 Tablero Electrónico Junio 2026.pdf"
+    },
+    {
+      "id": "2026-05",
+      "mes": "MAYO",
+      "mesNumero": 5,
+      "anio": 2026,
+      "etiqueta": "Mayo 2026",
+      "fechaCorte": "2026-05-31",
+      "archivo": "2026-05.json",
+      "pdf": "2026-05 Tablero Electrónico Mayo 2026.pdf"
+    },
+    {
+      "id": "2026-04",
+      "mes": "ABRIL",
+      "mesNumero": 4,
+      "anio": 2026,
+      "etiqueta": "Abril 2026",
+      "fechaCorte": "2026-04-30",
+      "archivo": "2026-04.json",
+      "pdf": "2026-04 Tablero Electrónico Abril 2026.pdf"
+    },
+    {
+      "id": "2026-03",
+      "mes": "MARZO",
+      "mesNumero": 3,
+      "anio": 2026,
+      "etiqueta": "Marzo 2026",
+      "fechaCorte": "2026-03-31",
+      "archivo": "2026-03.json",
+      "pdf": "2026-03 Tablero Electrónico Marzo 2026.pdf"
+    },
+    {
+      "id": "2026-02",
+      "mes": "FEBRERO",
+      "mesNumero": 2,
+      "anio": 2026,
+      "etiqueta": "Febrero 2026",
+      "fechaCorte": "2026-02-28",
+      "archivo": "2026-02.json",
+      "pdf": "2026-02 Tablero Electrónico Febrero 2026.pdf"
+    },
+    {
+      "id": "2026-01",
+      "mes": "ENERO",
+      "mesNumero": 1,
+      "anio": 2026,
+      "etiqueta": "Enero 2026",
+      "fechaCorte": "2026-01-31",
+      "archivo": "2026-01.json",
+      "pdf": "2026-01 Tablero Electrónico Enero 2026.pdf"
+    },
+    {
+      "id": "2025-12",
+      "mes": "DICIEMBRE",
+      "mesNumero": 12,
+      "anio": 2025,
+      "etiqueta": "Diciembre 2025",
+      "fechaCorte": "2025-12-31",
+      "archivo": "2025-12.json",
+      "pdf": "2025-12 Tablero Electrónico Diciembre 2025.pdf"
+    },
+    {
+      "id": "2025-11",
+      "mes": "NOVIEMBRE",
+      "mesNumero": 11,
+      "anio": 2025,
+      "etiqueta": "Noviembre 2025",
+      "fechaCorte": "2025-11-30",
+      "archivo": "2025-11.json",
+      "pdf": "2025-11 Tablero Electrónico Noviembre 2025.pdf"
+    },
+    {
+      "id": "2025-10",
+      "mes": "OCTUBRE",
+      "mesNumero": 10,
+      "anio": 2025,
+      "etiqueta": "Octubre 2025",
+      "fechaCorte": "2025-10-31",
+      "archivo": "2025-10.json",
+      "pdf": "2025-10 Tablero Electrónico Octubre 2025.pdf"
+    },
+    {
+      "id": "2025-09",
+      "mes": "SEPTIEMBRE",
+      "mesNumero": 9,
+      "anio": 2025,
+      "etiqueta": "Septiembre 2025",
+      "fechaCorte": "2025-09-30",
+      "archivo": "2025-09.json",
+      "pdf": "2025-09 Tablero Electrónico Septiembre 2025.pdf"
+    },
+    {
+      "id": "2025-08",
+      "mes": "AGOSTO",
+      "mesNumero": 8,
+      "anio": 2025,
+      "etiqueta": "Agosto 2025",
+      "fechaCorte": "2025-08-31",
+      "archivo": "2025-08.json",
+      "pdf": "2025-08 Tablero Electrónico Agosto 2025.pdf"
+    },
+    {
+      "id": "2025-07",
+      "mes": "JULIO",
+      "mesNumero": 7,
+      "anio": 2025,
+      "etiqueta": "Julio 2025",
+      "fechaCorte": "2025-07-31",
+      "archivo": "2025-07.json",
+      "pdf": "2025-07 Tablero Electrónico Julio 2025.pdf"
+    },
+    {
+      "id": "2025-06",
+      "mes": "JUNIO",
+      "mesNumero": 6,
+      "anio": 2025,
+      "etiqueta": "Junio 2025",
+      "fechaCorte": "2025-06-30",
+      "archivo": "2025-06.json",
+      "pdf": "2025-06 Tablero Electrónico Junio 2025.pdf"
+    },
+    {
+      "id": "2025-05",
+      "mes": "MAYO",
+      "mesNumero": 5,
+      "anio": 2025,
+      "etiqueta": "Mayo 2025",
+      "fechaCorte": "2025-05-31",
+      "archivo": "2025-05.json",
+      "pdf": "2025-05 Tablero Electrónico Mayo 2025.pdf"
+    },
+    {
+      "id": "2025-04",
+      "mes": "ABRIL",
+      "mesNumero": 4,
+      "anio": 2025,
+      "etiqueta": "Abril 2025",
+      "fechaCorte": "2025-04-30",
+      "archivo": "2025-04.json",
+      "pdf": "2025-04 Tablero Electrónico Abril 2025.pdf"
+    },
+    {
+      "id": "2025-03",
+      "mes": "MARZO",
+      "mesNumero": 3,
+      "anio": 2025,
+      "etiqueta": "Marzo 2025",
+      "fechaCorte": "2025-03-31",
+      "archivo": "2025-03.json",
+      "pdf": "2025-03 Tablero Electrónico Marzo 2025.pdf"
+    },
+    {
+      "id": "2025-02",
+      "mes": "FEBRERO",
+      "mesNumero": 2,
+      "anio": 2025,
+      "etiqueta": "Febrero 2025",
+      "fechaCorte": "2025-02-28",
+      "archivo": "2025-02.json",
+      "pdf": "2025-02 Tablero Electrónico Febrero 2025.pdf"
+    },
+    {
+      "id": "2025-01",
+      "mes": "ENERO",
+      "mesNumero": 1,
+      "anio": 2025,
+      "etiqueta": "Enero 2025",
+      "fechaCorte": "2025-01-31",
+      "archivo": "2025-01.json",
+      "pdf": "2025-01 Tablero Electrónico Enero 2025.pdf"
+    }
+  ]
+}
