@@ -398,22 +398,52 @@
       const fragmentoReportes = document.createDocumentFragment();
       const reportes = periodosOrdenados.filter((periodo) => periodo.anio === Number(anio));
 
-      reportes.forEach((periodo) => {
-        const enlace = crearElemento(
-          'a',
-          'list-group-item list-group-item-action tablero-reporte-pdf'
+      reportes.forEach((periodo, indiceReporte) => {
+        const abierto = indiceReporte === 0;
+        const idColapso = `reporte-pdf-${periodo.anio}-${periodo.mesNumero}`;
+        const item = crearElemento('div', 'accordion-item');
+        const encabezado = crearElemento('h3', 'accordion-header');
+        const boton = crearElemento(
+          'button',
+          `accordion-button tablero-reporte-pdf${abierto ? '' : ' collapsed'}`
         );
         const contenido = crearElemento('span', 'tablero-reporte-pdf-contenido');
         const titulo = crearElemento('strong', '', periodo.etiqueta);
         const archivo = crearElemento('small', '', periodo.pdf);
         const tipo = crearElemento('span', 'badge', 'PDF');
+        const colapso = crearElemento(
+          'div',
+          `accordion-collapse collapse${abierto ? ' show' : ''}`
+        );
+        const cuerpo = crearElemento('div', 'accordion-body tablero-reporte-pdf-cuerpo');
+        const visor = crearElemento('iframe', 'tablero-visor-pdf');
+        const rutaPdf = `${RUTA_PDF}${encodeURIComponent(periodo.pdf)}`;
 
-        enlace.href = `${RUTA_PDF}${encodeURIComponent(periodo.pdf)}`;
-        enlace.target = '_blank';
-        enlace.rel = 'noopener noreferrer';
+        boton.type = 'button';
+        boton.dataset.bsToggle = 'collapse';
+        boton.dataset.bsTarget = `#${idColapso}`;
+        boton.setAttribute('aria-expanded', String(abierto));
+        boton.setAttribute('aria-controls', idColapso);
+        colapso.id = idColapso;
+        colapso.dataset.bsParent = '#lista-reportes-pdf';
+        visor.title = `Reporte ${periodo.etiqueta}`;
+        visor.loading = abierto ? 'eager' : 'lazy';
+        if (abierto) {
+          visor.src = rutaPdf;
+        } else {
+          visor.dataset.src = rutaPdf;
+          colapso.addEventListener('show.bs.collapse', () => {
+            visor.src = visor.dataset.src;
+            delete visor.dataset.src;
+          }, { once: true });
+        }
         contenido.append(titulo, archivo);
-        enlace.append(contenido, tipo);
-        fragmentoReportes.append(enlace);
+        boton.append(contenido, tipo);
+        encabezado.append(boton);
+        cuerpo.append(visor);
+        colapso.append(cuerpo);
+        item.append(encabezado, colapso);
+        fragmentoReportes.append(item);
       });
 
       elementos.reportesPdf.replaceChildren(fragmentoReportes);
