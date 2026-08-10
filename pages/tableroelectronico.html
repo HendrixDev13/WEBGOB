@@ -56,18 +56,17 @@
                 <section class="tablero-seccion" aria-labelledby="titulo-resumen">
                     <div class="tablero-titulo-seccion">
                         <div>
-                            <p class="tablero-etiqueta">Panorama general</p>
-                            <h2 id="titulo-resumen">Resumen presupuestario</h2>
+                            <h2 id="titulo-resumen">Resumen Presupuestario</h2>
                         </div>
                         <p id="periodo-visible" class="tablero-periodo-visible"></p>
                     </div>
 
                     <div class="tablero-grid-ejecucion">
                         <article class="card tablero-card tablero-panel tablero-panel-progreso">
-                            <div class="tablero-panel-encabezado">
+                            <div class="accordion-button tablero-panel-encabezado">
                                 <div>
                                     <p class="tablero-etiqueta">Avance financiero</p>
-                                    <h3>Ejecución general</h3>
+                                    <h3>Gestión de <br class="salto-escritorio">Presupuesto</h3>
                                 </div>
                             </div>
                             <div class="tablero-progreso-contenido">
@@ -88,51 +87,52 @@
                                 <div id="grafica-ejecucion" class="tablero-anillo" role="img" aria-label="Ejecución presupuestaria de 0 por ciento">
                                     <div>
                                         <strong id="anillo-porcentaje">0.00%</strong>
-                                        <span>ejecutado</span>
+                                        <span>Ejecutado</span>
                                     </div>
                                 </div>
                             </div>
                         </article>
 
                         <article class="card tablero-card tablero-panel">
-                            <div class="tablero-panel-encabezado">
+                            <div class="accordion-button tablero-panel-encabezado">
                                 <div>
                                     <p class="tablero-etiqueta">Distribución</p>
-                                    <h3>Ejecución por grupo de gasto</h3>
+                                    <h3>Ejecución por <br class="salto-escritorio">Grupo de Gasto</h3>
                                 </div>
                             </div>
                             <div id="lista-grupos-gasto" class="tablero-barras"></div>
                         </article>
 
                         <article class="card tablero-card tablero-panel tablero-panel-servicios">
-                            <div class="tablero-panel-encabezado">
+                            <div class="accordion-button tablero-panel-encabezado">
                                 <div>
                                     <p class="tablero-etiqueta">Servicios</p>
-                                    <h3>Personales, técnicos y profesionales</h3>
+                                    <h3>Personales, Técnicos <br class="salto-escritorio">y Profesionales</h3>
                                 </div>
                             </div>
                             <dl id="lista-personas" class="tablero-personas">
                                 <div class="tablero-persona">
                                     <dt>Presupuesto para pago de salarios y honorarios</dt>
-                                    <dd id="personal-presupuesto">Q0.00</dd>
+                                    <dd id="personal-presupuesto" class="badge rounded-pill">Q0.00</dd>
                                 </div>
                                 <div class="tablero-persona">
                                     <dt>Presupuesto ejecutado en pago de salarios y honorarios</dt>
-                                    <dd id="personal-ejecutado">Q0.00</dd>
+                                    <dd id="personal-ejecutado" class="badge rounded-pill">Q0.00</dd>
                                 </div>
                                 <div class="tablero-persona">
                                     <dt>Porcentaje de ejecución en el pago de salarios y honorarios</dt>
-                                    <dd id="personal-porcentaje">0.00%</dd>
+                                    <dd id="personal-porcentaje" class="badge rounded-pill">0.00%</dd>
                                 </div>
                             </dl>
                         </article>
                     </div>
                 </section>
 
+                <!-- Sección Programas presupuestarios oculta temporalmente.
                 <section class="tablero-seccion" aria-labelledby="titulo-programas">
                     <div class="tablero-titulo-seccion">
                         <div>
-                            <p class="tablero-etiqueta">Resultados institucionales</p>
+                            <p class="tablero-etiqueta" hidden>Resultados institucionales</p>
                             <h2 id="titulo-programas">Programas presupuestarios</h2>
                         </div>
                     </div>
@@ -152,27 +152,44 @@
                         </table>
                     </div>
                 </section>
+                -->
 
+                <!-- Sección Avances y logros oculta temporalmente.
                 <section class="tablero-seccion" aria-labelledby="titulo-avances">
                     <div class="tablero-titulo-seccion">
                         <div>
-                            <p class="tablero-etiqueta">Rendición de cuentas</p>
                             <h2 id="titulo-avances">Avances y logros</h2>
                         </div>
                     </div>
                     <div id="lista-avances" class="tablero-avances"></div>
                 </section>
+                -->
 
-                <aside class="card tablero-card tablero-fuente" aria-label="Información de la fuente">
-                    <div>
-                        <span>Fuente de información</span>
-                        <strong id="fuente-tipo">Reporte de ejecución presupuestaria</strong>
+                <section class="tablero-seccion tablero-reportes" aria-labelledby="titulo-reportes">
+                    <div class="tablero-reportes-grid">
+                        <aside class="accordion tablero-reportes-anios" aria-label="Navegación de reportes por año">
+                            <div class="accordion-item tablero-card">
+                                <h2 class="accordion-header">
+                                    <span class="accordion-button">Años</span>
+                                </h2>
+                                <div class="accordion-body p-0">
+                                    <div id="lista-anios-reportes" class="list-group list-group-flush"></div>
+                                </div>
+                            </div>
+                        </aside>
+
+                        <div class="accordion tablero-reportes-pdf">
+                            <div class="accordion-item tablero-card">
+                                <h2 class="accordion-header" id="titulo-reportes">
+                                    <span class="accordion-button">Reportes Tablero Electrónico</span>
+                                </h2>
+                                <div class="accordion-body p-0">
+                                    <div id="lista-reportes-pdf" class="list-group list-group-flush"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <span>Documento de referencia</span>
-                        <a id="fuente-archivo" target="_blank" rel="noopener noreferrer">Sin archivo indicado</a>
-                    </div>
-                </aside>
+                </section>
             </div>
         </div>
     </main>

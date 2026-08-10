@@ -12,7 +12,7 @@
     { codigos: ['011'], etiqueta: 'Personal permanente 011' },
     {
       codigos: ['021', '022', '031'],
-      etiqueta: 'Personal Temporal 021, Personal Temporal 022 y Jornales 031'
+      etiqueta: 'Personal Temporal 021\nPersonal Temporal 022\nJornales 031'
     },
     { codigos: ['029'], etiqueta: 'Servicios Técnicos o Profesionales 029' },
     { codigos: ['018'], etiqueta: 'Servicios Técnicos o Profesionales Subgrupo 18' }
@@ -47,8 +47,8 @@
     personas: document.querySelector('#lista-personas'),
     programas: document.querySelector('#tabla-programas'),
     avances: document.querySelector('#lista-avances'),
-    fuenteTipo: document.querySelector('#fuente-tipo'),
-    fuenteArchivo: document.querySelector('#fuente-archivo')
+    aniosReportes: document.querySelector('#lista-anios-reportes'),
+    reportesPdf: document.querySelector('#lista-reportes-pdf')
   };
 
   let solicitudActual = null;
@@ -203,7 +203,7 @@
       item.dataset.renglonServicio = '';
       item.append(
         crearElemento('dt', '', etiqueta),
-        crearElemento('dd', '', valor)
+        crearElemento('dd', 'badge rounded-pill', valor)
       );
       fragmento.append(item);
     });
@@ -253,12 +253,13 @@
     elementos.avances.replaceChildren(fragmento);
   }
 
-  function renderizarDashboard(datos, periodoIndice) {
-    const { periodo, presupuesto, serviciosPersonales, fuente = {} } = datos;
+  function renderizarDashboard(datos) {
+    const { periodo, presupuesto, serviciosPersonales } = datos;
     const progresoGeneral = limitarPorcentaje(presupuesto.porcentajeEjecucion);
 
     elementos.fechaCorte.textContent = fechaLegible(periodo.fechaCorte);
-    elementos.periodoVisible.textContent = periodo.etiqueta || periodo.id;
+    elementos.periodoVisible.textContent = "";
+    // elementos.periodoVisible.textContent = "periodo.etiqueta || periodo.id";
     elementos.presupuestoVigente.textContent = moneda(presupuesto.vigente);
     elementos.presupuestoEjecutado.textContent = moneda(presupuesto.ejecutado);
     elementos.presupuestoPorcentaje.textContent = porcentaje(presupuesto.porcentajeEjecucion);
@@ -274,12 +275,10 @@
     elementos.personalEjecutado.textContent = moneda(serviciosPersonales.ejecutado);
     elementos.personalPorcentaje.textContent = porcentaje(serviciosPersonales.porcentajeEjecucion);
     renderizarPersonas(serviciosPersonales.personas);
-    renderizarProgramas(datos.programas);
-    renderizarAvances(datos.avances);
+    // Secciones ocultas temporalmente en tableroelectronico.html.
+    // renderizarProgramas(datos.programas);
+    // renderizarAvances(datos.avances);
 
-    elementos.fuenteTipo.textContent = fuente.tipo || 'Fuente no indicada';
-    elementos.fuenteArchivo.textContent = periodoIndice.pdf;
-    elementos.fuenteArchivo.href = `${RUTA_PDF}${encodeURIComponent(periodoIndice.pdf)}`;
   }
 
   async function cargarPeriodo(periodo) {
@@ -300,7 +299,7 @@
         throw new Error('El archivo mensual no contiene la estructura esperada.');
       }
 
-      renderizarDashboard(datos, periodo);
+      renderizarDashboard(datos);
       elementos.contenido.hidden = false;
       ocultarEstado();
     } catch (error) {
@@ -386,6 +385,66 @@
     return periodoInicial;
   }
 
+  function prepararNavegadorReportes(indice) {
+    if (!elementos.aniosReportes || !elementos.reportesPdf) return;
+
+    const periodosOrdenados = [...indice.periodos].sort(
+      (a, b) => b.anio - a.anio || b.mesNumero - a.mesNumero
+    );
+    const anios = [...new Set(periodosOrdenados.map((periodo) => periodo.anio))];
+    const fragmentoAnios = document.createDocumentFragment();
+
+    function mostrarReportes(anio) {
+      const fragmentoReportes = document.createDocumentFragment();
+      const reportes = periodosOrdenados.filter((periodo) => periodo.anio === Number(anio));
+
+      reportes.forEach((periodo) => {
+        const enlace = crearElemento(
+          'a',
+          'list-group-item list-group-item-action tablero-reporte-pdf'
+        );
+        const contenido = crearElemento('span', 'tablero-reporte-pdf-contenido');
+        const titulo = crearElemento('strong', '', periodo.etiqueta);
+        const archivo = crearElemento('small', '', periodo.pdf);
+        const tipo = crearElemento('span', 'badge', 'PDF');
+
+        enlace.href = `${RUTA_PDF}${encodeURIComponent(periodo.pdf)}`;
+        enlace.target = '_blank';
+        enlace.rel = 'noopener noreferrer';
+        contenido.append(titulo, archivo);
+        enlace.append(contenido, tipo);
+        fragmentoReportes.append(enlace);
+      });
+
+      elementos.reportesPdf.replaceChildren(fragmentoReportes);
+    }
+
+    function seleccionarAnio(anio) {
+      elementos.aniosReportes.querySelectorAll('[data-anio]').forEach((boton) => {
+        const activo = Number(boton.dataset.anio) === Number(anio);
+        boton.classList.toggle('active', activo);
+        if (activo) boton.setAttribute('aria-current', 'true');
+        else boton.removeAttribute('aria-current');
+      });
+      mostrarReportes(anio);
+    }
+
+    anios.forEach((anio) => {
+      const boton = crearElemento(
+        'button',
+        'list-group-item list-group-item-action tablero-reporte-anio',
+        anio
+      );
+      boton.type = 'button';
+      boton.dataset.anio = String(anio);
+      boton.addEventListener('click', () => seleccionarAnio(anio));
+      fragmentoAnios.append(boton);
+    });
+
+    elementos.aniosReportes.replaceChildren(fragmentoAnios);
+    seleccionarAnio(anios[0]);
+  }
+
   async function iniciarDashboard() {
     if (!elementos.selectorAnio
       || !elementos.selectorMes
@@ -399,6 +458,7 @@
       }
 
       const periodoInicial = prepararSelectores(indice);
+      prepararNavegadorReportes(indice);
       await cargarPeriodo(periodoInicial);
     } catch (error) {
       console.error('Error iniciando el tablero:', error);
