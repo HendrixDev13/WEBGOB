@@ -1,18 +1,46 @@
 <header>
   <div class="barra-nav">
-    <a href="/index.html" class="marca">
-      <span class="escudo">BV</span>
-      Gobernación de Baja Verapaz
+    <a href="/index.html" class="marca" aria-label="Gobernación de Baja Verapaz">
+      <img src="/assets/images/LOGOBV.png" alt="Gobernación de Baja Verapaz" class="logo-bv">
+      <span class="texto-marca visually-hidden">Gobernación de Baja Verapaz</span>
     </a>
 
     <nav class="menu-principal">
-      <a href="/index.html" data-pagina="index.html">Inicio</a>
-      <a href="/index.html#quienes-somos" data-pagina="index.html">Tu Gobierno</a>
-      <a href="/pages/tramites.html" data-pagina="tramites.html">Trámites</a>
-      <a href="/pages/municipios.html" data-pagina="municipios.html">Municipios</a>
-      <a href="/pages/noticias.html" data-pagina="noticias.html">Noticias</a>
-      <a href="/pages/trans-codede.html" data-pagina="trans-codede.html">Transparencia</a>
-      <a href="https://www.gobernacionbajaverapaz.laip.gt">Acceso a la Información</a>
+      <ul class="menu-list">
+        <li class="menu-item"><a href="/index.html" data-pagina="index.html">Inicio</a></li>
+        <li class="menu-item has-dropdown">
+          <a href="#">Estado</a>
+          <ul class="submenu">
+            <li><a href="https://bernardoarevalo.presidencia.gob.gt">Presidencia</a></li>
+            <li><a href="https://bernardoarevalo.presidencia.gob.gt">Vicepresidencia</a></li>
+            <li><a href="/pages/ministerios.html">Ministerios</a></li>
+            <li><a href="/pages/secretarias.html">Secretarías</a></li>
+            <li><a href="/pages/instituciones.html">Otras Instituciones y Comisiones</a></li>
+          </ul>
+        </li>
+        <li class="menu-item has-dropdown">
+          <a href="#">Trámites en línea</a>
+          <ul class="submenu">
+            <li><a href="/pages/tramites.html">Descarga de trámites</a></li>
+            <li><a href="/pages/tramites-vehiculos.html">Solicitar Nuevo Trámite</a></li>
+            <li><a href="https://tramites.gob.gt/instituciones/gobernacion-departamental-de-baja-verapaz">Trámites en línea</a></li>
+            
+          </ul>
+        </li>
+         <li class="menu-item has-dropdown">
+          <a href="#">Información Pública</a>
+          <ul class="submenu">
+             <li><a href="/pages/tableroelectronico.html">Tu Gobierno en Números</a></li>
+             <li> <a href="/pages/trans-codede.html">Transparencia CODEDEBV</a></li>
+            <li><a href="/pages/tramites-vehiculos.html">Uso de Vehículos</a></li>
+            <li><a href="/pages/directoriogob.html">Directorio Institucional</a></li>
+            
+          </ul>
+        </li>
+        <li class="menu-item"><a href="/pages/municipios.html" data-pagina="municipios.html">Municipios</a></li>
+        <li class="menu-item"><a href="/pages/noticias.html" data-pagina="noticias.html">Noticias</a></li>
+        <li class="menu-item"><a href="https://www.gobernacionbajaverapaz.laip.gt">Información de Oficio</a></li>
+      </ul>
     </nav>
 
     <div class="buscador">

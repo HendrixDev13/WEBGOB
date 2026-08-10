@@ -27,15 +27,38 @@ function activarMenuMovil() {
   if (!btnMenu || !menu) return;
  
   btnMenu.addEventListener('click', () => {
-    const abierto = menu.style.display === 'flex';
-    menu.style.display = abierto ? 'none' : 'flex';
-    menu.style.flexDirection = 'column';
-    menu.style.position = 'absolute';
-    menu.style.top = '70px';
-    menu.style.left = '0';
-    menu.style.right = '0';
-    menu.style.background = 'var(--azul-oscuro)';
-    menu.style.padding = '16px';
+    const abierto = menu.classList.toggle('open');
+    if (abierto) {
+      menu.style.display = 'flex';
+    } else {
+      menu.style.display = '';
+      cerrarSubmenus();
+    }
+  });
+}
+
+function cerrarSubmenus() {
+  document.querySelectorAll('.menu-item.open').forEach(item => item.classList.remove('open'));
+}
+
+function activarSubmenusMovil() {
+  const menu = document.querySelector('.menu-principal');
+  if (!menu) return;
+ 
+  menu.querySelectorAll('.menu-item > a').forEach(link => {
+    const submenu = link.nextElementSibling;
+    if (submenu && submenu.classList.contains('submenu')) {
+      link.addEventListener('click', event => {
+        if (window.innerWidth <= 960) {
+          event.preventDefault();
+          const item = link.closest('.menu-item');
+          const abierto = item.classList.toggle('open');
+          if (!abierto) {
+            item.querySelectorAll('.menu-item.open').forEach(child => child.classList.remove('open'));
+          }
+        }
+      });
+    }
   });
 }
  
@@ -57,5 +80,6 @@ document.addEventListener('DOMContentLoaded', async () => {
  
   // 2) Una vez inyectado el navbar, activar su comportamiento
   activarMenuMovil();
+  activarSubmenusMovil();
   marcarLinkActivo();
 });

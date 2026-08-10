@@ -1,0 +1,28 @@
+{
+  "items": [
+    {
+      "title": "Baja Verapaz da seguimiento a propuestas para el desarrollo regional",
+      "description": "La gobernación continúa el diálogo con comunidades y autoridades para fortalecer planes de desarrollo departamental.",
+      "date": "03 de agosto de 2026",
+      "image": "/assets/images/noticia-1.jpg",
+      "url": "https://agn.gt/",
+      "source": "AGN"
+    },
+    {
+      "title": "Gobernador participa en jornada para la planificación regional",
+      "description": "El gobernador Myner Chen Cujá asistió a la jornada de Socialización de Datos y Propuestas para los Procesos de Desarrollo.",
+      "date": "05 de agosto de 2026",
+      "image": "/assets/images/noticia-2.jpg",
+      "url": "https://agn.gt/",
+      "source": "AGN"
+    },
+    {
+      "title": "Intercambio de saberes fortalece identidad y cultura de pueblos originarios",
+      "description": "Representantes mayas participaron en un intercambio organizado por la gobernación para impulsar la cultura y la identidad local.",
+      "date": "29 de julio de 2026",
+      "image": "/assets/images/noticia-3.jpg",
+      "url": "https://agn.gt/",
+      "source": "AGN"
+    }
+  ]
+}
