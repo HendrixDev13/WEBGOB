@@ -417,7 +417,7 @@
         );
         const cuerpo = crearElemento('div', 'accordion-body tablero-reporte-pdf-cuerpo');
         const visor = crearElemento('iframe', 'tablero-visor-pdf');
-        const rutaPdf = `${RUTA_PDF}${encodeURIComponent(periodo.pdf)}`;
+        const rutaPdf = `${RUTA_PDF}${encodeURIComponent(periodo.pdf)}#view=Fit`;
 
         boton.type = 'button';
         boton.dataset.bsToggle = 'collapse';
@@ -426,6 +426,14 @@
         boton.setAttribute('aria-controls', idColapso);
         colapso.id = idColapso;
         colapso.dataset.bsParent = '#lista-reportes-pdf';
+        colapso.addEventListener('shown.bs.collapse', () => {
+          boton.scrollIntoView({
+            behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+              ? 'auto'
+              : 'smooth',
+            block: 'start'
+          });
+        });
         visor.title = `Reporte ${periodo.etiqueta}`;
         visor.loading = abierto ? 'eager' : 'lazy';
         if (abierto) {
