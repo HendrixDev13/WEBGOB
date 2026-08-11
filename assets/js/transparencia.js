@@ -25,7 +25,7 @@ const historialInformes = {
     {
       id: "2026-05",
       mesLabel: "Mayo 2026",
-      pdf: "/assets/pdf/pdf-transparencia-codede/Ofi-2026InfoCODEDEjmayo.pdf",
+      pdf: "/assets/pdf/pdf-transparencia-codede/Ofi-2026InfoCODEDEmayo.pdf",
     },
     {
       id: "2026-04",

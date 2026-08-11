@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Directorio Institucional — Gobernación de Baja Verapaz</title>
+<meta name="description" content="Directorio de instituciones públicas y privadas que funcionan en el departamento de Baja Verapaz.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link href="/assets/css/styles.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- El navbar se inyecta aquí vía fetch, ver assets/js/main.js -->
+<div id="navbar-container"></div>
+
+<!-- ===================== CONTENIDO ===================== -->
+<section style="padding-top:60px;padding-bottom:90px;">
+  <div class="contenedor">
+
+    <div class="encabezado-seccion" style="margin-bottom:36px;">
+      <span class="ojo">Enlaces de interés</span>
+      <h2>Directorio Institucional</h2>
+      <p>Instituciones públicas, ministerios y empresas que prestan servicio en el departamento de Baja Verapaz.</p>
+    </div>
+
+    <!-- Carrusel: la pista se mueve sola, se pausa al pasar el mouse -->
+    <div class="carrusel-directorio">
+      <div class="pista-carrusel" id="pistaCarrusel">
+        <!-- Las tarjetas se generan desde assets/js/directorio.js -->
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- El footer se inyecta aquí vía fetch, ver assets/js/main.js -->
+<div id="footer-container"></div>
+
+<script src="/assets/js/main.js"></script>
+<script src="/assets/js/modals.js"></script>
+<script src="/assets/js/directorio.js"></script>
+</body>
+</html>
