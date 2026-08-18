@@ -1034,6 +1034,14 @@
     background:rgba(255,255,255,.04);
     border-radius:12px;
     margin-bottom:6px;
+    color:var(--blanco); /* antes heredaba var(--azul-oscuro) de ".submenu li a",
+                             texto oscuro sobre el fondo oscuro del menú móvil = invisible */
+  }
+
+  .menu-principal.open .submenu li a:hover,
+  .menu-principal.open .submenu li a:focus-visible{
+    background:rgba(255,255,255,.12);
+    color:var(--blanco);
   }
 
   .menu-principal.open .submenu-nested{

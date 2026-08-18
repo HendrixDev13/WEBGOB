@@ -1,17 +1,75 @@
-/* =====================================================
-   TRAMITES.JS
-   Datos y lógica de la página de trámites:
-   - Array `tramites` con la información de cada uno
-   - Renderiza el listado izquierdo
-   - Al hacer clic, muestra instrucciones/requisitos a la
-     derecha y habilita el botón de descarga del PDF
-===================================================== */
+
 
 const tramites = [
   {
     id: 1,
+    nombre: "Recepción de notificaciones de reuniónes y manifestaciones.",
+    pdf: "/assets/pdf/pdf-tramites/01-Recepción-de-notificaciones-de-reuniones-y-manifestaciones.pdf",
+    word: "/assets/word/word-tramites/01-Recepción-de-notificaciones-de-reuniones-y-manifestaciones.docx",
+    instrucciones: [
+      "Descargue e imprima el formulario.",
+      "Preséntelo en Secretaría junto con los requisitos solicitados.",
+      "enviar el formulario al correo (udi.gobernacionbajaverapaz.gob.gt)"
+    ],
+    requisitos: [
+      "Fotocopia de DPI o pasaporte.",
+      "Visto Bueno del Párroco o Pastor",
+      "Plan de actividades (croquis).",
+      "Autorización Municipal Notificación al Ministerio de Salud y Asistencia Social Notificación a la Policía Nacional Civil"
+    ]
+  },
+  {
+    id: 2,
+    nombre: "Certificación de Actas Generales",
+    pdf: "/assets/pdf/pdf-tramites/02-Certificación-de-Actas-Generales.pdf",
+    word: "/assets/word/word-tramites/02-Certificación-de-Actas-Generales.docx",
+    instrucciones: [
+      "Descargue e imprima el formulario.",
+      "Llene el formulario con los datos solicitados.",
+      "Preséntelo en Secretaría de la Gobernación Departamental en horario de oficina.",
+      "Envíe el formulario al correo (udi.gobernacionbajaverapaz.gob.gt)"
+    ],
+    // TODO: agrega aquí los requisitos de este trámite
+    requisitos: []
+  },
+  {
+    id: 3,
+    nombre: "Solicitud de acceso a la información pública",
+    pdf: "/assets/pdf/pdf-tramites/03-Solicitud-Acceso-nformación-Pública.pdf",
+    word: "/assets/word/word-tramites/03-Solicitud-Acceso-nformación-Pública.docx",
+    instrucciones: [
+      "Articulo 38 al 45 del decreto 57-2008 Ley de Acceso a la Información Publica",
+      "Descargue e imprima el formulario.",
+      "Preséntelo en Secretaría junto con los requisitos solicitados.",
+      "enviar el formulario al correo (udi.gobernacionbajaverapaz.gob.gt)"
+    ],
+    requisitos: [
+      "Fotocopia de DPI",
+      "autenticación de las solicitudes "
+    ]
+  },
+  {
+    id: 4,
+    nombre: "Elevación de Categoria a Municipio",
+    pdf: "/assets/pdf/pdf-tramites/04-Elevación-de-Categoria-Municipio.pdf",
+    word: "/assets/word/word-tramites/04-Elevación-de-Categoria-Municipio.docx",
+    instrucciones: [
+      "Descargue e imprima el formulario.",
+      "llene el formulario",
+      "Preséntelo en Secretaría junto con los requisitos solicitados.",
+      "enviar el formulario al correo (udi.gobernacionbajaverapaz.gob.gt)"
+    ],
+    requisitos: [
+      "Fotocopia de DPI del responsable.",
+      "Firmas de aval de los organizadores.",
+      "Declaración jurada"
+    ]
+  },
+  {
+    id: 5,
     nombre: "Anexion de comunidades",
-    pdf: "/assets/pdf/01TableroRendicionDeCuentas.pdf",
+    pdf: "/assets/pdf/pdf-tramites/05-Anexion-de-Comunidades.pdf",
+    word: "/assets/word/word-tramites/05-Anexion-de-Comunidades.docx",
     instrucciones: [
       "Decreto 12-2002 Código Municipal Artículos del 26 al 32, Constitución Política de la Republica de Guatemala",
       "Descargue e imprima el formulario.",
@@ -26,9 +84,70 @@ const tramites = [
     ]
   },
   {
-    id: 2,
+    id: 6,
+    nombre: "Petición de expropiación",
+    pdf: "/assets/pdf/pdf-tramites/06-Solicitud-de-expropiación.pdf",
+    word: "/assets/word/word-tramites/06-Solicitud-de-expropiación.docx",
+    instrucciones: [
+      "Descargue e imprima el formulario.",
+      "llene el formulario",
+      "Preséntelo en Secretaría junto con los requisitos solicitados."
+    ],
+    requisitos: [
+      "Designación del bien cuya expropiación se persigue, con todos los datos que pueda identificarlo.",
+      "Certificación de la oficina respectiva en que conste el valor de la declaración fiscal.",
+      "Indicación de la disposición legal en virtud de la cual se declara de utilidad o necesidad públicas o interés social, el bien.",
+      "Expresión de la suma que ofrece el expropiante, en concepto de indemnización total, debiendo fundamentar sus conclusiones.",
+      "Informe técnico de que el bien expropiado es el que se necesita para ejecutar la obra. (en caso se tratara de inmuebles)."
+    ]
+  },
+  {
+    id: 7,
+    nombre: "Sustanciación de naturalizacion concesiva",
+    pdf: "/assets/pdf/pdf-tramites/07-Solicitud-de-Naturalización-Concesiva.pdf",
+    word: "/assets/word/word-tramites/07-Solicitud-de-Naturalización-Concesiva.docx",
+    instrucciones: [
+      "Descargue e imprima el formulario.",
+      "llene el formulario",
+      "Preséntelo en Secretaría junto con los requisitos solicitados.",
+      "enviar el formulario al correo (udi.gobernacionbajaverapaz.gob.gt)"
+    ],
+    requisitos: [
+      "Certificado de inscripción de residente, extendida por la Dirección General de Migración",
+      "Certificación de Extranjero Domiciliado, extendido por el Registro de las Personas RENAP",
+      "Certificación de Movimiento Migratorio",
+      "Certificación de Carencia de Antecedentes Penales, extendida por el Organismo Judicial",
+      " Certificación de Carencia de Antecedentes Policíacos, extendida por la Dirección General de la Policía Nacional Civil",
+      "Carta de Nacionalidad, debidamente autenticada por el Ministerio de Relaciones Exteriores de Guatemala; • Inscripción de Constancia de Ingresos, consistente en:________________________ _________________________________ (Inscripción de ingreso mensual, patente de comercio de empresa, constancia de inscripción y modificación al registro tributario unificado, declaración y recibo de pago mensual del Impuesto al Valor Agregado y declaración jurada y recibo de pago mensual del Impuesto Sobre la Renta); • Recibo de pago de la cuota de extranjería correspondiente al año______________ y recibo del pago del boleto de ornato del año__________________; ",
+      " Pasaporte original",
+      " Fotocopia de DPI debidamente autenticada."
+    ]
+  },
+  {
+    id: 8,
+    nombre: "Solicitud de carnet de la tercera edad",
+    pdf: "/assets/pdf/pdf-tramites/08-Carnetización-de-Tercera-Edad.pdf",
+    word: "/assets/word/word-tramites/08-Carnetización-de-Tercera-Edad.docx",
+    instrucciones: [
+      "Fundamento Legal: Ley de Protección para las personas de la tercera edad Decreto No. 80-96 Articulo 7",
+      "Descargue e imprima el formulario.",
+      "Preséntelo en Secretaría junto con los requisitos solicitados.",
+      "enviar el formulario al correo (udi.gobernacionbajaverapaz.gob.gt)"
+    ],
+    requisitos: [
+      "Fotocopia de DPI",
+      "Tipo de Sangre",
+      "Responsable del Adulto Mayor",
+      "Numero de teléfono por emergencia",
+      "Padecimientos",
+      "Dirección exacta"
+    ]
+  },
+  {
+    id: 9,
     nombre: "Autorización de colecta pública",
-    pdf: "/assets/pdf/01TableroRendicionDeCuentas.pdf",
+    pdf: "/assets/pdf/pdf-tramites/09-Autorización-de-Colecta-Pública.pdf",
+    word: "/assets/word/word-tramites/09-Autorización-de-Colecta-Pública.docx",
     instrucciones: [
       "Fundamento Legal: Decreto Número 2082 del 02.05.1938, Artículos 5, 6, 8, 12 y 19; Acuerdo Presidencial del 09.09.1958; Ley de los Consejos de Desarrollo Urbano y Rural, Artículo 12;  Código Municipal, Artículos 18, 19 y 20; y  Artículo 264, numeral 19  del Código Penal.",
       "Descarga el formulario.",
@@ -44,10 +163,78 @@ const tramites = [
       "Presupuesto financiero del proyecto a ejecutar."
     ]
   },
-   {
-    id: 3,
+  {
+    id: 10,
+    nombre: "Autoriazación de promociones comerciales",
+    pdf: "/assets/pdf/pdf-tramites/10-Autorizacion-de-Promociones-Comerciales.pdf",
+    word: "/assets/word/word-tramites/10-Autorizacion-de-Promociones-Comerciales.docx",
+    instrucciones: [
+      "se autoriza a diferentes entidades la impresión de cupones, vales, tiquetes y otros documentos para la realización de sorteos",
+      "Descargue e imprima el formulario.",
+      "llenar el formulario",
+      "Preséntelo en Secretaría junto con los requisitos solicitados."
+    ],
+    requisitos: [
+      "Fotocopia de DPI o pasaporte del solicitante o Representante Legal.",
+      "Fotocopia de la Patente de Comercio de Empresa (si es comerciante individual patente de comercio persona individual y de sociedad si es persona colectiva).",
+      "Fotocopia de la Patente de Comercio de Empresa (si es comerciante individual).",
+      "Fotocopia de Patente de Comercio de Empresa y de Sociedades (si es persona colectiva).",
+      "Comprobante de pago de la Municipalidad por el 10% de la emisión de los Bingos, Rifas y Sorteos.",
+      "Se debe adjuntar el presupuesto que contenga las características de cada uno de los premios, precio unitario y el monto global de premios en total."
+    ]
+  },
+  {
+    id: 11,
+    nombre: "Autorización para licencias de rifas y sorteos",
+    pdf: "/assets/pdf/pdf-tramites/11-Autorización-Rifas.pdf",
+    word: "/assets/word/word-tramites/11-Autorización-Rifas.docx",
+    instrucciones: [
+      "Descargue e imprima el formulario.",
+      "llene el formulario con los datos solicitados.",
+      "Preséntelo en Secretaría junto con los requisitos solicitados.",
+      "enviar el formulario al correo (udi.gobernacionbajaverapaz.gob.gt)"
+    ],
+    requisitos: [
+      "Fotocopia de DPI o pasaporte del solicitante o Representante Legal.",
+      "Fotocopia de la Patente de Comercio de Empresa (si es comerciante individual patente de comercio persona individual y de sociedad si es persona colectiva)",
+      "Fotocopia de la Patente de Comercio de Empresa ( si es comerciante individual).",
+      "Fotocopia de Patente de Comercio de Empresa y de Sociedades (si es persona colectiva).",
+      "Comprobante de pago de la Municipalidad por el 10% de la emisión de los Bingos, Rifas y Sorteos."
+    ]
+  },
+  {
+    id: 12,
+    nombre: "Licencias Derecho de Vía",
+    pdf: "/assets/pdf/pdf-tramites/12-Licencias-Derecho-de-Vía.pdf",
+    word: "/assets/word/word-tramites/12-Licencias-Derecho-de-Vía.docx",
+    instrucciones: [
+      "Descargue e imprima el formulario.",
+      "Llene el formulario con los datos solicitados.",
+      "Preséntelo en Secretaría de la Gobernación Departamental en horario de oficina.",
+      "Envíe el formulario al correo (udi.gobernacionbajaverapaz.gob.gt)"
+    ],
+    // TODO: agrega aquí los requisitos de este trámite
+    requisitos: []
+  },
+  {
+    id: 13,
+    nombre: "Solicitud de la Banda",
+    pdf: "/assets/pdf/pdf-tramites/13-Solicitud-de-la-Banda.pdf",
+    word: "/assets/word/word-tramites/13-Solicitud-de-la-Banda.docx",
+    instrucciones: [
+      "Descargue e imprima el formulario.",
+      "Llene el formulario con los datos solicitados.",
+      "Preséntelo en Secretaría de la Gobernación Departamental en horario de oficina.",
+      "Envíe el formulario al correo (udi.gobernacionbajaverapaz.gob.gt)"
+    ],
+    // TODO: agrega aquí los requisitos de este trámite
+    requisitos: []
+  },
+  {
+    id: 14,
     nombre: "Autorización de licencias varias",
-    pdf: "/assets/pdf/01TableroRendicionDeCuentas.pdf",
+    pdf: "/assets/pdf/pdf-tramites/14-Licencias-Varias.pdf",
+    word: "/assets/word/word-tramites/14-Licencias-Varias.docx",
     instrucciones: [
       "Descargue e imprima el formulario.",
       "Reúna las firmas de aval de los organizadores de la rifa.",
@@ -65,63 +252,11 @@ const tramites = [
       "Referencias personales que garanticen la honradez de la conducta del solicitante (en el caso de baratillos)."
     ]
   },
-   {
-    id: 4,
-    nombre: "Autoriazación de promociones comerciales",
-    pdf: "/assets/pdf/01TableroRendicionDeCuentas.pdf",
-    instrucciones: [
-      "se autoriza a diferentes entidades la impresión de cupones, vales, tiquetes y otros documentos para la realización de sorteos",
-      "Descargue e imprima el formulario.",
-      "llenar el formulario",
-      "Preséntelo en Secretaría junto con los requisitos solicitados."
-    ],
-    requisitos: [
-      "Fotocopia de DPI o pasaporte del solicitante o Representante Legal.",
-      "Fotocopia de la Patente de Comercio de Empresa (si es comerciante individual patente de comercio persona individual y de sociedad si es persona colectiva).",
-      "Fotocopia de la Patente de Comercio de Empresa (si es comerciante individual).",
-      "Fotocopia de Patente de Comercio de Empresa y de Sociedades (si es persona colectiva).",
-      "Comprobante de pago de la Municipalidad por el 10% de la emisión de los Bingos, Rifas y Sorteos.",
-      "Se debe adjuntar el presupuesto que contenga las características de cada uno de los premios, precio unitario y el monto global de premios en total."
-    ]
-  },
-   {
-    id: 5,
-    nombre: "Autorización para licencias de rifas y sorteos",
-    pdf: "/assets/pdf/01TableroRendicionDeCuentas.pdf",
-    instrucciones: [
-      "Descargue e imprima el formulario.",
-      "llene el formulario con los datos solicitados.",
-      "Preséntelo en Secretaría junto con los requisitos solicitados.",
-      "enviar el formulario al correo (udi.gobernacionbajaverapaz.gob.gt)"
-    ],
-    requisitos: [
-      "Fotocopia de DPI o pasaporte del solicitante o Representante Legal.",
-      "Fotocopia de la Patente de Comercio de Empresa (si es comerciante individual patente de comercio persona individual y de sociedad si es persona colectiva)",
-      "Fotocopia de la Patente de Comercio de Empresa ( si es comerciante individual).",
-      "Fotocopia de Patente de Comercio de Empresa y de Sociedades (si es persona colectiva).",
-      "Comprobante de pago de la Municipalidad por el 10% de la emisión de los Bingos, Rifas y Sorteos."
-    ]
-  },
-   {
-    id: 6,
-    nombre: "Creación y modificación de municipios",
-    pdf: "/assets/pdf/01TableroRendicionDeCuentas.pdf",
-    instrucciones: [
-      "Descargue e imprima el formulario.",
-      "llene el formulario",
-      "Preséntelo en Secretaría junto con los requisitos solicitados.",
-      "enviar el formulario al correo (udi.gobernacionbajaverapaz.gob.gt)"
-    ],
-    requisitos: [
-      "Fotocopia de DPI del responsable.",
-      "Firmas de aval de los organizadores.",
-      "Declaración jurada"
-    ]
-  },
-   {
-    id: 7,
+  {
+    id: 15,
     nombre: "Denuncia de conflictividad en el departamento",
-    pdf: "/assets/pdf/01TableroRendicionDeCuentas.pdf",
+    pdf: "/assets/pdf/pdf-tramites/15-Solicitud-Conflictos-suscitados.pdf",
+    word: "/assets/word/word-tramites/15-Solicitud-Conflictos-suscitados.docx",
     instrucciones: [
       "Descargue e imprima el formulario.",
       "llene el formulario ",
@@ -131,128 +266,25 @@ const tramites = [
     requisitos: [
       "Fotocopia de DPI o pasaporte",
       "Nombramiento de la calidad en que actúo.",
-      "Material audiovisual (videos, fotografías)",
+      "Material audiovisual (videos, fotografías)"
     ]
   },
-   {
-    id: 8,
-    nombre: "Petición de expropiación",
-    pdf: "/assets/pdf/01TableroRendicionDeCuentas.pdf",
+  {
+    id: 16,
+    nombre: "Declaratoria de Alertas Para Atención de Desastres",
+    pdf: "/assets/pdf/pdf-tramites/16-Declaratoria-de-Alertas-Para-Atención-de-Desastres.pdf",
+    word: "/assets/word/word-tramites/16-Declaratoria-de-Alertas-Para-Atención-de-Desastres.docx",
     instrucciones: [
       "Descargue e imprima el formulario.",
-      "llene el formulario",
-      "Preséntelo en Secretaría junto con los requisitos solicitados."
+      "Llene el formulario con los datos solicitados.",
+      "Preséntelo en Secretaría de la Gobernación Departamental en horario de oficina.",
+      "Envíe el formulario al correo (udi.gobernacionbajaverapaz.gob.gt)"
     ],
-    requisitos: [
-      "Designación del bien cuya expropiación se persigue, con todos los datos que pueda identificarlo.",
-      "Certificación de la oficina respectiva en que conste el valor de la declaración fiscal.",
-      "Indicación de la disposición legal en virtud de la cual se declara de utilidad o necesidad públicas o interés social, el bien.",
-      "Expresión de la suma que ofrece el expropiante, en concepto de indemnización total, debiendo fundamentar sus conclusiones.",
-      "Informe técnico de que el bien expropiado es el que se necesita para ejecutar la obra. (en caso se tratara de inmuebles)."
-    ]
-  },
-   {
-    id: 9,
-    nombre: "Recepción de notificaciones de reuniónes y manifestaciones.",
-    pdf: "/assets/pdf/01TableroRendicionDeCuentas.pdf",
-    instrucciones: [
-      "Descargue e imprima el formulario.",
-      "Preséntelo en Secretaría junto con los requisitos solicitados.",
-      "enviar el formulario al correo (udi.gobernacionbajaverapaz.gob.gt)"
-    ],
-    requisitos: [
-      "Fotocopia de DPI o pasaporte.",
-      "Visto Bueno del Párroco o Pastor",
-      "Plan de actividades (croquis).",
-      "Autorización Municipal Notificación al Ministerio de Salud y Asistencia Social Notificación a la Policía Nacional Civil"
-    ]
-  },
-   {
-    id: 10,
-    nombre: "Solicitud de acceso a la información pública",
-    pdf: "/assets/pdf/01TableroRendicionDeCuentas.pdf",
-    instrucciones: [
-      "Articulo 38 al 45 del decreto 57-2008 Ley de Acceso a la Información Publica",
-      "Descargue e imprima el formulario.",
-      "Preséntelo en Secretaría junto con los requisitos solicitados.",
-      "enviar el formulario al correo (udi.gobernacionbajaverapaz.gob.gt)"
-    ],
-    requisitos: [
-      "Fotocopia de DPI",
-      "autenticación de las solicitudes "
-    ]
-  },
-   {
-    id: 11,
-    nombre: "Solicitud de carnet de la tercera edad",
-    pdf: "/assets/pdf/01TableroRendicionDeCuentas.pdf",
-    instrucciones: [
-      "Fundamento Legal: Ley de Protección para las personas de la tercera edad Decreto No. 80-96 Articulo 7",
-      "Descargue e imprima el formulario.",
-      "Preséntelo en Secretaría junto con los requisitos solicitados.",
-      "enviar el formulario al correo (udi.gobernacionbajaverapaz.gob.gt)"
-    ],
-    requisitos: [
-      "Fotocopia de DPI",
-      "Tipo de Sangre",
-      "Responsable del Adulto Mayor",
-      "Numero de teléfono por emergencia",
-      "Padecimientos",
-      "Dirección exacta"
-    ]
-  },
-   {
-    id: 12,
-    nombre: "Solicitud de copias simples informes o certificaciones de expedientes administrativos",
-    pdf: "/assets/pdf/01TableroRendicionDeCuentas.pdf",
-    instrucciones: [
-      "Descargue e imprima el formulario.",
-      "llene el formulario",
-      "Preséntelo en Secretaría junto con los requisitos solicitados.",
-      "enviar el formulario al correo (udi.gobernacionbajaverapaz.gob.gt)"
-    ],
-    requisitos: [
-      "Fotocopia de DPI.",
-      "Nombre del expediente o informe que solicita",
-      "Fechas"
-    ]
-  },
-   {
-    id: 13,
-    nombre: "Sustanciación de naturalizacion concesiva",
-    pdf: "/assets/pdf/01TableroRendicionDeCuentas.pdf",
-    instrucciones: [
-      "Descargue e imprima el formulario.",
-      "llene el formulario",
-      "Preséntelo en Secretaría junto con los requisitos solicitados.",
-      "enviar el formulario al correo (udi.gobernacionbajaverapaz.gob.gt)"
-    ],
-    requisitos: [
-      "Certificado de inscripción de residente, extendida por la Dirección General de Migración",
-      "Certificación de Extranjero Domiciliado, extendido por el Registro de las Personas RENAP",
-      "Certificación de Movimiento Migratorio",
-      "Certificación de Carencia de Antecedentes Penales, extendida por el Organismo Judicial",
-      " Certificación de Carencia de Antecedentes Policíacos, extendida por la Dirección General de la Policía Nacional Civil",
-      "Carta de Nacionalidad, debidamente autenticada por el Ministerio de Relaciones Exteriores de Guatemala; • Inscripción de Constancia de Ingresos, consistente en:________________________ _________________________________ (Inscripción de ingreso mensual, patente de comercio de empresa, constancia de inscripción y modificación al registro tributario unificado, declaración y recibo de pago mensual del Impuesto al Valor Agregado y declaración jurada y recibo de pago mensual del Impuesto Sobre la Renta); • Recibo de pago de la cuota de extranjería correspondiente al año______________ y recibo del pago del boleto de ornato del año__________________; ",
-      " Pasaporte original",
-      " Fotocopia de DPI debidamente autenticada.",
-    ]
-  },
-    {
-    id: 14,
-    nombre: "Autorización de licencias (Animales Peligrosos)",
-    pdf: "/assets/pdf/01TableroRendicionDeCuentas.pdf",
-    instrucciones: [
-      "Descargue e imprima el formulario.",
-      "llene el formulario",
-      "Preséntelo en Secretaría junto con los requisitos solicitados.",
-      "enviar el formulario al correo (udi.gobernacionbajaverapaz.gob.gt)"
-    ],
-    requisitos: [
-      "Fotocopia de DPI."
-    ]
+    // TODO: agrega aquí los requisitos de este trámite
+    requisitos: []
   }
 ];
+
 
 function renderListaTramites() {
   const lista = document.getElementById('listaTramites');
@@ -299,9 +331,14 @@ function mostrarTramite(id) {
       ${tramite.requisitos.map(req => `<li>${req}</li>`).join('')}
     </ul>
 
-    <a href="${tramite.pdf}" class="btn-descarga" download>
-      ⬇ Descargar formulario (PDF)
-    </a>
+    <div class="botones-descarga">
+      <a href="${tramite.pdf}" class="btn-descarga" download>
+        ⬇ Descargar formulario (PDF)
+      </a>
+      <a href="${tramite.word}" class="btn-descarga btn-descarga-word" download>
+        ⬇ Descargar formulario (Word)
+      </a>
+    </div>
   `;
 
   // Permite compartir/recargar en el mismo trámite
