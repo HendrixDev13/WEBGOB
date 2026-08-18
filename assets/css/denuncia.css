@@ -6,7 +6,7 @@
 .denuncias-encabezado {
   position: relative;
   overflow: hidden;
-  padding: 54px 0 100px;
+  padding: 20px 0 40px;
   color: var(--blanco);
   background: radial-gradient(circle at 84% 16%,rgba(201,154,63,.28),transparent 25rem),linear-gradient(135deg,var(--azul-oscuro),var(--azul-medio) 70%,var(--azul-brillante));
 }
@@ -55,21 +55,21 @@
 }
 
 .denuncias-contenido {
-  padding-bottom: 90px;
+  padding-bottom: 30px;
 }
 
 .denuncias-panel-encabezado {
   position: relative;
   z-index: 3;
   max-width: 1040px;
-  margin-top: -48px;
+  margin-top: -110px;
 }
 
 .denuncias-aviso {
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 20px 24px;
+  padding: 15px 20px;
   border: 1px solid #e1e8f3;
   border-radius: var(--radio);
   background: var(--blanco);
@@ -104,7 +104,7 @@
   grid-template-columns: 300px minmax(0,1fr);
   align-items: start;
   gap: 26px;
-  margin-top: 34px;
+  margin-top: 15px;
 }
 
 .denuncias-orientacion {
@@ -738,11 +738,11 @@
 
 @media (max-width:760px) {
   .denuncias-encabezado {
-    padding: 40px 0 82px;
+    padding: 40px 0 55px;
   }
 
   .denuncias-panel-encabezado {
-    margin-top: -38px;
+    margin-top: -130px;
   }
 
   .denuncias-aviso {
@@ -778,7 +778,7 @@
 
 @media (max-width:480px) {
   .denuncias-contenido {
-    padding-bottom: 60px;
+    padding-bottom: 30px;
   }
 
   .denuncias-aviso-icono {
