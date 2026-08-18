@@ -1,61 +1,74 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Denuncias — Gobernación de Baja Verapaz</title>
-<style>
-  :root{
-    --azul-oscuro:#0b1a3f;
-    --crema:#faf1e2;
-    --dorado:#c99a3f;
-    --texto-gris:#4b5568;
-  }
-  body{
-    margin:0;
-    font-family:"Inter",system-ui,sans-serif;
-    background:var(--azul-oscuro);
-    color:#fff;
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    padding:40px;
-  }
-  .placeholder{max-width:520px;}
-  .placeholder span{
-    color:var(--dorado);
-    font-weight:700;
-    font-size:.78rem;
-    letter-spacing:2px;
-    text-transform:uppercase;
-  }
-  .placeholder h1{font-size:2rem;margin:12px 0 16px;}
-  .placeholder p{color:rgba(255,255,255,.7);line-height:1.6;margin-bottom:28px;}
-  .placeholder a{
-    display:inline-block;
-    padding:13px 26px;
-    border-radius:30px;
-    background:var(--crema);
-    color:var(--azul-oscuro);
-    text-decoration:none;
-    font-weight:700;
-    font-size:.9rem;
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Denuncias — Gobernación de Baja Verapaz</title>
+  <meta name="description" content="Canal de denuncias de la Gobernación Departamental de Baja Verapaz.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="/assets/css/styles.css" rel="stylesheet">
+  <link href="/assets/css/denuncia.css" rel="stylesheet">
 </head>
 <body>
+  <div id="navbar-container"></div>
 
-<!-- PLACEHOLDER: reemplaza todo este contenido cuando construyamos
-     el formulario real de denuncias (con sus campos, confidencialidad,
-     validaciones, etc.) -->
-<div class="placeholder">
-  <span>Próximamente</span>
-  <h1>Módulo de Denuncias</h1>
-  <p>Estamos trabajando en el formulario para que puedas presentar tu denuncia de forma directa y confidencial ante la Gobernación Departamental de Baja Verapaz.</p>
-  <a href="/index.html">← Volver al inicio</a>
-</div>
+  <main class="pagina-denuncias">
+    <section class="denuncias-encabezado">
+      <div class="contenedor denuncias-intro">
+        <span class="ojo">Canal de atención ciudadana</span>
+        <h1>Presenta tu denuncia</h1>
+        <p>
+          Completa el formulario con la información disponible. Describe los hechos
+          con claridad para facilitar la revisión y el seguimiento de tu denuncia.
+        </p>
+      </div>
+    </section>
 
+    <section class="denuncias-contenido" aria-labelledby="titulo-formulario">
+      <div class="contenedor denuncias-panel-encabezado">
+        <div class="denuncias-aviso">
+          <div class="denuncias-aviso-icono" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 3 4.5 6v5.2c0 4.7 3.2 8.9 7.5 9.8 4.3-.9 7.5-5.1 7.5-9.8V6L12 3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+              <path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <h2 id="titulo-formulario">Formulario de denuncia</h2>
+            <p>
+              Revisa la información antes de enviarla. Los campos obligatorios están
+              identificados dentro del formulario.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="contenedor denuncias-ventana">
+        <div class="denuncias-formulario">
+          <iframe
+            src="https://docs.google.com/forms/d/e/1FAIpQLScgR39C-eB-YbZYmuuAeAXQqAOhex-o1DysBmcplrqbMnnyEQ/viewform?embedded=true"
+            title="Formulario de denuncias de la Gobernación de Baja Verapaz"
+            loading="eager">
+            Cargando formulario…
+          </iframe>
+        </div>
+      </div>
+
+      <div class="contenedor denuncias-ayuda-contenedor">
+        <p class="denuncias-ayuda">
+          ¿El formulario no se muestra correctamente?
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLScgR39C-eB-YbZYmuuAeAXQqAOhex-o1DysBmcplrqbMnnyEQ/viewform" target="_blank" rel="noopener noreferrer">
+            Ábrelo en una nueva pestaña
+          </a>.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer-container"></div>
+  <script src="/assets/js/main.js"></script>
 </body>
 </html>

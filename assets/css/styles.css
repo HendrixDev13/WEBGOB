@@ -1162,6 +1162,7 @@
 /* =====================================================
    PÁGINA DE TRÁMITES: listado + detalle
 ===================================================== */
+
 .grid-tramites{
   display:grid;
   grid-template-columns:340px 1fr;
