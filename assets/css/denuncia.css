@@ -406,6 +406,40 @@
   margin-top: 6px;
   color: #68758a;
   font-size: .74rem;
+  line-height: 1.45;
+}
+
+.aviso-confidencialidad {
+  margin-bottom: 20px;
+  padding: 15px 17px;
+  border: 1px solid #cbd8f4;
+  border-left: 4px solid var(--azul-brillante);
+  border-radius: 11px;
+  background: #f5f8ff;
+  color: var(--texto-gris);
+  font-size: .8rem;
+  line-height: 1.55;
+}
+
+.aviso-confidencialidad strong {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--azul-oscuro);
+  font-family: Poppins, sans-serif;
+  font-size: .84rem;
+}
+
+.aviso-confidencialidad p {
+  margin: 0;
+}
+
+.campo .textarea-contacto {
+  min-height: 110px;
+}
+
+.campo-aceptacion-contacto {
+  border-color: #cbd8f4;
+  background: #f5f8ff;
 }
 
 .campo-etiqueta-contador {

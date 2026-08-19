@@ -43,7 +43,27 @@ window.captchaConError = function () {
 if (formularioDenuncia) {
   const radiosTipo = formularioDenuncia.querySelectorAll('input[name="tipo_denuncia"]');
   const seccionPersonales = document.querySelector('#seccion-datos-personales');
-  const camposPersonales = seccionPersonales.querySelectorAll('input, select, textarea');
+  const seccionConfidenciales = document.querySelector('#seccion-datos-confidenciales');
+  const cuiConfidencial = document.querySelector('#cui-confidencial');
+  const telefonoConfidencial = document.querySelector('#telefono-confidencial');
+  const configuracionesContacto = [
+    {
+      seccion: seccionPersonales,
+      preferencia: document.querySelector('#preferencia-contacto-abierta'),
+      campoInstrucciones: document.querySelector('#campo-instrucciones-contacto-abierta'),
+      instrucciones: document.querySelector('#instrucciones-contacto-abierta'),
+      autorizacionWrap: document.querySelector('#autorizacion-contacto-abierta-wrap'),
+      autorizacion: document.querySelector('#autorizacion-contacto-abierta')
+    },
+    {
+      seccion: seccionConfidenciales,
+      preferencia: document.querySelector('#preferencia-contacto'),
+      campoInstrucciones: document.querySelector('#campo-instrucciones-contacto'),
+      instrucciones: document.querySelector('#instrucciones-contacto'),
+      autorizacionWrap: document.querySelector('#autorizacion-contacto-wrap'),
+      autorizacion: document.querySelector('#autorizacion-contacto')
+    }
+  ];
   const descripcion = document.querySelector('#descripcion');
   const contador = document.querySelector('#contador-descripcion');
   const estado = document.querySelector('#estado-formulario');
@@ -76,16 +96,62 @@ if (formularioDenuncia) {
     estado.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   };
 
-  function actualizarTipo() {
-    const esAnonima = formularioDenuncia.querySelector('input[name="tipo_denuncia"]:checked').value === 'anonima';
-    seccionPersonales.hidden = esAnonima;
-    seccionPersonales.setAttribute('aria-hidden', String(esAnonima));
-    camposPersonales.forEach(campo => {
-      campo.disabled = esAnonima;
-      campo.required = !esAnonima;
+  function limpiarCampo(campo) {
+    if (campo.type === 'checkbox' || campo.type === 'radio') {
+      campo.checked = false;
+    } else {
+      campo.value = '';
+    }
+    campo.classList.remove('tocado');
+  }
+
+  function configurarSeccion(seccion, activa) {
+    seccion.hidden = !activa;
+    seccion.setAttribute('aria-hidden', String(!activa));
+    seccion.querySelectorAll('input, select, textarea').forEach(campo => {
+      campo.disabled = !activa;
+      campo.required = activa && campo.hasAttribute('data-required-activo');
       campo.classList.remove('tocado');
-      if (esAnonima) campo.value = '';
+      if (!activa) limpiarCampo(campo);
     });
+  }
+
+  function configurarCampoCondicional(contenedor, campo, visible, obligatorio = false) {
+    contenedor.hidden = !visible;
+    campo.disabled = !visible;
+    campo.required = visible && obligatorio;
+    campo.classList.remove('tocado');
+    if (!visible) limpiarCampo(campo);
+  }
+
+  function actualizarPreferenciaContacto(configuracion) {
+    const seccionActiva = !configuracion.seccion.hidden;
+    const preferencia = seccionActiva ? configuracion.preferencia.value : '';
+    const solicitaContacto = ['correo', 'telefono', 'ambos'].includes(preferencia);
+
+    configurarCampoCondicional(
+      configuracion.campoInstrucciones,
+      configuracion.instrucciones,
+      solicitaContacto
+    );
+    configurarCampoCondicional(
+      configuracion.autorizacionWrap,
+      configuracion.autorizacion,
+      solicitaContacto,
+      true
+    );
+  }
+
+  function actualizarTipo() {
+    const tipoSeleccionado = formularioDenuncia.querySelector('input[name="tipo_denuncia"]:checked')?.value || 'abierta';
+    const esAbierta = tipoSeleccionado === 'abierta';
+    const esConfidencial = tipoSeleccionado === 'confidencial';
+    const esAnonima = tipoSeleccionado === 'anonima';
+
+    configurarSeccion(seccionPersonales, esAbierta);
+    configurarSeccion(seccionConfidenciales, esConfidencial);
+    configuracionesContacto.forEach(actualizarPreferenciaContacto);
+
     document.querySelector('[data-numero-contexto]').textContent = esAnonima ? '2' : '3';
     document.querySelector('[data-numero-hechos]').textContent = esAnonima ? '3' : '4';
     document.querySelector('[data-numero-confirmacion]').textContent = esAnonima ? '4' : '5';
@@ -93,6 +159,7 @@ if (formularioDenuncia) {
   }
 
   function soloDigitos(campo) {
+    if (!campo) return;
     campo.addEventListener('input', () => { campo.value = campo.value.replace(/\D/g, '').slice(0, campo.maxLength); });
   }
 
@@ -152,7 +219,15 @@ if (formularioDenuncia) {
 
   soloDigitos(document.querySelector('#cui'));
   soloDigitos(document.querySelector('#telefono'));
+  soloDigitos(cuiConfidencial);
+  soloDigitos(telefonoConfidencial);
   radiosTipo.forEach(radio => radio.addEventListener('change', actualizarTipo));
+  configuracionesContacto.forEach(configuracion => {
+    configuracion.preferencia.addEventListener('change', () => {
+      actualizarPreferenciaContacto(configuracion);
+      ocultarEstado();
+    });
+  });
   descripcion.addEventListener('input', () => { contador.textContent = descripcion.value.length; });
 
   formularioDenuncia.querySelectorAll('input, select, textarea').forEach(campo => {

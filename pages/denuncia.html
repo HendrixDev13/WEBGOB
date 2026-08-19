@@ -32,7 +32,7 @@
           </div>
           <div>
             <h2 id="titulo-formulario">Formulario de denuncia</h2>
-            <p>Selecciona una modalidad: <b>Abierta</b>, si autorizas mostrar tus datos en la notificación; <b>Confidencial</b>, si deseas que se guarden pero no se muestren en el correo; o <b>Anónima</b>, si no deseas proporcionar datos que permitan identificarte.</p>
+            <p>Selecciona una modalidad: <b>Abierta</b>, si autorizas mostrar tus datos en la notificación; <b>Confidencial</b>, si prefieres usar un pseudónimo y decidir si deseas ser contactado; o <b>Anónima</b>, si no deseas proporcionar datos que permitan identificarte.</p>
           </div>
         </div>
       </div>
@@ -49,7 +49,7 @@
           </ol>
           <div class="orientacion-privacidad">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.8"/></svg>
-            <p>La información debe ser consultada únicamente por personal autorizado.</p>
+            <p>La información será consultada únicamente por personal autorizado.</p>
           </div>
         </aside>
 
@@ -64,18 +64,111 @@
               <div class="form-seccion-titulo"><span class="form-paso">1</span><div><h2 id="titulo-tipo">Tipo de denuncia</h2><p>Selecciona cómo deseas que sea tratada tu identidad.</p></div></div>
               <div class="tipo-denuncia-grid" role="radiogroup" aria-labelledby="titulo-tipo">
                 <label class="tipo-denuncia-tarjeta"><input type="radio" name="tipo_denuncia" value="abierta" checked><span class="tipo-marca"></span><span class="tipo-icono" aria-hidden="true">👤</span><strong>Abierta</strong><small>Autoriza identificar a la persona denunciante durante el seguimiento.</small></label>
-                <label class="tipo-denuncia-tarjeta"><input type="radio" name="tipo_denuncia" value="confidencial"><span class="tipo-marca"></span><span class="tipo-icono" aria-hidden="true">🔒</span><strong>Confidencial</strong><small>Los datos se resguardan y solo podrá consultarlos personal autorizado.</small></label>
+                <label class="tipo-denuncia-tarjeta"><input type="radio" name="tipo_denuncia" value="confidencial"><span class="tipo-marca"></span><span class="tipo-icono" aria-hidden="true">🔒</span><strong>Confidencial</strong><small>Resguarda tu identidad, permite usar un pseudónimo y elegir si deseas que se compartan tus medios de contacto.</small></label>
                 <label class="tipo-denuncia-tarjeta"><input type="radio" name="tipo_denuncia" value="anonima"><span class="tipo-marca"></span><span class="tipo-icono" aria-hidden="true">🛡️</span><strong>Anónima</strong><small>No solicita nombre, identificación, teléfono ni correo electrónico.</small></label>
               </div>
             </section>
 
             <section class="form-seccion" id="seccion-datos-personales" aria-labelledby="titulo-personales">
-              <div class="form-seccion-titulo"><span class="form-paso">2</span><div><h2 id="titulo-personales">Datos de la persona denunciante</h2><p>Necesarios para una denuncia abierta o confidencial.</p></div></div>
+              <div class="form-seccion-titulo"><span class="form-paso">2</span><div><h2 id="titulo-personales">Datos de la persona denunciante</h2><p>En una denuncia abierta, estos datos podrán incluirse en la notificación enviada para su atención.</p></div></div>
               <div class="form-grid">
-                <div class="campo campo-completo"><label for="nombre-completo">Nombre completo <span>*</span></label><input id="nombre-completo" name="nombre_completo" type="text" maxlength="120" autocomplete="name" required></div>
-                <div class="campo"><label for="cui">Código Único de Identificación (CUI) <span>*</span></label><input id="cui" name="cui" type="text" inputmode="numeric" pattern="[0-9]{13}" minlength="13" maxlength="13" required><small>Ingresa los 13 dígitos sin espacios ni guiones.</small></div>
-                <div class="campo"><label for="telefono">Teléfono <span>*</span></label><input id="telefono" name="telefono" type="tel" inputmode="numeric" pattern="[0-9]{8}" minlength="8" maxlength="8" autocomplete="tel" required></div>
-                <div class="campo campo-completo"><label for="correo">Correo electrónico <span>*</span></label><input id="correo" name="correo" type="email" maxlength="120" autocomplete="email" required></div>
+                <div class="campo campo-completo"><label for="nombre-completo">Nombre completo <span>*</span></label><input id="nombre-completo" name="nombre_completo" type="text" maxlength="120" autocomplete="name" data-required-activo required></div>
+                <div class="campo"><label for="cui">Código Único de Identificación (CUI) <span>*</span></label><input id="cui" name="cui" type="text" inputmode="numeric" pattern="[0-9]{13}" minlength="13" maxlength="13" data-required-activo required><small>Ingresa los 13 dígitos sin espacios ni guiones.</small></div>
+                <div class="campo"><label for="telefono">Teléfono <span>*</span></label><input id="telefono" name="telefono" type="tel" inputmode="numeric" pattern="[0-9]{8}" minlength="8" maxlength="8" autocomplete="tel" data-required-activo required></div>
+                <div class="campo campo-completo"><label for="correo">Correo electrónico <span>*</span></label><input id="correo" name="correo" type="email" maxlength="120" autocomplete="email" data-required-activo required></div>
+
+                <div class="campo campo-completo">
+                  <label for="preferencia-contacto-abierta">¿Cómo deseas que nos comuniquemos contigo? <span>*</span></label>
+                  <select id="preferencia-contacto-abierta" name="preferencia_contacto" data-required-activo required>
+                    <option value="">Selecciona una opción</option>
+                    <option value="ninguno">No deseo que se comuniquen conmigo</option>
+                    <option value="correo">Por correo electrónico</option>
+                    <option value="telefono">Por teléfono</option>
+                    <option value="ambos">Por correo electrónico y teléfono</option>
+                  </select>
+                  <small>En una denuncia abierta, tus datos personales aparecerán en la notificación aunque no desees que se comuniquen contigo.</small>
+                </div>
+
+                <div class="campo campo-completo" id="campo-instrucciones-contacto-abierta" hidden>
+                  <label for="instrucciones-contacto-abierta">Indicaciones para contactarte</label>
+                  <textarea class="textarea-contacto" id="instrucciones-contacto-abierta" name="instrucciones_contacto" maxlength="300" rows="4" placeholder="Ejemplo: llamar únicamente de 14:00 a 16:00 horas" disabled></textarea>
+                </div>
+
+                <div class="campo-completo" id="autorizacion-contacto-abierta-wrap" hidden>
+                  <label class="campo-aceptacion campo-aceptacion-contacto">
+                    <input id="autorizacion-contacto-abierta" type="checkbox" name="autorizacion_contacto" value="aceptada" disabled>
+                    <span>Autorizo que personal responsable utilice los medios seleccionados para dar seguimiento a esta denuncia.</span>
+                  </label>
+                </div>
+              </div>
+            </section>
+
+            <section class="form-seccion" id="seccion-datos-confidenciales" aria-labelledby="titulo-confidenciales" aria-hidden="true" hidden>
+              <div class="form-seccion-titulo">
+                <span class="form-paso">2</span>
+                <div>
+                  <h2 id="titulo-confidenciales">Datos confidenciales de la persona denunciante</h2>
+                  <p>Estos datos se guardarán en el registro institucional, pero tu nombre y CUI no aparecerán en el correo de aviso.</p>
+                </div>
+              </div>
+
+              <div class="aviso-confidencialidad" role="note">
+                <strong>Tu identidad se mantendrá reservada.</strong>
+                <p>Tus datos personales no aparecerán en la denuncia, en su lugar se mostrará un pseudonimo. El teléfono y el correo electrónico solamente se mostrarán si eliges ese medio y autorizas que se utilice para contactarte.</p>
+              </div>
+
+              <div class="form-grid">
+                <div class="campo campo-completo">
+                  <label for="pseudonimo">Pseudónimo</label>
+                  <input id="pseudonimo" name="pseudonimo" type="text" maxlength="80" autocomplete="off" placeholder="Ejemplo: Ciudadano comprometido">
+                  <small>Es opcional. Si lo dejas vacío, el sistema asignará uno. No uses tu nombre real ni un usuario de redes sociales.</small>
+                </div>
+
+                <div class="campo campo-completo">
+                  <label for="nombre-completo-confidencial">Nombre completo <span>*</span></label>
+                  <input id="nombre-completo-confidencial" name="nombre_completo" type="text" maxlength="120" autocomplete="name" data-required-activo required>
+                </div>
+
+                <div class="campo">
+                  <label for="cui-confidencial">Código Único de Identificación (CUI) <span>*</span></label>
+                  <input id="cui-confidencial" name="cui" type="text" inputmode="numeric" pattern="[0-9]{13}" minlength="13" maxlength="13" data-required-activo required>
+                  <small>Ingresa los 13 dígitos sin espacios ni guiones.</small>
+                </div>
+
+                <div class="campo" id="campo-telefono-confidencial">
+                  <label for="telefono-confidencial">Teléfono <span>*</span></label>
+                  <input id="telefono-confidencial" name="telefono" type="tel" inputmode="numeric" pattern="[0-9]{8}" minlength="8" maxlength="8" autocomplete="tel" data-required-activo required>
+                  <small>Ingresa 8 dígitos sin espacios ni guiones.</small>
+                </div>
+
+                <div class="campo campo-completo" id="campo-correo-confidencial">
+                  <label for="correo-confidencial">Correo electrónico <span>*</span></label>
+                  <input id="correo-confidencial" name="correo" type="email" maxlength="120" autocomplete="email" data-required-activo required>
+                </div>
+
+                <div class="campo campo-completo">
+                  <label for="preferencia-contacto">¿Cómo deseas que nos comuniquemos contigo? <span>*</span></label>
+                  <select id="preferencia-contacto" name="preferencia_contacto" data-required-activo required>
+                    <option value="">Selecciona una opción</option>
+                    <option value="ninguno">No deseo que se comuniquen conmigo</option>
+                    <option value="correo">Por correo electrónico</option>
+                    <option value="telefono">Por teléfono</option>
+                    <option value="ambos">Por correo electrónico y teléfono</option>
+                  </select>
+                </div>
+
+                <div class="campo campo-completo" id="campo-instrucciones-contacto" hidden>
+                  <label for="instrucciones-contacto">Indicaciones para un contacto seguro</label>
+                  <textarea class="textarea-contacto" id="instrucciones-contacto" name="instrucciones_contacto" maxlength="300" rows="4" placeholder="Ejemplo: llamar únicamente de 14:00 a 16:00 horas" disabled></textarea>
+                  <small>No incluyas información personal adicional que no sea necesaria.</small>
+                </div>
+
+                <div class="campo-completo" id="autorizacion-contacto-wrap" hidden>
+                  <label class="campo-aceptacion campo-aceptacion-contacto">
+                    <input id="autorizacion-contacto" type="checkbox" name="autorizacion_contacto" value="aceptada" disabled>
+                    <span>Autorizo que personal responsable utilice los medios seleccionados únicamente para dar seguimiento a esta denuncia.</span>
+                  </label>
+                </div>
               </div>
             </section>
 
