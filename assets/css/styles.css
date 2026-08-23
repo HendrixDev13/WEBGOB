@@ -178,6 +178,17 @@
     white-space:nowrap;
   }
 
+  /* Mantiene activo el hover al cruzar el espacio entre el enlace
+     principal y el menú desplegable. */
+  .submenu::before{
+    content:"";
+    position:absolute;
+    left:0;
+    right:0;
+    top:-8px;
+    height:8px;
+  }
+
   .submenu li{
     list-style:none;
   }
@@ -1022,6 +1033,10 @@
     border:none;
     box-shadow:none;
     padding:0;
+    display:none;
+  }
+
+  .menu-principal.open .submenu::before{
     display:none;
   }
 
