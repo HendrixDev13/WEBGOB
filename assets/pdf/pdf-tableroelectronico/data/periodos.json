@@ -1,8 +1,18 @@
 {
   "version": 1,
-  "total": 19,
-  "ultimoPeriodo": "2026-07",
+  "total": 20,
+  "ultimoPeriodo": "2026-08",
   "periodos": [
+    {
+      "id": "2026-08",
+      "mes": "AGOSTO",
+      "mesNumero": 8,
+      "anio": 2026,
+      "etiqueta": "Agosto 2026",
+      "fechaCorte": "2026-08-31",
+      "archivo": "2026-08.json",
+      "pdf": "2026-08 Tablero Electrónico Agosto 2026.pdf"
+    },
     {
       "id": "2026-07",
       "mes": "JULIO",

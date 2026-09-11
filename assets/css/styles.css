@@ -178,6 +178,17 @@
     white-space:nowrap;
   }
 
+  /* Mantiene activo el hover al cruzar el espacio entre el enlace
+     principal y el menú desplegable. */
+  .submenu::before{
+    content:"";
+    position:absolute;
+    left:0;
+    right:0;
+    top:-8px;
+    height:8px;
+  }
+
   .submenu li{
     list-style:none;
   }
@@ -1025,6 +1036,10 @@
     display:none;
   }
 
+  .menu-principal.open .submenu::before{
+    display:none;
+  }
+
   .menu-principal.open .menu-item.open > .submenu{
     display:block;
   }
@@ -1170,6 +1185,7 @@
 /* =====================================================
    PÁGINA DE TRÁMITES: listado + detalle
 ===================================================== */
+
 .grid-tramites{
   display:grid;
   grid-template-columns:340px 1fr;

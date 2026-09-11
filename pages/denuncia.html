@@ -1,61 +1,262 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Denuncias — Gobernación de Baja Verapaz</title>
-<style>
-  :root{
-    --azul-oscuro:#0b1a3f;
-    --crema:#faf1e2;
-    --dorado:#c99a3f;
-    --texto-gris:#4b5568;
-  }
-  body{
-    margin:0;
-    font-family:"Inter",system-ui,sans-serif;
-    background:var(--azul-oscuro);
-    color:#fff;
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    padding:40px;
-  }
-  .placeholder{max-width:520px;}
-  .placeholder span{
-    color:var(--dorado);
-    font-weight:700;
-    font-size:.78rem;
-    letter-spacing:2px;
-    text-transform:uppercase;
-  }
-  .placeholder h1{font-size:2rem;margin:12px 0 16px;}
-  .placeholder p{color:rgba(255,255,255,.7);line-height:1.6;margin-bottom:28px;}
-  .placeholder a{
-    display:inline-block;
-    padding:13px 26px;
-    border-radius:30px;
-    background:var(--crema);
-    color:var(--azul-oscuro);
-    text-decoration:none;
-    font-weight:700;
-    font-size:.9rem;
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Denuncias Administrativas de Irregularidades - Gobernación de Baja Verapaz</title>
+  <meta name="description" content="Canal institucional para presentar denuncias administrativas de irregularidades ante la Gobernación Departamental de Baja Verapaz.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="/assets/css/styles.css" rel="stylesheet">
+  <link href="/assets/css/denuncia.css" rel="stylesheet">
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body>
+  <div id="navbar-container"></div>
 
-<!-- PLACEHOLDER: reemplaza todo este contenido cuando construyamos
-     el formulario real de denuncias (con sus campos, confidencialidad,
-     validaciones, etc.) -->
-<div class="placeholder">
-  <span>Próximamente</span>
-  <h1>Módulo de Denuncias</h1>
-  <p>Estamos trabajando en el formulario para que puedas presentar tu denuncia de forma directa y confidencial ante la Gobernación Departamental de Baja Verapaz.</p>
-  <a href="/index.html">← Volver al inicio</a>
-</div>
+  <main class="pagina-denuncias">
+    <section class="denuncias-encabezado">
+      <div class="contenedor denuncias-intro">
+        <span class="ojo">Canal institucional de probidad</span>
+        <h1>Sistema de Denuncias Administrativas de Irregularidades</h1>
+        <p>Informa sobre posibles faltas éticas, actos de corrupción o irregularidades relacionadas con la Gobernación Departamental de Baja Verapaz.</p>
+      </div>
+    </section>
 
+    <section class="denuncias-contenido" aria-labelledby="titulo-formulario">
+      <div class="contenedor denuncias-panel-encabezado">
+        <div class="denuncias-aviso">
+          <div class="denuncias-aviso-icono" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 3 4.5 6v5.2c0 4.7 3.2 8.9 7.5 9.8 4.3-.9 7.5-5.1 7.5-9.8V6L12 3Z" stroke="currentColor" stroke-width="1.8"/><path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <div>
+            <h2 id="titulo-formulario">Formulario de denuncia</h2>
+            <p>Selecciona una modalidad: <b>Abierta</b>, si autorizas mostrar tus datos en la notificación; <b>Confidencial</b>, si prefieres usar un pseudónimo y decidir si deseas ser contactado; o <b>Anónima</b>, si no deseas proporcionar datos que permitan identificarte.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="contenedor denuncias-layout">
+        <aside class="denuncias-orientacion" aria-label="Orientación para presentar la denuncia">
+          <span class="ojo">Antes de comenzar</span>
+          <h2>Ayúdanos a comprender lo sucedido</h2>
+          <p>Incluye información verídica y concreta. No es obligatorio conocer todos los datos de las personas involucradas.</p>
+          <ol>
+            <li>Elige si la denuncia será abierta, confidencial o anónima.</li>
+            <li>Describe qué ocurrió, cuándo, dónde y quiénes participaron.</li>
+            <li>Revisa la información antes de enviarla.</li>
+          </ol>
+          <div class="orientacion-privacidad">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.8"/></svg>
+            <p>La información será consultada únicamente por personal autorizado.</p>
+          </div>
+        </aside>
+
+        <div class="denuncias-formulario">
+          <!-- Sustituir data-apps-script-url por la URL /exec del despliegue. -->
+          <form id="form-denuncia" class="form-denuncia" method="post" target="respuesta-apps-script" accept-charset="UTF-8" data-apps-script-url="https://script.google.com/macros/s/AKfycbxegWszZaByw6WeLwYeYMNa8mLVfjMxpJEK1Lsavn1MtBFWq4AkTt0HTwB2VdeEdlX8/exec" novalidate>
+            <input type="hidden" name="origen" value="WEBGOB">
+            <input type="hidden" name="fecha_cliente" id="fecha-cliente">
+            <div class="campo-trampa" aria-hidden="true"><label for="sitio-web">No completes este campo</label><input id="sitio-web" name="sitio_web" type="text" tabindex="-1" autocomplete="off"></div>
+
+            <section class="form-seccion" aria-labelledby="titulo-tipo">
+              <div class="form-seccion-titulo"><span class="form-paso">1</span><div><h2 id="titulo-tipo">Tipo de denuncia</h2><p>Selecciona cómo deseas que sea tratada tu identidad.</p></div></div>
+              <div class="tipo-denuncia-grid" role="radiogroup" aria-labelledby="titulo-tipo">
+                <label class="tipo-denuncia-tarjeta"><input type="radio" name="tipo_denuncia" value="abierta" checked><span class="tipo-marca"></span><span class="tipo-icono" aria-hidden="true">👤</span><strong>Abierta</strong><small>Autoriza identificar a la persona denunciante durante el seguimiento.</small></label>
+                <label class="tipo-denuncia-tarjeta"><input type="radio" name="tipo_denuncia" value="confidencial"><span class="tipo-marca"></span><span class="tipo-icono" aria-hidden="true">🔒</span><strong>Confidencial</strong><small>Resguarda tu identidad, permite usar un pseudónimo y elegir si deseas que se compartan tus medios de contacto.</small></label>
+                <label class="tipo-denuncia-tarjeta"><input type="radio" name="tipo_denuncia" value="anonima"><span class="tipo-marca"></span><span class="tipo-icono" aria-hidden="true">🛡️</span><strong>Anónima</strong><small>No solicita nombre, identificación, teléfono ni correo electrónico.</small></label>
+              </div>
+            </section>
+
+            <section class="form-seccion" id="seccion-datos-personales" aria-labelledby="titulo-personales">
+              <div class="form-seccion-titulo"><span class="form-paso">2</span><div><h2 id="titulo-personales">Datos de la persona denunciante</h2><p>En una denuncia abierta, estos datos podrán incluirse en la notificación enviada para su atención.</p></div></div>
+              <div class="form-grid">
+                <div class="campo campo-completo"><label for="nombre-completo">Nombre completo <span>*</span></label><input id="nombre-completo" name="nombre_completo" type="text" maxlength="120" autocomplete="name" data-required-activo required></div>
+                <div class="campo"><label for="cui">Código Único de Identificación (CUI) <span>*</span></label><input id="cui" name="cui" type="text" inputmode="numeric" pattern="[0-9]{13}" minlength="13" maxlength="13" data-required-activo required><small>Ingresa los 13 dígitos sin espacios ni guiones.</small></div>
+                <div class="campo"><label for="telefono">Teléfono <span>*</span></label><input id="telefono" name="telefono" type="tel" inputmode="numeric" pattern="[0-9]{8}" minlength="8" maxlength="8" autocomplete="tel" data-required-activo required></div>
+                <div class="campo campo-completo"><label for="correo">Correo electrónico <span>*</span></label><input id="correo" name="correo" type="email" maxlength="120" autocomplete="email" data-required-activo required></div>
+
+                <div class="campo campo-completo">
+                  <label for="preferencia-contacto-abierta">¿Cómo deseas que nos comuniquemos contigo? <span>*</span></label>
+                  <select id="preferencia-contacto-abierta" name="preferencia_contacto" data-required-activo required>
+                    <option value="">Selecciona una opción</option>
+                    <option value="ninguno">No deseo que se comuniquen conmigo</option>
+                    <option value="correo">Por correo electrónico</option>
+                    <option value="telefono">Por teléfono</option>
+                    <option value="ambos">Por correo electrónico y teléfono</option>
+                  </select>
+                  <small>En una denuncia abierta, tus datos personales aparecerán en la notificación aunque no desees que se comuniquen contigo.</small>
+                </div>
+
+                <div class="campo campo-completo" id="campo-instrucciones-contacto-abierta" hidden>
+                  <label for="instrucciones-contacto-abierta">Indicaciones para contactarte</label>
+                  <textarea class="textarea-contacto" id="instrucciones-contacto-abierta" name="instrucciones_contacto" maxlength="300" rows="4" placeholder="Ejemplo: llamar únicamente de 14:00 a 16:00 horas" disabled></textarea>
+                </div>
+
+                <div class="campo-completo" id="autorizacion-contacto-abierta-wrap" hidden>
+                  <label class="campo-aceptacion campo-aceptacion-contacto">
+                    <input id="autorizacion-contacto-abierta" type="checkbox" name="autorizacion_contacto" value="aceptada" disabled>
+                    <span>Autorizo que personal responsable utilice los medios seleccionados para dar seguimiento a esta denuncia.</span>
+                  </label>
+                </div>
+              </div>
+            </section>
+
+            <section class="form-seccion" id="seccion-datos-confidenciales" aria-labelledby="titulo-confidenciales" aria-hidden="true" hidden>
+              <div class="form-seccion-titulo">
+                <span class="form-paso">2</span>
+                <div>
+                  <h2 id="titulo-confidenciales">Datos confidenciales de la persona denunciante</h2>
+                  <p>Estos datos se guardarán en el registro institucional, pero tu nombre y CUI no aparecerán en el correo de aviso.</p>
+                </div>
+              </div>
+
+              <div class="aviso-confidencialidad" role="note">
+                <strong>Tu identidad se mantendrá reservada.</strong>
+                <p>Tus datos personales no aparecerán en la denuncia, en su lugar se mostrará un pseudonimo. El teléfono y el correo electrónico solamente se mostrarán si eliges ese medio y autorizas que se utilice para contactarte.</p>
+              </div>
+
+              <div class="form-grid">
+                <div class="campo campo-completo">
+                  <label for="pseudonimo">Pseudónimo</label>
+                  <input id="pseudonimo" name="pseudonimo" type="text" maxlength="80" autocomplete="off" placeholder="Ejemplo: Ciudadano comprometido">
+                  <small>Es opcional. Si lo dejas vacío, el sistema asignará uno. No uses tu nombre real ni un usuario de redes sociales.</small>
+                </div>
+
+                <div class="campo campo-completo">
+                  <label for="nombre-completo-confidencial">Nombre completo <span>*</span></label>
+                  <input id="nombre-completo-confidencial" name="nombre_completo" type="text" maxlength="120" autocomplete="name" data-required-activo required>
+                </div>
+
+                <div class="campo">
+                  <label for="cui-confidencial">Código Único de Identificación (CUI) <span>*</span></label>
+                  <input id="cui-confidencial" name="cui" type="text" inputmode="numeric" pattern="[0-9]{13}" minlength="13" maxlength="13" data-required-activo required>
+                  <small>Ingresa los 13 dígitos sin espacios ni guiones.</small>
+                </div>
+
+                <div class="campo" id="campo-telefono-confidencial">
+                  <label for="telefono-confidencial">Teléfono <span>*</span></label>
+                  <input id="telefono-confidencial" name="telefono" type="tel" inputmode="numeric" pattern="[0-9]{8}" minlength="8" maxlength="8" autocomplete="tel" data-required-activo required>
+                  <small>Ingresa 8 dígitos sin espacios ni guiones.</small>
+                </div>
+
+                <div class="campo campo-completo" id="campo-correo-confidencial">
+                  <label for="correo-confidencial">Correo electrónico <span>*</span></label>
+                  <input id="correo-confidencial" name="correo" type="email" maxlength="120" autocomplete="email" data-required-activo required>
+                </div>
+
+                <div class="campo campo-completo">
+                  <label for="preferencia-contacto">¿Cómo deseas que nos comuniquemos contigo? <span>*</span></label>
+                  <select id="preferencia-contacto" name="preferencia_contacto" data-required-activo required>
+                    <option value="">Selecciona una opción</option>
+                    <option value="ninguno">No deseo que se comuniquen conmigo</option>
+                    <option value="correo">Por correo electrónico</option>
+                    <option value="telefono">Por teléfono</option>
+                    <option value="ambos">Por correo electrónico y teléfono</option>
+                  </select>
+                </div>
+
+                <div class="campo campo-completo" id="campo-instrucciones-contacto" hidden>
+                  <label for="instrucciones-contacto">Indicaciones para un contacto seguro</label>
+                  <textarea class="textarea-contacto" id="instrucciones-contacto" name="instrucciones_contacto" maxlength="300" rows="4" placeholder="Ejemplo: llamar únicamente de 14:00 a 16:00 horas" disabled></textarea>
+                  <small>No incluyas información personal adicional que no sea necesaria.</small>
+                </div>
+
+                <div class="campo-completo" id="autorizacion-contacto-wrap" hidden>
+                  <label class="campo-aceptacion campo-aceptacion-contacto">
+                    <input id="autorizacion-contacto" type="checkbox" name="autorizacion_contacto" value="aceptada" disabled>
+                    <span>Autorizo que personal responsable utilice los medios seleccionados únicamente para dar seguimiento a esta denuncia.</span>
+                  </label>
+                </div>
+              </div>
+            </section>
+
+            <section class="form-seccion" aria-labelledby="titulo-contexto">
+              <div class="form-seccion-titulo"><span class="form-paso" data-numero-contexto>3</span><div><h2 id="titulo-contexto">Información general</h2><p>Estos datos ayudan a orientar la atención institucional.</p></div></div>
+              <div class="form-grid form-grid-tres">
+                <div class="campo"><label for="edad">Edad <span>*</span></label><input id="edad" name="edad" type="number" min="1" max="120" required></div>
+                <div class="campo"><label for="genero">Género <span>*</span></label><select id="genero" name="genero" required><option value="">Selecciona</option><option value="femenino">Femenino</option><option value="masculino">Masculino</option><option value="otro">Otro</option><option value="prefiero_no_indicar">Prefiero no indicarlo</option></select></div>
+                <div class="campo"><label for="discapacidad">Persona con discapacidad <span>*</span></label><select id="discapacidad" name="discapacidad" required><option value="">Selecciona</option><option value="no">No</option><option value="si">Sí</option><option value="prefiero_no_indicar">Prefiero no indicarlo</option></select></div>
+                <div class="campo"><label for="municipio">Municipio <span>*</span></label><select id="municipio" name="municipio" required><option value="">Selecciona</option><option>Salamá</option><option>San Miguel Chicaj</option><option>Rabinal</option><option>Cubulco</option><option>Granados</option><option>Santa Cruz el Chol</option><option>San Jerónimo</option><option>Purulhá</option></select></div>
+                <div class="campo"><label for="pueblo">Pueblo <span>*</span></label><select id="pueblo" name="pueblo" required><option value="">Selecciona</option><option>Maya</option><option>Xinka</option><option>Garífuna</option><option>Ladino</option><option>Otro</option><option>Prefiero no indicarlo</option></select></div>
+                <div class="campo"><label for="comunidad-linguistica">Comunidad lingüística <span>*</span></label><select id="comunidad-linguistica" name="comunidad_linguistica" required><option value="">Selecciona</option><option>Achí</option><option>Español</option><option>Poqomchi'</option><option>Q'eqchi'</option><option>K'iche'</option><option>Otra</option><option>Prefiero no indicarlo</option></select></div>
+              </div>
+            </section>
+
+            <section class="form-seccion" aria-labelledby="titulo-hechos">
+              <div class="form-seccion-titulo"><span class="form-paso" data-numero-hechos>4</span><div><h2 id="titulo-hechos">Datos de la denuncia</h2><p>Proporciona todos los detalles que tengas disponibles.</p></div></div>
+              <div class="form-grid">
+                <div class="campo"><label for="gestion">Gestión administrativa relacionada <span>*</span></label><input id="gestion" name="gestion_administrativa" type="text" maxlength="200" placeholder="Ej. atención al público o un trámite" required></div>
+                <div class="campo"><label for="persona-denunciada">Persona vinculada a la denuncia</label><input id="persona-denunciada" name="persona_denunciada" type="text" maxlength="200" placeholder="Nombre, cargo, área o descripción"></div>
+                <div class="campo"><label for="fecha-hechos">Fecha estimada de los hechos</label><input id="fecha-hechos" name="fecha_hechos" type="date"></div>
+                <div class="campo"><label for="unidad">Unidad o dependencia relacionada</label><input id="unidad" name="unidad_relacionada" type="text" maxlength="160"></div>
+                <div class="campo campo-completo"><label for="lugar-hechos">Lugar donde ocurrieron los hechos <span>*</span></label><input id="lugar-hechos" name="lugar_hechos" type="text" maxlength="300" placeholder="Dirección, edificio, oficina o localidad" required></div>
+                <div class="campo campo-completo"><div class="campo-etiqueta-contador"><label for="descripcion">Descripción de los hechos <span>*</span></label><span><strong id="contador-descripcion">0</strong>/3000</span></div><textarea id="descripcion" name="descripcion" minlength="30" maxlength="3000" rows="9" placeholder="Explica qué ocurrió, cómo sucedió y cualquier otro dato relevante." required></textarea><small>Incluye fechas, lugares y nombres aproximados cuando los conozcas.</small></div>
+              </div>
+            </section>
+
+            <section class="form-seccion form-seccion-final" aria-labelledby="titulo-confirmacion">
+              <div class="form-seccion-titulo"><span class="form-paso" data-numero-confirmacion>5</span><div><h2 id="titulo-confirmacion">Confirmación</h2><p>Verifica que la información ingresada sea correcta.</p></div></div>
+              <label class="campo-aceptacion"><input type="checkbox" name="declaracion_veracidad" value="aceptada" required><span>Declaro que la información proporcionada es verídica según mi conocimiento y acepto su tratamiento para la recepción y seguimiento de esta denuncia.</span></label>
+              <div id="estado-formulario" class="estado-formulario" role="status" aria-live="polite" hidden></div>
+              <div class="verificacion-seguridad" aria-labelledby="titulo-verificacion">
+                <div class="verificacion-encabezado">
+                  <div class="verificacion-icono" aria-hidden="true">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3 4.5 6v5.2c0 4.7 3.2 8.9 7.5 9.8 4.3-.9 7.5-5.1 7.5-9.8V6L12 3Z" stroke="currentColor" stroke-width="1.8"/><path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                  </div>
+                  <div><h3 id="titulo-verificacion">Verificación de seguridad</h3><p>Completa la verificación antes de enviar la denuncia.</p></div>
+                </div>
+                <!-- Clave oficial de PRUEBA. Sustituir por la site key de producción. -->
+                <div class="turnstile-contenedor">
+                  <div
+                    class="cf-turnstile"
+                    data-sitekey="1x00000000000000000000AA"
+                    data-theme="light"
+                    data-size="flexible"
+                    data-action="enviar_denuncia"
+                    data-callback="captchaCompletado"
+                    data-expired-callback="captchaExpirado"
+                    data-error-callback="captchaConError"></div>
+                </div>
+                <p id="estado-captcha" class="estado-captcha" role="status" aria-live="polite">Esperando verificación.</p>
+              </div>
+              <button id="boton-enviar" class="boton-enviar" type="submit" aria-describedby="estado-captcha" disabled><span>Verifica que eres una persona</span><svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+              <p class="nota-envio">Los campos marcados con * son obligatorios.</p>
+            </section>
+          </form>
+          <iframe id="respuesta-apps-script" name="respuesta-apps-script" class="respuesta-apps-script" title="Respuesta del registro de la denuncia" hidden></iframe>
+
+          <section id="resultado-denuncia" class="resultado-denuncia" tabindex="-1" aria-live="polite" hidden>
+            <div class="resultado-cargando" data-resultado-cargando>
+              <span class="resultado-spinner" aria-hidden="true"></span>
+              <div>
+                <h2>Enviando denuncia…</h2>
+                <p>Estamos validando la información y registrando la solicitud.</p>
+              </div>
+            </div>
+
+            <div class="resultado-final" data-resultado-final hidden>
+              <div class="resultado-icono" aria-hidden="true">
+                <svg width="34" height="34" viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="resultado-etiqueta" data-resultado-etiqueta>Registro completado</span>
+              <h2 data-resultado-titulo>Denuncia registrada</h2>
+              <p data-resultado-mensaje>La denuncia fue recibida correctamente.</p>
+              <div class="resultado-folio" data-resultado-folio-wrap>
+                <span>Folio de seguimiento</span>
+                <strong data-resultado-folio></strong>
+              </div>
+              <button id="boton-nueva-denuncia" class="boton-nueva-denuncia" type="button">Nueva denuncia</button>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer-container"></div>
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/denuncia.js"></script>
 </body>
 </html>
