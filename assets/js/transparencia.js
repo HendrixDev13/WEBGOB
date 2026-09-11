@@ -13,6 +13,11 @@
 const historialInformes = {
   2026: [
     {
+      id: "2026-08",
+      mesLabel: "Agosto 2026",
+      pdf: "/assets/pdf/pdf-transparencia-codede/Ofi-2026InfoCODEDEagosto.pdf",
+    },
+    {
       id: "2026-07",
       mesLabel: "Julio 2026",
       pdf: "/assets/pdf/pdf-transparencia-codede/Ofi-2026InfoCODEDEjulio.pdf",
@@ -48,7 +53,12 @@ function formatoQ(numero) {
   return "Q " + numero.toLocaleString("es-GT", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
-/* ---- Historial como módulo de años con meses ---- */
+/* ---- Iconos SVG reutilizables (estilo carpeta / calendario) ---- */
+const iconoCarpeta = `<svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z"/></svg>`;
+const iconoCalendario = `<svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>`;
+const iconoChevron = `<svg class="icono anio-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>`;
+
+/* ---- Historial como módulo de años con meses, agrupado en "carpetas" ---- */
 function renderHistorial(idActivo) {
   const contenedor = document.getElementById("historialInformes");
   if (!contenedor) return;
@@ -61,7 +71,8 @@ function renderHistorial(idActivo) {
 
     const meses = informesDelAnio.map(inf => `
       <button class="mes-button ${inf.id === idActivo ? "activo" : ""}" data-id="${inf.id}">
-        ${inf.mesLabel || inf.mes || inf.id}
+        ${iconoCalendario}
+        <span>${inf.mesLabel || inf.mes || inf.id}</span>
       </button>
     `).join("");
 
@@ -70,10 +81,12 @@ function renderHistorial(idActivo) {
     return `
       <div class="anio-card ${abierto ? "abierto" : ""}">
         <button class="anio-card-header" type="button" data-anio="${anio}">
-          <div>
+          <div class="anio-title-wrap">
+            ${iconoCarpeta}
             <span class="anio-title">${anio}</span>
+            <span class="anio-contador">${informesDelAnio.length}</span>
           </div>
-          <span class="anio-chevron">▾</span>
+          ${iconoChevron}
         </button>
         <div class="meses-wrap">${meses}</div>
       </div>
@@ -111,6 +124,9 @@ function renderTarjetaOficio(informe) {
   document.getElementById("btnVerPdf").setAttribute("href", informe.pdf);
   document.getElementById("btnDescargarPdf").setAttribute("href", informe.pdf);
   document.getElementById("visorPdf").setAttribute("src", informe.pdf);
+
+  const etiqueta = document.getElementById("mesActivoLabel");
+  if (etiqueta) etiqueta.textContent = informe.mesLabel || informe.mes || informe.id;
 }
 
 function mostrarSinInformes() {

@@ -11,6 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
  
 <link href="/assets/css/styles.css" rel="stylesheet">
+<link rel="preload" as="image" href="/assets/images/RL.webp">
 </head>
 <body>
  
@@ -21,14 +22,26 @@
 <!-- ===================== HERO ===================== -->
 <section class="hero-fotos" id="inicio">
   <div class="hero-fondo">
+    <!-- La primera foto se carga de inmediato (es la que ve la persona al entrar).
+         Las demás se cargan poco a poco vía JS (ver más abajo) para no competir
+         por ancho de banda con la primera foto ni con el resto de la página. -->
     <div class="slide" style="background-image:url('/assets/images/RL.webp')"></div>
-    <div class="slide" style="background-image:url('/assets/images/SJ.webp')"></div>
-    <div class="slide" style="background-image:url('/assets/images/SANMIGEUL.webp')"></div>
-    <div class="slide" style="background-image:url('/assets/images/PUR.webp')"></div>
-    <div class="slide" style="background-image:url('/assets/images/CUB.webp')"></div> 
+    <div class="slide" data-bg="/assets/images/SJ.webp"></div>
+    <div class="slide" data-bg="/assets/images/SANMIGEUL.webp"></div>
+    <div class="slide" data-bg="/assets/images/PUR.webp"></div>
+    <div class="slide" data-bg="/assets/images/CUB.webp"></div>
   </div>
   <div class="hero-overlay"></div>
 </section>
+<script>
+  // Carga diferida y escalonada de las fotos del carrusel: cada una se pide
+  // justo antes de que le toque su turno (coincide con animation-delay del CSS).
+  document.querySelectorAll('.hero-fondo .slide[data-bg]').forEach((slide, i) => {
+    setTimeout(() => {
+      slide.style.backgroundImage = `url('${slide.dataset.bg}')`;
+    }, i * 4000 + 800);
+  });
+</script>
 
 <!-- ===================== BLOQUE DE TEXTO / GOBERNACIÓN ===================== -->
 <section class="hero-info">
@@ -77,7 +90,7 @@
     <span class="enlace-tarjeta">Ver Más →</span>
   </a>
 
-   <a href="/pages/denuncia.html" class="tarjeta-acceso">
+   <a href="/pages/denuncia.html" class="tarjeta-acceso tarjeta-denuncia">
     <span class="numero-tarjeta">04</span>
     <h3>Canal de Denuncias</h3>
     <p>Puedes llenar el formulario de denuncia de manera confidencial.</p>
@@ -123,13 +136,15 @@
       <h2>Últimos informes y noticias</h2>
       <p>Mantente al tanto de la gestión, los proyectos y los comunicados oficiales de la Gobernación.</p>
     </div>
-    <article class="tarjeta-noticia">
-        <div class="miniatura">Comunicado Importante</div>
+    <div class="grid-noticias">
+      <article class="tarjeta-noticia tarjeta-noticia--nueva">
+        <div class="miniatura">SOLICIDUTES</div>
         <div class="contenido-noticia">
-          <span class="fecha-noticia">Julio 2026</span>
-          <h3>Página en Mantenimiento</h3>
-          <p>Como parte de las mejores prácticas en gestión digital, estamos realizando mantenimiento en nuestra página web.</p>
-          <a href="/pages/noticias.html" class="leer-mas">Leer más →</a>
+          <span class="fecha-noticia">Próximamente</span>
+          <h3>Búsqueda de Solicitud</h3>
+          <p>Ingresa aquí el número de tu solicitud para conocer el estado de tu proceso.</p>
+          <span class="leer-mas">Módulo en desarrollo</span>
+          <a href="https://www.2016.gobernacionbajaverapaz.gob.gt" class="leer-mas">Leer más →</a>
         </div>
       </article>
       <article class="tarjeta-noticia">
@@ -140,7 +155,6 @@
           <a href="/pages/trans-codede.html" class="leer-mas">Leer más →</a>
         </div>
       </article>
-      
     </div>
     
     <div style="text-align:center;margin-top:36px;">
@@ -213,7 +227,7 @@
  
     <div class="modal-imagen">
       <!-- Reemplaza esta ruta por la foto del gobernador que subas al Administrador de Archivos -->
-      <img src="/assets/images/03.jpg" alt="Fotografía del Gobernador de Baja Verapaz">
+      <img src="/assets/images/03.webp" alt="Fotografía del Gobernador de Baja Verapaz" loading="lazy">
     </div>
  
     <div class="modal-contenido">

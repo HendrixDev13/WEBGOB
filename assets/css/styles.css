@@ -638,6 +638,42 @@
     color:var(--dorado);
   }
 
+  /* Tarjeta 04 (Canal de Denuncias): un leve movimiento constante para
+     llamar la atención sobre este acceso en particular. */
+  .tarjeta-acceso.tarjeta-denuncia{
+    border:3px solid var(--dorado);
+    animation:pulso-denuncia 2.4s ease-in-out infinite;
+  }
+
+  .tarjeta-acceso.tarjeta-denuncia .numero-tarjeta{
+    animation:rebote-denuncia 2.4s ease-in-out infinite;
+  }
+
+  .tarjeta-acceso.tarjeta-denuncia:hover{
+    animation-play-state:paused;
+  }
+
+  .tarjeta-acceso.tarjeta-denuncia:hover .numero-tarjeta{
+    animation-play-state:paused;
+  }
+
+  @keyframes pulso-denuncia{
+    0%,100%{ box-shadow:var(--sombra), 0 0 0 0 rgba(201,154,63,.55); }
+    50%{ box-shadow:var(--sombra), 0 0 0 12px rgba(201,154,63,0); }
+  }
+
+  @keyframes rebote-denuncia{
+    0%,100%{ transform:translateY(0); }
+    50%{ transform:translateY(-4px); }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .tarjeta-acceso.tarjeta-denuncia,
+    .tarjeta-acceso.tarjeta-denuncia .numero-tarjeta{
+      animation:none;
+    }
+  }
+
   /* ===== SECCIONES GENERALES ===== */
   section{
     padding:90px 0;
@@ -749,6 +785,26 @@
   .tarjeta-noticia p{font-size:.88rem;color:var(--texto-gris);margin-bottom:14px;}
 
   .leer-mas{font-size:.82rem;font-weight:700;color:var(--azul-oscuro);}
+
+  /* Tarjeta del nuevo módulo "Búsqueda de Solicitud": colores más
+     llamativos (dorado/naranja) para diferenciarla de las demás noticias. */
+  .tarjeta-noticia--nueva{
+    border-color:#f1d9a8;
+  }
+
+  .tarjeta-noticia--nueva .miniatura{
+    background:linear-gradient(135deg,#ffcc70,var(--dorado));
+    color:var(--azul-oscuro);
+  }
+
+  .tarjeta-noticia--nueva .fecha-noticia{
+    color:var(--dorado);
+  }
+
+  .tarjeta-noticia--nueva .leer-mas{
+    background:linear-gradient(135deg,#ffcc70,var(--dorado));
+    color:var(--azul-oscuro);
+  }
 
   /* Municipios */
   .municipios{
@@ -1319,13 +1375,21 @@
 
 .detalle-vacio{
   display:flex;
+  flex-direction:column;
   align-items:center;
   justify-content:center;
+  gap:12px;
   height:100%;
   min-height:380px;
   color:var(--texto-gris);
   font-size:.95rem;
   text-align:center;
+}
+
+.detalle-vacio .icono-vacio{
+  width:44px;
+  height:44px;
+  color:#c3cde0;
 }
 
 /* ---- Responsive ---- */
@@ -1334,7 +1398,8 @@
   .grid-transparencia{grid-template-columns:1fr;}
   .lista-tramites,
   .panel-historial{max-width:100%;margin:0;}
-  .lista-tramites{position:static;max-height:none;}
+  .lista-tramites,
+  .panel-historial{position:static;max-height:none;}
   .detalle-tramite{padding:20px 18px;}
 }
 
@@ -1358,14 +1423,34 @@
   border-radius:18px;
   box-shadow:0 8px 20px rgba(7,26,61,.08);
   padding:14px;
+  position:sticky;
+  top:100px;
+  max-height:calc(100vh - 130px);
+  overflow-y:auto;
 }
 
 .panel-historial h3{
+  display:flex;
+  align-items:center;
+  gap:8px;
   margin-bottom:14px;
   font-size:1rem;
   color:var(--texto-oscuro);
 }
 
+.panel-historial h3 .icono{
+  color:var(--azul-brillante);
+  flex-shrink:0;
+}
+
+/* Icono genérico usado en carpetas/calendario/botones */
+.icono{
+  width:18px;
+  height:18px;
+  flex-shrink:0;
+}
+
+/* ---- Carpetas por año ---- */
 .anio-card {
   border-radius:14px;
   background:#f4f8ff;
@@ -1386,11 +1471,32 @@
   cursor:pointer;
 }
 
+.anio-title-wrap{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  color:var(--dorado);
+}
+
 .anio-title {
   display:block;
   font-size:.96rem;
   font-weight:700;
   color:var(--texto-oscuro);
+}
+
+.anio-contador{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:20px;
+  height:20px;
+  padding:0 6px;
+  border-radius:999px;
+  background:#e2e8f0;
+  color:var(--texto-gris);
+  font-size:.7rem;
+  font-weight:700;
 }
 
 .anio-subtitle {
@@ -1399,7 +1505,6 @@
 
 .anio-chevron {
   color:var(--azul-brillante);
-  font-size:1rem;
   transition:transform .2s ease;
 }
 
@@ -1407,11 +1512,12 @@
   transform:rotate(180deg);
 }
 
+/* ---- Meses dentro de cada carpeta, estilo lista de calendario ---- */
 .meses-wrap {
   display:none;
-  flex-wrap:wrap;
-  gap:8px;
-  padding:0 14px 14px;
+  flex-direction:column;
+  gap:6px;
+  padding:2px 12px 14px;
   background:#eef3fb;
 }
 
@@ -1421,19 +1527,28 @@
 
 .mes-button {
   appearance:none;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  width:100%;
   border:1px solid transparent;
-  border-radius:999px;
-  padding:8px 12px;
+  border-radius:10px;
+  padding:9px 12px;
   background:#fff;
   color:var(--texto-oscuro);
   cursor:pointer;
   font-family:inherit;
   font-size:.85rem;
+  text-align:left;
   transition:.2s ease, transform .2s ease;
 }
 
+.mes-button .icono{
+  color:var(--azul-brillante);
+}
+
 .mes-button:hover {
-  transform:translateY(-1px);
+  transform:translateX(2px);
   border-color:#cdd8ea;
 }
 
@@ -1441,6 +1556,11 @@
   background:linear-gradient(135deg,var(--azul-brillante),var(--azul-medio));
   color:var(--blanco);
   border-color:transparent;
+  box-shadow:0 6px 14px rgba(15,44,102,.18);
+}
+
+.mes-button.activo .icono{
+  color:var(--blanco);
 }
 
 .sin-informes {
@@ -1450,6 +1570,12 @@
   color:#6b7280;
   background:#fff;
   border-radius:18px;
+}
+
+.columna-informe{
+  width:100%;
+  display:flex;
+  flex-direction:column;
 }
 
 .detalle-tramite{
@@ -1463,7 +1589,12 @@
 }
 
 .tarjeta-oficio{
-  background:var(--blanco);
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  background:#f6f8fc;
   border:1px solid #e6ebf5;
   border-radius:14px;
   padding:14px 16px;
@@ -1472,6 +1603,21 @@
 
 .tarjeta-oficio.acciones-simples{
   border-left:none;
+}
+
+.tarjeta-oficio .mes-activo{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  font-weight:700;
+  font-size:1rem;
+  color:var(--texto-oscuro);
+}
+
+.tarjeta-oficio .mes-activo .icono{
+  color:var(--azul-brillante);
+  width:20px;
+  height:20px;
 }
 
 .tarjeta-oficio .acciones-oficio{
@@ -1486,22 +1632,15 @@
   align-items:center;
   justify-content:center;
   gap:8px;
-  padding:10px 16px;
-  border-radius:30px;
-  font-weight:600;
-  font-size:.88rem;
-  white-space:nowrap;
-}
-.btn-pdf{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
   padding:12px 22px;
   border-radius:30px;
   font-weight:600;
   font-size:.86rem;
   white-space:nowrap;
+  transition:.2s ease, transform .2s ease;
+}
+.btn-pdf:hover{
+  transform:translateY(-1px);
 }
 .btn-pdf.ver{
   background:var(--azul-medio);
@@ -1526,7 +1665,14 @@
   margin-bottom:40px;
   box-shadow:var(--sombra);
 }
- 
+
+/* Se declara después de .grid-transparencia para ganar la cascada
+   en pantallas angostas (misma especificidad, mismo archivo) */
+@media (max-width:900px){
+  .grid-transparencia{grid-template-columns:1fr;}
+  .panel-historial{position:static;max-height:none;}
+}
+
 .carrusel-directorio{
   overflow:hidden;
   /* Difumina los bordes izquierdo/derecho para que el "corte"
@@ -1649,7 +1795,8 @@
 
 
 @media (max-width:720px){
-  .tarjeta-oficio{grid-template-columns:1fr;}
-  .tarjeta-oficio dl{grid-template-columns:120px 1fr;}
+  .tarjeta-oficio{flex-direction:column;align-items:stretch;}
+  .tarjeta-oficio .acciones-oficio{justify-content:stretch;}
+  .tarjeta-oficio .acciones-oficio .btn-pdf{flex:1;}
   .visor-pdf{height:70vh;min-height:420px;}
 }
