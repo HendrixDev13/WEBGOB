@@ -1,8 +1,18 @@
 {
   "version": 1,
-  "total": 20,
-  "ultimoPeriodo": "2026-08",
+  "total": 21,
+  "ultimoPeriodo": "2026-09",
   "periodos": [
+    {
+      "id": "2026-09",
+      "mes": "SEPTIEMBRE",
+      "mesNumero": 9,
+      "anio": 2026,
+      "etiqueta": "Septiembre 2026",
+      "fechaCorte": "2026-09-30",
+      "archivo": "2026-09.json",
+      "pdf": "2026-09 Tablero Electrónico Septiembre 2026.pdf"
+    },
     {
       "id": "2026-08",
       "mes": "AGOSTO",
