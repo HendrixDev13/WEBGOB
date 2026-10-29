@@ -243,7 +243,82 @@
 <!-- ===================== FOOTER ===================== -->
 <!-- El footer se inyecta aquí vía fetch, ver assets/js/main.js -->
 <div id="footer-container"></div>
+
  
+<!-- BOTONES FLOTANTES DE SERVICIOS -->
+<div class="botones-flotantes">
+
+  <a href="https://wa.me/50277254594"
+     id="btn-whatsapp"
+     class="btn-solicitud btn-whatsapp"
+     target="_blank"
+     rel="noopener noreferrer"
+     aria-label="Contactar por WhatsApp">
+
+    <span class="btn-solicitud__icono">
+      <svg xmlns="http://www.w3.org/2000/svg"
+           width="28" height="28" viewBox="0 0 24 24"
+           fill="currentColor" aria-hidden="true">
+        <path d="M12.04 2a9.93 9.93 0 0 0-8.52 15.04L2 22l5.12-1.34A9.94 9.94 0 1 0 12.04 2Zm0 18.16a8.18 8.18 0 0 1-4.17-1.14l-.3-.18-3.04.8.81-2.97-.2-.31a8.17 8.17 0 1 1 6.9 3.8Zm4.49-6.12c-.25-.13-1.48-.73-1.71-.81-.23-.08-.4-.13-.56.13-.17.25-.65.81-.79.98-.15.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.41-1.75-.15-.25-.02-.39.11-.52.12-.11.25-.29.38-.44.12-.15.16-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.36-.77-1.86-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.09 0 1.23.9 2.42 1.02 2.59.13.17 1.77 2.7 4.28 3.79.6.26 1.07.42 1.44.54.61.19 1.16.16 1.6.1.49-.07 1.48-.61 1.69-1.2.21-.59.21-1.1.15-1.2-.06-.1-.23-.17-.48-.29Z"/>
+      </svg>
+    </span>
+
+  <!-- BOTÓN 1: CONSULTA DE TRÁMITES -->
+  <a href="https://www.2016.gobernacionbajaverapaz.gob.gt/"
+     id="btn-consulta"
+     class="btn-solicitud btn-solicitud--consulta"
+     aria-label="Buscar mi solicitud de trámite">
+
+    <span class="btn-solicitud__icono">
+      <svg xmlns="http://www.w3.org/2000/svg"
+           width="28" height="28" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round"
+           stroke-linejoin="round" aria-hidden="true">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h8"/>
+        <path d="M14 2v6h6"/>
+        <path d="M14 2l6 6"/>
+        <circle cx="17" cy="17" r="4"/>
+        <path d="m20 20 2 2"/>
+      </svg>
+    </span>
+
+    <span class="btn-solicitud__texto">
+      <small>¿Ya hiciste un trámite?</small>
+      <strong>BUSCA TU SOLICITUD AQUÍ</strong>
+    </span>
+  </a>
+
+  <!-- BOTÓN 2: ACCESO A LA INFORMACIÓN PÚBLICA -->
+  <a href="https://www.gobernacionbajaverapaz.gob.gt/pages/tramites.html#tramite-3"
+     id="btn-informacion-publica"
+     class="btn-solicitud btn-solicitud--informacion"
+     aria-label="Solicitar acceso a la información pública">
+
+    <span class="btn-solicitud__icono">
+      <svg xmlns="http://www.w3.org/2000/svg"
+           width="28" height="28" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round"
+           stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 3 3 7v2h18V7l-9-4Z"/>
+        <path d="M5 9v8"/>
+        <path d="M9 9v8"/>
+        <path d="M15 9v8"/>
+        <path d="M19 9v8"/>
+        <path d="M3 20h18"/>
+        <path d="M2 17h20v3H2z"/>
+      </svg>
+    </span>
+
+    <span class="btn-solicitud__texto">
+      <small>Solicita acceso a la</small>
+      <strong>INFORMACIÓN PÚBLICA</strong>
+    </span>
+  </a>
+
+</div>
+
  
 <script src="/assets/js/main.js"></script>
 <script src="/assets/js/modals.js"></script>

@@ -1800,3 +1800,404 @@
   .tarjeta-oficio .acciones-oficio .btn-pdf{flex:1;}
   .visor-pdf{height:70vh;min-height:420px;}
 }
+
+
+/* =========================================================
+   1. CONTENEDOR DE LOS TRES BOTONES FLOTANTES
+   ========================================================= */
+
+.botones-flotantes {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 900;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: 12px;
+
+  width: max-content;
+  max-width: calc(100vw - 32px);
+}
+
+
+/* =========================================================
+   2. ESTILO GENERAL DE LOS BOTONES
+   ========================================================= */
+
+.btn-solicitud {
+  --sol-color-1: #388700;
+  --sol-color-2: #006d14;
+
+  box-sizing: border-box;
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+
+  width: max-content;
+  max-width: calc(100vw - 32px);
+  min-width: 0;
+  height: 66px;
+
+  padding: 10px 18px 10px 12px;
+  border: none;
+  border-radius: 999px;
+  overflow: hidden;
+
+  background: linear-gradient(
+    135deg,
+    var(--sol-color-1),
+    var(--sol-color-2)
+  );
+
+  color: #ffffff;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.20);
+
+  transition:
+    width 0.35s ease,
+    height 0.35s ease,
+    padding 0.35s ease,
+    gap 0.35s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+
+  animation:
+    sol-entrada 0.7s cubic-bezier(.2, .9, .3, 1.2) both,
+    sol-pulso 2.2s ease-in-out 1s infinite;
+}
+
+
+/* =========================================================
+   3. COLORES INDIVIDUALES
+   ========================================================= */
+
+/* WhatsApp */
+.btn-whatsapp {
+  --sol-color-1: #25D366;
+  --sol-color-2: #128C7E;
+}
+
+/* Solicitud de información pública */
+.btn-solicitud--informacion {
+  --sol-color-1: #0b8b73;
+  --sol-color-2: #064e70;
+}
+
+/* Consulta de trámites */
+.btn-solicitud--consulta {
+  --sol-color-1: #4f16f9;
+  --sol-color-2: #021b7e;
+}
+
+
+/* =========================================================
+   4. EFECTOS HOVER Y ACCESIBILIDAD DEL FOCO
+   ========================================================= */
+
+.btn-solicitud:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+}
+
+.btn-solicitud:focus-visible {
+  outline: 3px solid #f59e0b;
+  outline-offset: 4px;
+}
+
+
+/* =========================================================
+   5. ICONOS
+   ========================================================= */
+
+.btn-solicitud__icono {
+  box-sizing: border-box;
+
+  display: grid;
+  flex: 0 0 46px;
+  place-items: center;
+
+  width: 46px;
+  height: 46px;
+  margin: 0;
+
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.20);
+
+  color: #ffffff;
+
+  animation: sol-vaiven 2.6s ease-in-out infinite;
+}
+
+.btn-solicitud__icono svg {
+  display: block;
+  flex: 0 0 auto;
+
+  width: 27px;
+  height: 27px;
+}
+
+
+/* =========================================================
+   6. TEXTOS DE LOS BOTONES
+   ========================================================= */
+
+.btn-solicitud__texto {
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: column;
+
+  min-width: 0;
+  max-width: 300px;
+
+  overflow: hidden;
+  white-space: nowrap;
+  line-height: 1.2;
+
+  opacity: 1;
+  visibility: visible;
+
+  transition:
+    max-width 0.3s ease,
+    opacity 0.2s ease,
+    visibility 0.2s ease;
+}
+
+.btn-solicitud__texto small {
+  font-size: 11px;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.btn-solicitud__texto strong {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+
+/* =========================================================
+   7. ESTADO COMPACTO: CÍRCULOS CON SOLO EL ICONO
+   ========================================================= */
+
+.botones-flotantes .btn-solicitud.compacto {
+  display: flex;
+  flex: 0 0 56px;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+
+  width: 56px;
+  min-width: 56px;
+  max-width: 56px;
+
+  height: 56px;
+  min-height: 56px;
+  max-height: 56px;
+
+  padding: 5px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+/* El icono permanece centrado dentro del círculo */
+.botones-flotantes .btn-solicitud.compacto
+.btn-solicitud__icono {
+  flex: 0 0 46px;
+
+  width: 46px;
+  min-width: 46px;
+  height: 46px;
+  min-height: 46px;
+
+  margin: 0;
+}
+
+/* Ocultar el texto sin alterar la forma circular */
+.botones-flotantes .btn-solicitud.compacto
+.btn-solicitud__texto {
+  flex: 0 0 0;
+
+  width: 0;
+  max-width: 0;
+  min-width: 0;
+
+  padding: 0;
+  margin: 0;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   8. ANIMACIONES
+   ========================================================= */
+
+/* Entrada inicial */
+@keyframes sol-entrada {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Pulso de sombra */
+@keyframes sol-pulso {
+  0%, 100% {
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.20);
+  }
+
+  50% {
+    box-shadow: 0 8px 26px rgba(79, 22, 249, 0.30);
+  }
+}
+
+/* Movimiento suave del icono */
+@keyframes sol-vaiven {
+  0%, 100% {
+    transform: rotate(0);
+  }
+
+  25% {
+    transform: rotate(-8deg);
+  }
+
+  75% {
+    transform: rotate(8deg);
+  }
+}
+
+
+/* =========================================================
+   9. EFECTOS PARA COMPUTADORAS CON CURSOR
+   ========================================================= */
+
+@media (hover: hover) and (pointer: fine) {
+  .btn-solicitud.compacto:hover {
+    transform: scale(1.06);
+  }
+}
+
+
+/* =========================================================
+   10. TABLETAS Y CELULARES
+   ========================================================= */
+
+@media (max-width: 850px) {
+  .botones-flotantes {
+    right: 12px;
+    bottom: 12px;
+    left: auto;
+
+    align-items: flex-end;
+    gap: 10px;
+
+    max-width: calc(100vw - 24px);
+  }
+
+  .btn-solicitud {
+    gap: 8px;
+    height: 58px;
+    padding: 8px 12px 8px 8px;
+  }
+
+  .btn-solicitud__icono {
+    flex-basis: 40px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .btn-solicitud__icono svg {
+    width: 23px;
+    height: 23px;
+  }
+
+  .btn-solicitud__texto {
+    max-width: 240px;
+    white-space: normal;
+  }
+
+  .btn-solicitud__texto small {
+    font-size: 10px;
+  }
+
+  .btn-solicitud__texto strong {
+    font-size: 11px;
+  }
+
+  /* Círculos compactos en pantallas pequeñas */
+  .botones-flotantes .btn-solicitud.compacto {
+    flex: 0 0 50px;
+
+    width: 50px;
+    min-width: 50px;
+    max-width: 50px;
+
+    height: 50px;
+    min-height: 50px;
+    max-height: 50px;
+
+    padding: 2px;
+  }
+
+  .botones-flotantes .btn-solicitud.compacto
+  .btn-solicitud__icono {
+    flex: 0 0 42px;
+
+    width: 42px;
+    min-width: 42px;
+    height: 42px;
+    min-height: 42px;
+  }
+}
+
+
+/* =========================================================
+   11. CELULARES ESTRECHOS
+   ========================================================= */
+
+@media (max-width: 380px) {
+  .botones-flotantes {
+    right: 8px;
+    bottom: 8px;
+    gap: 8px;
+  }
+
+  .btn-solicitud {
+    gap: 6px;
+    padding: 7px 10px 7px 7px;
+  }
+
+  .btn-solicitud__texto strong {
+    font-size: 10px;
+  }
+}
+
+
+/* =========================================================
+   12. ACCESIBILIDAD: REDUCIR MOVIMIENTO
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-solicitud,
+  .btn-solicitud__icono {
+    animation: none;
+    transition: none;
+  }
+}
+
+

@@ -83,3 +83,118 @@ document.addEventListener('DOMContentLoaded', async () => {
   activarSubmenusMovil();
   marcarLinkActivo();
 });
+
+
+//boton
+// ===================== BOTÓN FLOTANTE: BUSCA TU SOLICITUD =====================
+
+
+(function () {
+  const contenedor = document.querySelector('.botones-flotantes');
+
+  if (!contenedor) return;
+
+  const botones = contenedor.querySelectorAll('.btn-solicitud');
+
+  if (!botones.length) return;
+
+  const TIEMPO_INICIAL = 4000;
+  const UMBRAL_SCROLL = 80;
+  const esMovil = window.matchMedia('(max-width: 850px)');
+
+  let temporizadorInicial;
+  let compactados = true;
+
+  function compactarBotones() {
+    if (compactados) return;
+
+    compactados = true;
+
+    botones.forEach(function (boton) {
+      boton.classList.add('compacto');
+    });
+  }
+
+  function mostrarBotonesCompletos() {
+    compactados = false;
+
+    botones.forEach(function (boton) {
+      boton.classList.remove('compacto');
+    });
+  }
+
+  // Mostrar los textos al cargar y compactar después de 4 segundos.
+  if (window.scrollY < UMBRAL_SCROLL) {
+    mostrarBotonesCompletos();
+
+    temporizadorInicial = window.setTimeout(function () {
+      compactarBotones();
+    }, TIEMPO_INICIAL);
+  } else {
+    compactarBotones();
+  }
+
+  // Si la persona empieza a navegar, compactar inmediatamente.
+  window.addEventListener('scroll', function () {
+    if (window.scrollY >= UMBRAL_SCROLL) {
+      window.clearTimeout(temporizadorInicial);
+      compactarBotones();
+    }
+  }, { passive: true });
+
+  // En pantallas pequeñas, el toque permite expandir temporalmente
+  // un botón sin navegar inmediatamente.
+  botones.forEach(function (boton) {
+    boton.addEventListener('click', function (evento) {
+      if (!esMovil.matches || !boton.classList.contains('compacto')) {
+        return;
+      }
+
+      // Primer toque: mostrar texto. Segundo toque: abrir el enlace.
+      evento.preventDefault();
+
+      const yaExpandido = boton.dataset.expandido === 'true';
+
+      botones.forEach(function (otro) {
+        otro.classList.add('compacto');
+        otro.dataset.expandido = 'false';
+      });
+
+      if (!yaExpandido) {
+        boton.classList.remove('compacto');
+        boton.dataset.expandido = 'true';
+
+        window.clearTimeout(temporizadorInicial);
+
+        temporizadorInicial = window.setTimeout(function () {
+          compactarBotones();
+
+          botones.forEach(function (otro) {
+            otro.dataset.expandido = 'false';
+          });
+        }, 3000);
+      } else {
+        boton.dataset.expandido = 'false';
+        window.location.href = boton.href;
+      }
+    });
+  });
+
+  // Al volver a una pantalla grande, restablecer el comportamiento.
+  esMovil.addEventListener('change', function () {
+    window.clearTimeout(temporizadorInicial);
+
+    if (esMovil.matches) {
+      compactarBotones();
+    } else if (window.scrollY < UMBRAL_SCROLL) {
+      mostrarBotonesCompletos();
+
+      temporizadorInicial = window.setTimeout(
+        compactarBotones,
+        TIEMPO_INICIAL
+      );
+    } else {
+      compactarBotones();
+    }
+  });
+})();
