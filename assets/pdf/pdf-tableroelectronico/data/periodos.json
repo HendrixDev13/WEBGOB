@@ -1,8 +1,18 @@
 {
   "version": 1,
-  "total": 21,
-  "ultimoPeriodo": "2026-09",
+  "total": 22,
+  "ultimoPeriodo": "2026-10",
   "periodos": [
+    {
+      "id": "2026-10",
+      "mes": "OCTUBRE",
+      "mesNumero": 10,
+      "anio": 2026,
+      "etiqueta": "Octubre 2026",
+      "fechaCorte": "2026-10-31",
+      "archivo": "2026-10.json",
+      "pdf": "2026-10 Tablero Electrónico Octubre 2026.pdf"
+    },
     {
       "id": "2026-09",
       "mes": "SEPTIEMBRE",
