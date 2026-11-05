@@ -9,33 +9,25 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
- 
 <link href="/assets/css/styles.css" rel="stylesheet">
+<link href="/assets/css/botones.css?v=1" rel="stylesheet">
 <link rel="preload" as="image" href="/assets/images/RL.webp">
 </head>
 <body>
- 
-<!-- ===================== HEADER ===================== -->
-<!-- El navbar se inyecta aquí vía fetch, ver assets/js/main.js -->
+
 <div id="navbar-container"></div>
  
-<!-- ===================== HERO ===================== -->
 <section class="hero-fotos" id="inicio">
   <div class="hero-fondo">
-    <!-- La primera foto se carga de inmediato (es la que ve la persona al entrar).
-         Las demás se cargan poco a poco vía JS (ver más abajo) para no competir
-         por ancho de banda con la primera foto ni con el resto de la página. -->
     <div class="slide" style="background-image:url('/assets/images/RL.webp')"></div>
-    <div class="slide" data-bg="/assets/images/SJ.webp"></div>
-    <div class="slide" data-bg="/assets/images/SANMIGEUL.webp"></div>
-    <div class="slide" data-bg="/assets/images/PUR.webp"></div>
-    <div class="slide" data-bg="/assets/images/CUB.webp"></div>
+    <div class="slide" data-bg="/assets/images/MMC/MC1.jpg"></div>
+    <div class="slide" data-bg="/assets/images/MMC/MC2.jpg"></div>
+    <div class="slide" data-bg="/assets/images/MMC/MC3.jpg"></div>
+    <div class="slide" data-bg="/assets/images/MMC/MC1.jpg"></div>
   </div>
   <div class="hero-overlay"></div>
 </section>
 <script>
-  // Carga diferida y escalonada de las fotos del carrusel: cada una se pide
-  // justo antes de que le toque su turno (coincide con animation-delay del CSS).
   document.querySelectorAll('.hero-fondo .slide[data-bg]').forEach((slide, i) => {
     setTimeout(() => {
       slide.style.backgroundImage = `url('${slide.dataset.bg}')`;
@@ -43,7 +35,6 @@
   });
 </script>
 
-<!-- ===================== BLOQUE DE TEXTO / GOBERNACIÓN ===================== -->
 <section class="hero-info">
   <div class="hero-tarjeta">
     <div class="hero-grid">
@@ -66,7 +57,6 @@
   </div>
 </section>
  
-<!-- ===================== ACCESOS RÁPIDOS ===================== -->
 <div class="accesos-rapidos">
  
   <a href="pages/tableroelectronico.html" class="tarjeta-acceso">
@@ -99,7 +89,6 @@
  
 </div>
  
-<!-- ===================== QUIÉNES SOMOS ===================== -->
 <section class="quienes-somos" id="quienes-somos">
   <div class="contenedor">
     <div class="encabezado-seccion">
@@ -127,8 +116,7 @@
     </div>
   </div>
 </section>
- 
-<!-- ===================== INFORMES / NOTICIAS (resumen) ===================== -->
+
 <section id="informes">
   <div class="contenedor">
     <div class="encabezado-seccion">
@@ -163,7 +151,6 @@
   </div>
 </section>
  
-<!-- ===================== MUNICIPIOS (resumen) ===================== -->
 <section class="municipios">
   <div class="contenedor">
     <div class="encabezado-seccion">
@@ -178,7 +165,6 @@
   </div>
 </section>
  
-<!-- ===================== CONTACTO ===================== -->
 <section class="contacto-cta" id="contacto">
   <div class="contenedor">
     <div class="caja-contacto">
@@ -219,14 +205,13 @@
     </div>
   </div>
 </section>
- 
-<!-- ===================== MODAL GOBERNADOR ===================== -->
+
 <div class="modal-fondo" id="modalGobernador" onclick="if(event.target===this) cerrarModalGobernador()">
   <div class="modal-caja">
     <button class="modal-cerrar" aria-label="Cerrar" onclick="cerrarModalGobernador()">✕</button>
  
     <div class="modal-imagen">
-      <!-- Reemplaza esta ruta por la foto del gobernador que subas al Administrador de Archivos -->
+     
       <img src="/assets/images/03.webp" alt="Fotografía del Gobernador de Baja Verapaz" loading="lazy">
     </div>
  
@@ -239,42 +224,35 @@
     </div>
   </div>
 </div>
- 
-<!-- ===================== FOOTER ===================== -->
-<!-- El footer se inyecta aquí vía fetch, ver assets/js/main.js -->
 <div id="footer-container"></div>
 
- 
-<!-- BOTONES FLOTANTES DE SERVICIOS -->
+
 <div class="botones-flotantes">
 
+  <!-- BOTÓN 1: WHATSAPP -->
   <a href="https://wa.me/50277254594"
      id="btn-whatsapp"
      class="btn-solicitud btn-whatsapp"
      target="_blank"
      rel="noopener noreferrer"
      aria-label="Contactar por WhatsApp">
-
     <span class="btn-solicitud__icono">
-      <svg xmlns="http://www.w3.org/2000/svg"
-           width="28" height="28" viewBox="0 0 24 24"
-           fill="currentColor" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
         <path d="M12.04 2a9.93 9.93 0 0 0-8.52 15.04L2 22l5.12-1.34A9.94 9.94 0 1 0 12.04 2Zm0 18.16a8.18 8.18 0 0 1-4.17-1.14l-.3-.18-3.04.8.81-2.97-.2-.31a8.17 8.17 0 1 1 6.9 3.8Zm4.49-6.12c-.25-.13-1.48-.73-1.71-.81-.23-.08-.4-.13-.56.13-.17.25-.65.81-.79.98-.15.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.41-1.75-.15-.25-.02-.39.11-.52.12-.11.25-.29.38-.44.12-.15.16-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.36-.77-1.86-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.09 0 1.23.9 2.42 1.02 2.59.13.17 1.77 2.7 4.28 3.79.6.26 1.07.42 1.44.54.61.19 1.16.16 1.6.1.49-.07 1.48-.61 1.69-1.2.21-.59.21-1.1.15-1.2-.06-.1-.23-.17-.48-.29Z"/>
       </svg>
     </span>
+    <span class="btn-solicitud__texto">
+      <small>¿Tienes dudas?</small>
+      <strong>ESCRÍBENOS POR WHATSAPP</strong>
+    </span>
+  </a>
 
-  <!-- BOTÓN 1: CONSULTA DE TRÁMITES -->
   <a href="https://www.2016.gobernacionbajaverapaz.gob.gt/"
      id="btn-consulta"
      class="btn-solicitud btn-solicitud--consulta"
      aria-label="Buscar mi solicitud de trámite">
-
     <span class="btn-solicitud__icono">
-      <svg xmlns="http://www.w3.org/2000/svg"
-           width="28" height="28" viewBox="0 0 24 24"
-           fill="none" stroke="currentColor"
-           stroke-width="2" stroke-linecap="round"
-           stroke-linejoin="round" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h8"/>
         <path d="M14 2v6h6"/>
         <path d="M14 2l6 6"/>
@@ -282,25 +260,19 @@
         <path d="m20 20 2 2"/>
       </svg>
     </span>
-
     <span class="btn-solicitud__texto">
       <small>¿Ya hiciste un trámite?</small>
       <strong>BUSCA TU SOLICITUD AQUÍ</strong>
     </span>
   </a>
 
-  <!-- BOTÓN 2: ACCESO A LA INFORMACIÓN PÚBLICA -->
+ 
   <a href="https://www.gobernacionbajaverapaz.gob.gt/pages/tramites.html#tramite-3"
      id="btn-informacion-publica"
      class="btn-solicitud btn-solicitud--informacion"
      aria-label="Solicitar acceso a la información pública">
-
     <span class="btn-solicitud__icono">
-      <svg xmlns="http://www.w3.org/2000/svg"
-           width="28" height="28" viewBox="0 0 24 24"
-           fill="none" stroke="currentColor"
-           stroke-width="2" stroke-linecap="round"
-           stroke-linejoin="round" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M12 3 3 7v2h18V7l-9-4Z"/>
         <path d="M5 9v8"/>
         <path d="M9 9v8"/>
@@ -310,7 +282,6 @@
         <path d="M2 17h20v3H2z"/>
       </svg>
     </span>
-
     <span class="btn-solicitud__texto">
       <small>Solicita acceso a la</small>
       <strong>INFORMACIÓN PÚBLICA</strong>
@@ -318,8 +289,7 @@
   </a>
 
 </div>
-
- 
+ <script src="/assets/js/botones.js?v=1"></script>
 <script src="/assets/js/main.js"></script>
 <script src="/assets/js/modals.js"></script>
 <script src="/assets/js/tramites.js"></script>

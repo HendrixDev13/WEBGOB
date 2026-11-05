@@ -1,0 +1,123 @@
+/* ===================== BOTONES FLOTANTES ===================== */
+.botones-flotantes {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 900;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.btn-solicitud {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 22px 10px 10px;
+  border-radius: 999px;
+  color: #fff;
+  text-decoration: none;
+  font-family: 'Poppins', Arial, sans-serif;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, .28);
+  transition: transform .25s ease, box-shadow .25s ease, padding .3s ease, gap .3s ease;
+  animation: sol-entrada .7s ease backwards;
+}
+
+.btn-solicitud:nth-child(1) { animation-delay: .1s; }
+.btn-solicitud:nth-child(2) { animation-delay: .25s; }
+.btn-solicitud:nth-child(3) { animation-delay: .4s; }
+
+.btn-solicitud:hover,
+.btn-solicitud:focus-visible {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, .35);
+}
+
+.btn-solicitud:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+
+/* ---------- Colores de cada botón ---------- */
+.btn-whatsapp               { background: linear-gradient(135deg, #25d366, #128c7e); }
+.btn-solicitud--consulta    { background: linear-gradient(135deg, #4f16f9, #021b7e); }
+.btn-solicitud--informacion { background: linear-gradient(135deg, #f59e0b, #b45309); }
+
+/* ---------- Anillo pulsante (color según botón) ---------- */
+.btn-solicitud::after {
+  content: "";
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  border-radius: inherit;
+  border: 2px solid #4f16f9;
+  opacity: 0;
+  pointer-events: none;
+  animation: sol-anillo 2.6s ease-out 1.2s infinite;
+}
+.btn-whatsapp::after               { border-color: #25d366; }
+.btn-solicitud--consulta::after    { border-color: #4f16f9; }
+.btn-solicitud--informacion::after { border-color: #f59e0b; }
+
+/* ---------- Icono ---------- */
+.btn-solicitud__icono {
+  flex: 0 0 auto;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---------- Texto ---------- */
+.btn-solicitud__texto {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 320px;
+  transition: max-width .3s ease, opacity .25s ease;
+}
+.btn-solicitud__texto small  { font-size: 11px; font-weight: 500; opacity: .9; }
+.btn-solicitud__texto strong { font-size: 15px; font-weight: 700; letter-spacing: .3px; }
+
+/* ---------- Estado compacto (solo icono) ---------- */
+.btn-solicitud.compacto { padding: 6px; gap: 0; }
+.btn-solicitud.compacto .btn-solicitud__texto { max-width: 0; opacity: 0; }
+
+/* En computadora, al pasar el mouse se vuelve a mostrar el texto */
+@media (hover: hover) {
+  .btn-solicitud.compacto:hover { padding: 10px 22px 10px 10px; gap: 14px; }
+  .btn-solicitud.compacto:hover .btn-solicitud__texto { max-width: 320px; opacity: 1; }
+}
+
+/* ---------- Animaciones ---------- */
+@keyframes sol-entrada {
+  from { opacity: 0; transform: translateY(40px) scale(.8); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes sol-anillo {
+  0%   { opacity: .8; transform: scale(1); }
+  70%  { opacity: 0;  transform: scale(1.3); }
+  100% { opacity: 0;  transform: scale(1.3); }
+}
+
+/* ---------- Móvil ---------- */
+@media (max-width: 850px) {
+  .botones-flotantes { right: 14px; bottom: 14px; gap: 10px; }
+  .btn-solicitud { gap: 10px; padding: 7px 16px 7px 7px; }
+  .btn-solicitud__icono { width: 42px; height: 42px; }
+  .btn-solicitud__icono svg { width: 24px; height: 24px; }
+  .btn-solicitud__texto small { display: none; }
+  .btn-solicitud__texto strong { font-size: 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-solicitud,
+  .btn-solicitud::after { animation: none; }
+}
